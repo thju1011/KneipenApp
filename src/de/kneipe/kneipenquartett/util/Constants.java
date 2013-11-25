@@ -20,7 +20,7 @@ public final class Constants {
 	public static final int TAB_KUNDE_STAMMDATEN = 0;
 	public static final int TAB_KUNDE_BESTELLUNGEN = 1;
 	
-	public static final String BENUTZER_PATH = "/kunden";
+	public static final String BENUTZER_PATH = "/benutzer";
 	public static final String USERNAMEN_PATH = BENUTZER_PATH + "?nachname=";
 	public static final String NAME_PATH = BENUTZER_PATH + "?name=";
 	public static final String KUNDEN_PREFIX_PATH = BENUTZER_PATH + "/prefix";

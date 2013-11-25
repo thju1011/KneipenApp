@@ -2,6 +2,7 @@ package de.kneipe;
 
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
+import de.kneipe.kneipenquartett.service.BenutzerService;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 
 public class Main extends Activity implements OnClickListener {
-
+	BenutzerService bs = new BenutzerService();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,6 +39,12 @@ public class Main extends Activity implements OnClickListener {
 		Benutzer login = new Benutzer();
 		login.username= benutzerStr;
 		login.password = benutzerpw;
+		
+		
+		
+		
+		
+		
 		// SERVER AUFRUF! Vergleich gleicht ab ob Benutzername + pw = identisch mit benutzer
 		Benutzer benutzer = new Benutzer();
 		Intent intent = new Intent(this, Benutzer.class);

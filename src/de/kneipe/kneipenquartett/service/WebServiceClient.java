@@ -38,6 +38,7 @@ import javax.json.JsonString;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.JsonMappable;
 import de.kneipe.kneipenquartett.util.InternalShopError;
 
@@ -382,7 +383,47 @@ final class WebServiceClient {
 		return result;
 	}
 
-    
+    public Benutzer login(Benutzer be)
+    {// ZUERST SOLL APP DATEN SCHICKEN ---> DANN EMPFANGEN !
+    	BufferedReader reader;
+    	URL url;
+    	try {
+			url = new URL(getBaseUrl() + path);
+		}
+    	catch (MalformedURLException e) {
+    		Log.e(LOG_TAG, "Interner Fehler beim Erstellen der URL: " + getBaseUrl() + path, e);
+    		throw new InternalShopError(e.getMessage(), e);
+		}
+    	Log.v(LOG_TAG, url.toString());
+    	HttpURLConnection httpConnection = null;
+    	String location;
+    	int statusCode = 0;
+    	try {
+			Writer writer = null;
+			try {
+				httpConnection = (HttpURLConnection) url.openConnection();
+				httpConnection.setDoOutput(true);
+				httpConnection.setRequestProperty(CONTENT_TYPE, APPLICATION_JSON);
+				httpConnection.setRequestProperty(ACCEPT_LANGUAGE, Locale.getDefault().getLanguage());
+				writer = new BufferedWriter(new OutputStreamWriter(httpConnection.getOutputStream()));
+				writer.write(be.toJsonObject().toString());
+			}
+			finally {
+				writer.close();
+			}
+    	finally{}
+			//try {
+
+				reader =  new BufferedReader(new InputStreamReader(httpConnection.getInputStream()));
+			//}
+			
+			/////////BUFFEREDREADER INTERPRETIEREUN UND aus JSON KONVERTIEREN! ---->>>>>> muss man noch machen
+			
+			//
+    	
+    	Benutzer b = new Benutzer();
+    	return b;
+    }
     static <T extends JsonMappable> HttpResponse<T> postJson(T jsonMappable, String path) {
     	URL url;
     	try {

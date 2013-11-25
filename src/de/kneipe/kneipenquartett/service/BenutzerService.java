@@ -101,7 +101,7 @@ public class BenutzerService extends Service {
 		    return result;
 		}
 	
-
+		
 		public List<Long> sucheIds(String prefix) {
 			final String path = KUNDEN_ID_PREFIX_PATH + "/" + prefix;
 		    Log.v(LOG_TAG, "sucheIds: path = " + path);
@@ -126,7 +126,49 @@ public class BenutzerService extends Service {
 
 			return nachnamen;
 		}
+		
+		public HttpResponse<Benutzer> loginBenutzer(Benutzer login, final Context ctx){
+			final AsyncTask<Benutzer, Void, HttpResponse<Benutzer>> loginTask = new AsyncTask<Benutzer, Void, HttpResponse<Benutzer>>() {
+				@Override
+	    		protected void onPreExecute() {
+					progressDialog = showProgressDialog(ctx);
+				}
+				
+				@Override
+				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+				protected HttpResponse<Benutzer> doInBackground(Benutzer... benutzer) {
+					final Benutzer be = benutzer[0];
+		    		final String path = BENUTZER_PATH;
+		    		Log.v(LOG_TAG, "path = " + path);
 
+		    		final HttpResponse<Benutzer> result = WebServiceClient.postJson(be, path);
+		    		
+					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+					return result;
+				}
+				
+				@Override
+	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
+					progressDialog.dismiss();
+	    		}
+			};
+			loginTask.execute(login);
+			HttpResponse<Benutzer> response = null; 
+			try {
+				response = loginTask.get(timeout, SECONDS);
+			}
+	    	catch (Exception e) {
+	    		throw new InternalShopError(e.getMessage(), e);
+			}
+			
+			be.uid = Long.valueOf(response.content);
+			final HttpResponse<Benutzer> result = new HttpResponse<Benutzer>(response.responseCode, response.content, be);
+			return result;
+			
+			
+			
+			
+		}
 		/**
 		 */
 		public HttpResponse<Benutzer> createBenutzer(Benutzer be, final Context ctx) {
