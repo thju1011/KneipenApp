@@ -22,6 +22,7 @@ public class Kneipe implements JsonMappable, Serializable {
 	public float guenstigstesBier;
 	public int personalanzahl;
 	public String specials;
+	//TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 	
 	public Kneipe(){
 		super();
