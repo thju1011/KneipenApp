@@ -31,7 +31,10 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
         	if (args != null) {
         		fragment.setArguments(args);
         	}
-            ft.replace(R.id.details, fragment); // siehe layout-swXXXdp\main.xml und layout-swXXXdp\kunden_liste.xml 
+        	
+        	//später wieder rein???
+        	
+          //  ft.replace(R.id.details, fragment); // siehe layout-swXXXdp\main.xml und layout-swXXXdp\kunden_liste.xml 
             // WICHTIG: Nicht commit() aufrufen und auch nicht auf dem "Back Stack" ablegen
         }
         else {
