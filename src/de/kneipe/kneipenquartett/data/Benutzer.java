@@ -16,7 +16,7 @@ public class Benutzer implements JsonMappable, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2843760959760554956L;
-
+/////
 	public Long uid;
 	public String username;
 	public String email;
