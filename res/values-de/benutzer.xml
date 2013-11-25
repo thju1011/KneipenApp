@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<resources>
+
+	<string name="b_benutzer_id_auswahl_hint">Wählen Sie eine Nummer aus</string>
+	<string name="b_benutzer_id_hint">Kundennummer eingeben</string>
+	<string name="b_benutzernnr_fehlt">Die Kundennummer fehlt.</string>
+    <string name="b_benutzer_id">Kundennummer</string>
+    <string name="b_nachname">Nachname</string>
+    <string name="b_nachname_hint">Nachname eingeben</string>
+    <string name="b_nachname_auswahl_hint">Wählen Sie einen Nachnamen aus</string>
+    <string name="b_nachname_fehlt">Der Nachname fehlt.</string>
+    <string name="b_vorname">Vorname</string>
+    <string name="b_bategorie">Kategorie</string>
+    <string name="b_email">Email</string>
+ <!--   <string name="b_adresse">Adresse</string>
+    <string name="b_plz">PLZ</string>
+    <string name="b_ort">Ort</string>
+    <string name="b_strasse">Straße</string>
+    <string name="b_hausnr">Nr.</string>
+    <string name="b_seit">Seit</string>
+    <string name="b_newsletter">Newsletter</string>-->
+    <string name="b_geschlecht">Geschlecht</string>
+    <string name="b_maennlich">Männlich</string>
+    <string name="b_weiblich">Weiblich</string>
+    <string name="b_familienstand">Familienstand</string>
+    <string name="b_hobbies">Hobbys</string>
+    <string name="b_sport">Sport</string>
+    <string name="b_lesen">Lesen</string>
+    <string name="b_reisen">Reisen</string>
+    <string name="b_stammdaten">Stammdaten</string>
+    <string name="b_bestellungen">Bestellungen</string>
+    <string name="b_bestellungen_benutzer_id">Kunde %d:</string>
+    <string name="b_beine_bestellungen">Der Kunde %d hat beine Bestellungen.</string>
+    <string name="b_benutzer_bestellung_id">Bestellnr. %d</string>
+    <string name="b_bestellung_id">Bestellnr.</string>
+    <string name="b_datum">Datum</string>
+    <string name="b_benutzern_liste_title">Gefundene Kunden</string>
+    <string name="b_hint_benutzernname">Kundenname</string>
+    <string name="b_benutzer_not_found">Kein Kunde mit Nr. %s gefunden.</string>
+    <string name="b_benutzern_not_found">Keine Kunden mit Nachname %s gefunden.</string>
+    
+    <string-array name="b_familienstand_entries">
+       	<item>Ledig</item>
+       	<item>Verheiratet</item>
+       	<item>Geschieden</item>
+       	<item>Verwitwet</item>
+    </string-array>
+    <string name="b_karte">Kundenkarte</string>
+    <string name="b_name">Kundenname</string>
+    
+    <string name="b_login">Login</string>
+    <string name="b_passwort">Password</string>
+    <string name="b_agbs">AGBs</string>
+</resources>

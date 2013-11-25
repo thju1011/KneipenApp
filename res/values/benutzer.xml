@@ -1,0 +1,53 @@
+<resources>
+
+	<string name="b_benutzer_id_auswahl_hint">Select a customer no.</string>
+	<string name="b_benutzer_id_hint">Enter customer no.</string>
+	<string name="b_benutzernnr_fehlt">The customer no. is missing.</string>
+	<string name="b_benutzer_id">Customer No.</string>
+    <string name="b_nachname">Lastname</string>
+    <string name="b_nachname_hint">Enter the lastname</string>
+    <string name="b_nachname_auswahl_hint">Select a lastname</string>
+    <string name="b_nachname_fehlt">The lastname is missing.</string>
+    <string name="b_vorname">Firstname</string>
+    <string name="b_bategorie">Category</string>
+    <string name="b_email">Email</string>
+    <string name="b_adresse">Address</string>
+    <string name="b_plz">Zip</string>
+    <string name="b_ort">City</string>
+    <string name="b_strasse">Street</string>
+    <string name="b_hausnr">No.</string>
+    <string name="b_seit">Since</string>
+    <string name="b_login">Login</string>
+    <string name="b_passwort">Password</string>
+    <string name="b_newsletter">Newsletter</string>
+    <string name="b_geschlecht">Gender</string>
+    <string name="b_maennlich">Male</string>
+    <string name="b_weiblich">Female</string>
+    <string name="b_familienstand">Marriage</string>
+    <string name="b_hobbies">Hobbies</string>
+    <string name="b_sport">Sports</string>
+    <string name="b_lesen">Reading</string>
+    <string name="b_reisen">Travelling</string>
+    <string name="b_stammdaten">Master data</string>
+    <string name="b_bestellungen">Orders</string>
+    <string name="b_bestellungen_benutzer_id">Customer %d:</string>
+    <string name="b_beine_bestellungen">No orders of customer %d</string>
+    <string name="b_benutzer_bestellung_id">Order no. %d</string>
+    <string name="b_bestellung_id">Order no.</string>
+    <string name="b_datum">Date</string>
+    <string name="b_benutzern_liste_title">Customers</string>
+    <string name="b_hint_benutzernname">Customer name</string>
+    <string name="b_benutzer_not_found">No customer found with id %s.</string>
+    <string name="b_benutzern_not_found">No customers found with lastname %s.</string>
+    
+    <string-array name="b_familienstand_entries">
+       	<item>Single</item>
+       	<item>Married</item>
+       	<item>Divorced</item>
+       	<item>Widowed</item>
+    </string-array>
+    <string name="b_barte">Custommer card</string>
+    <string name="b_name">Custommer name</string>
+    <string name="b_agbs">AGBs</string>
+    
+</resources>
