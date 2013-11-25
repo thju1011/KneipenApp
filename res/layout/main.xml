@@ -9,8 +9,41 @@
 	tools:context=".Main" >
 
 	<TextView
+		android:id="@+id/textView1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/hello_world" />
+
+	
+	
+	
+	
+	<Button
+		android:id="@+id/loginbutton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="105dp"
+		android:text="@string/login_button" />
+
+	<EditText
+		android:id="@+id/nutzername"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/textView1"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="60dp"
+		android:ems="10" />
+
+	<EditText
+		android:id="@+id/passwort"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignRight="@+id/nutzername"
+		android:layout_below="@+id/nutzername"
+		android:layout_marginTop="44dp"
+		android:ems="10"
+		android:inputType="textPassword" />
 
 </RelativeLayout>
