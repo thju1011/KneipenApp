@@ -7,7 +7,7 @@ import javax.json.JsonObject;
 public class Bewertung implements JsonMappable, Serializable{
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 5591521793265277000L;
 
