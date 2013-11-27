@@ -3,6 +3,7 @@ package de.kneipe.kneipenquartett.data;
 import java.io.Serializable;
 
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 
 public class Bewertung implements JsonMappable, Serializable{
 
@@ -10,8 +11,18 @@ public class Bewertung implements JsonMappable, Serializable{
 	 
 	 */
 	
-	// Attribute hinzufügen
 	private static final long serialVersionUID = 5591521793265277000L;
+	
+	public Long bid;
+	public String kommentar;
+	public double rating;
+	public int freundlichkeit;
+	public int preisleistung;
+	public int sauberkeit;
+	public Benutzer benutzer;
+	public Kneipe kneipe;
+	
+	// TO do - Get Json Builder
 
 	@Override
 	public JsonObject toJsonObject() {
