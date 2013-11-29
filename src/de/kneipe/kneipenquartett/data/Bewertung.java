@@ -1,5 +1,7 @@
 package de.kneipe.kneipenquartett.data;
 
+import static de.kneipe.KneipenQuartett.jsonBuilderFactory;
+
 import java.io.Serializable;
 
 import javax.json.JsonObject;
@@ -22,18 +24,29 @@ public class Bewertung implements JsonMappable, Serializable{
 	public Benutzer benutzer;
 	public Kneipe kneipe;
 	
-	// TO do - Get Json Builder
-
+	JsonObjectBuilder getJsonBuilderFactory() {
+		return jsonBuilderFactory.createObjectBuilder()
+                .add("bid", bid)
+                .add("kommentar", kommentar)
+                .add("rating", rating)
+                .add("freundlichkeit", freundlichkeit)
+                .add("preisleistung", preisleistung)
+                .add("sauberkeit", sauberkeit);         
+	}
+	
 	@Override
 	public JsonObject toJsonObject() {
-		// TODO Auto-generated method stub
-		return null;
+		return getJsonBuilderFactory().build();
 	}
 
 	@Override
 	public void fromJsonObject(JsonObject jsonObject) {
-		// TODO Auto-generated method stub
-		
-	}
+		bid = Long.valueOf(jsonObject.getJsonNumber("bid").longValue());
+		kommentar = jsonObject.getString("kommentar");
+		rating =  jsonObject.getJsonNumber("rating").doubleValue();
+		freundlichkeit = jsonObject.getInt("freundlickeit");
+		preisleistung = jsonObject.getInt("preisleistung");
+		sauberkeit = jsonObject.getInt("sauberkeit");
 
+	}
 }
