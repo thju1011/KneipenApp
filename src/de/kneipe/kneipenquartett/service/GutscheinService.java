@@ -1,14 +1,24 @@
 package de.kneipe.kneipenquartett.service;
 
 import static android.app.ProgressDialog.STYLE_SPINNER;
+import static de.kneipe.kneipenquartett.ui.main.Prefs.timeout;
+import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_PATH;
+import static java.net.HttpURLConnection.HTTP_NO_CONTENT;
+import static java.net.HttpURLConnection.HTTP_OK;
+import static java.util.concurrent.TimeUnit.SECONDS;
 import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
+import android.util.Log;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Gutschein;
+import de.kneipe.kneipenquartett.data.Gutschein;
+import de.kneipe.kneipenquartett.util.InternalShopError;
+import static de.kneipe.kneipenquartett.util.Constants.GUTSCHEIN_PATH;
 
 public class GutscheinService extends Service {
 	private static final String LOG_TAG = GutscheinService.class.getSimpleName();
@@ -41,5 +51,46 @@ public class GutscheinService extends Service {
 			return progressDialog;
 		}
 		
-		
+		public HttpResponse<Gutschein> updateGutschein(Gutschein g, final Context ctx) {
+			// (evtl. mehrere) Parameter vom Typ "Gutschein", Resultat vom Typ "void"
+			final AsyncTask<Gutschein, Void, HttpResponse<Gutschein>> updateGutscheinTask = new AsyncTask<Gutschein, Void, HttpResponse<Gutschein>>() {
+				@Override
+	    		protected void onPreExecute() {
+					progressDialog = showProgressDialog(ctx);
+				}
+				
+				@Override
+				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+				protected HttpResponse<Gutschein> doInBackground(Gutschein... gutschein) {
+					final Gutschein g = gutschein[0];
+		    		final String path = GUTSCHEIN_PATH;
+		    		Log.v(LOG_TAG, "path = " + path);
+
+		    		final HttpResponse<Gutschein> result = WebServiceClient.putJson(g, path);
+					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+					return result;
+				}
+				
+				@Override
+	    		protected void onPostExecute(HttpResponse<Gutschein> unused) {
+					progressDialog.dismiss();
+	    		}
+			};
+			
+			updateGutscheinTask.execute(g);
+			final HttpResponse<Gutschein> result;
+			try {
+				result = updateGutscheinTask.get(timeout, SECONDS);
+			}
+	    	catch (Exception e) {
+	    		throw new InternalShopError(e.getMessage(), e);
+			}
+			
+			if (result.responseCode == HTTP_NO_CONTENT || result.responseCode == HTTP_OK) {
+				//be.updateVersion();  // kein konkurrierendes Update auf Serverseite
+				result.resultObject = g;
+			}
+			
+			return result;
+	    }
 }
