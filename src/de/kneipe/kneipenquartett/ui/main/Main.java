@@ -7,6 +7,7 @@ import de.kneipe.R.menu;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.service.BenutzerService;
 import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
+import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.app.Activity;
@@ -22,7 +23,7 @@ import android.widget.EditText;
 
 public class Main extends Activity implements OnClickListener {
 
-	BenutzerService bs;
+	
 
 	private static final String LOG_TAG = Main.class.getSimpleName();
 	
@@ -46,7 +47,6 @@ public class Main extends Activity implements OnClickListener {
 	}
 	
 	
-	BenutzerService bs = new BenutzerService();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
