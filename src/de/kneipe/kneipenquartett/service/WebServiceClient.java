@@ -408,9 +408,11 @@ final class WebServiceClient {
 				writer = new BufferedWriter(new OutputStreamWriter(httpConnection.getOutputStream()));
 				writer.write(be.toJsonObject().toString());
 			}
+			
 			finally {
 				writer.close();
 			}
+			
     	finally{}
 			//try {
 
