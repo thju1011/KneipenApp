@@ -44,7 +44,6 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 		private static final String LOG_TAG = BenutzerCreate.class.getSimpleName();
 		
 		private Bundle args;
-		
 		private Benutzer benutzer;
 		private EditText createNachname;
 		private EditText createVorname;
@@ -130,9 +129,10 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 			switch (item.getItemId()) {
 				case R.id.speichern:
 					createKunde();
-
+					
 					final Activity activity = getActivity();
 					
+					System.out.print(benutzer.toJsonObject().toString());
 					// Das Fragment KundeEdit kann von Main und von KundeListe aus aufgerufen werden
 					BenutzerServiceBinder benutzerServiceBinder;
 					if (Main.class.equals(activity.getClass())) {
@@ -206,8 +206,8 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 		}
 		
 		private void createKunde() {
-			benutzer=new Benutzer();
 			
+			benutzer = new Benutzer();
 			benutzer.password = createPasswort.getText().toString();
 			benutzer.username = createUsername.getText().toString();
 			benutzer.nachname = createNachname.getText().toString();
