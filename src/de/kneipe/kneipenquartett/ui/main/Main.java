@@ -16,7 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 
 public class Main extends Activity implements OnClickListener {
-	BenutzerService bs = new BenutzerService();
+	BenutzerService bs;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,6 +32,8 @@ public class Main extends Activity implements OnClickListener {
 	
 	public void onClick(View view) {
 		// Eingabetext ermitteln
+		switch (view.getId()) {
+		case R.id.loginbutton:
 		EditText benutzerid = (EditText) findViewById(R.id.nutzername);
 		EditText passwort = (EditText) findViewById(R.id.passwort);
 		String benutzerStr = benutzerid.getText().toString();
@@ -46,12 +48,21 @@ public class Main extends Activity implements OnClickListener {
 		
 		//VORÜBERGEHEND WIRD HIER NUR EIN GET ABGESETZT
 		
-		
+		bs.
 		
 		// SERVER AUFRUF! Vergleich gleicht ab ob Benutzername + pw = identisch mit benutzer
 		Benutzer benutzer = new Benutzer();
 		Intent intent = new Intent(this, Benutzer.class);
 		intent.putExtra("loginbenutzer", benutzer);
 		startActivity(intent);
+	
+		break;
+	
+		case R.id.registrieren:
+			Intent benutzeranlegen = new Intent(this, BenutzerCreate.class);
+			startActivity(benutzeranlegen);
+			break;
+		default:
+		}
 	}
 }

@@ -14,19 +14,6 @@
 		android:layout_height="wrap_content"
 		android:text="@string/hello_world" />
 
-	
-	
-	
-	
-	<Button
-		android:id="@+id/loginbutton"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:layout_centerHorizontal="true"
-		android:layout_marginBottom="105dp"
-		android:text="@string/login_button" />
-
 	<EditText
 		android:id="@+id/nutzername"
 		android:layout_width="wrap_content"
@@ -45,5 +32,24 @@
 		android:layout_marginTop="44dp"
 		android:ems="10"
 		android:inputType="textPassword" />
+
+	<TextView
+		android:id="@+id/registrieren"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="22dp"
+		android:layout_toRightOf="@+id/loginbutton"
+		android:text="@string/registrieren"
+		android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	<Button
+		android:id="@+id/loginbutton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/passwort"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="61dp"
+		android:text="@string/login_button" />
 
 </RelativeLayout>
