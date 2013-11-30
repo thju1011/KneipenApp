@@ -1,26 +1,26 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/benutzer_create"
-	android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.benutzer.BenutzerCreate" >
+	tools:context=".ui.main.Main" >
 	
+	<TableLayout
+	    android:layout_width="match_parent"
+		android:layout_height="wrap_content" >
 	
-	<TableRow>
+		<TableRow>
 	
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/b_login" />
+				android:text="@string/b_benutzer_id" />
 			
-			<EditText
-			    android:id="@+id/login_create"
-			    style="@style/RechteSpalteText"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:inputType="text"
-			    android:paddingLeft="5dp"
-			    tools:ignore="LabelFor" />
+			<TextView
+				android:id="@+id/benutzer_id"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textIsSelectable="true"
+				android:paddingLeft="5dp" />
 	
 		</TableRow>
 		
@@ -29,28 +29,10 @@
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/b_passwort" />
-			
-			<EditText
-			    android:id="@+id/passwort_create"
-			    style="@style/RechteSpalteText"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:inputType="text"
-			    android:paddingLeft="5dp"
-			    tools:ignore="LabelFor" />
-	
-		</TableRow>
-	
-		<TableRow>
-	
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
 				android:text="@string/b_nachname" />
 			
 			<EditText
-			    android:id="@+id/nachname_create"
+			    android:id="@+id/nachname_edt"
 			    style="@style/RechteSpalteText"
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
@@ -68,7 +50,7 @@
 	            android:text="@string/b_vorname" />
 	        
 	        <EditText
-	            android:id="@+id/vorname_create"
+	            android:id="@+id/vorname_edt"
 	            style="@style/RechteSpalteText"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
@@ -85,7 +67,7 @@
 	            android:text="@string/b_email" />
 	        
 	        <EditText
-	            android:id="@+id/email_create"
+	            android:id="@+id/email_edt"
 	            style="@style/RechteSpalteText"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
@@ -94,7 +76,7 @@
 	
 	    </TableRow>
 	    
-    <TableRow>
+	    <TableRow>
 	
 	        <TextView
 	            android:layout_width="match_parent"
@@ -102,7 +84,7 @@
 	            android:text="@string/b_geschlecht" />
 	        
 	        <EditText
-	            android:id="@+id/geschlecht_create"
+	            android:id="@+id/geschlecht_edt"
 	            style="@style/RechteSpalteText"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
@@ -110,22 +92,11 @@
 	            tools:ignore="LabelFor" />
 	
 	    </TableRow>
-
 	    
-	    <TableRow>
-	    	<TextView
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:text="@string/b_agbs" />
-	    		    	
-	    	<ToggleButton
-			    android:id="@+id/agb_tgl"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:textOn="@string/s_akzeptiert"
-			    android:textOff="@string/s_nicht_akzeptiert" />
-	    	
-	    	
-	    </TableRow>
+	  
+	
 
-</TableLayout>
+	
+	</TableLayout>
+	
+</ScrollView>

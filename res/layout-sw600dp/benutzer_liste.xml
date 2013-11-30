@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 	android:baselineAligned="false"
-    tools:context=".ui.KundenListe" >
+    tools:context=".ui.BenutzerListe" >
 
 	<!-- Fragmente gibt es erst ab Honeycomb bzw. Version 3.0 bzw. API Level 11 -->
 	
@@ -11,8 +11,8 @@
 	<!-- layout_width darf deshalb nicht wirksam sein -->
 	
 	<fragment
-    	android:id="@+id/kunden_liste_nav"
-    	android:name="de.shop.ui.kunde.KundenListeNav"
+    	android:id="@+id/benutzer_liste_nav"
+    	android:name="de.shop.ui.benutzer.BenutzerListeNav"
     	android:layout_weight="1"
     	android:layout_width="0dp"
     	android:layout_height="match_parent" />
