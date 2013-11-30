@@ -1,6 +1,9 @@
-package de.kneipe;
+package de.kneipe.kneipenquartett.ui.main;
 
 import de.kneipe.R;
+import de.kneipe.R.id;
+import de.kneipe.R.layout;
+import de.kneipe.R.menu;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.service.BenutzerService;
 import android.os.Bundle;
