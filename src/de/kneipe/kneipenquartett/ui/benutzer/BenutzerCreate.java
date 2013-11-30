@@ -52,8 +52,8 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 		private EditText createUsername;
 		private EditText createPasswort;
 
-		private RadioButton rbMaennlich;
-		private RadioButton rbWeiblich;
+		private EditText createGeschlecht;
+		
 		
 		private ToggleButton tglAGBs;
 		
@@ -76,14 +76,14 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 		public void onViewCreated(View view, Bundle savedInstanceState) {
 	    	
 			
-			final TextView txtId = (TextView) view.findViewById(R.id.kunde_id);
+			final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
 	    	//txtId.setText(String.valueOf(kunde.id));
 	    	
 			createPasswort = (EditText) view.findViewById(R.id.passwort_create);
 	    	//createLogin.setText(kunde.login);
 	    	
 	    	
-	    	createLogin = (EditText) view.findViewById(R.id.login_create);
+	    	createUsername = (EditText) view.findViewById(R.id.login_create);
 	    	//createLogin.setText(kunde.login);
 	    	
 	    	createNachname = (EditText) view.findViewById(R.id.nachname_create);
@@ -95,21 +95,9 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 	    	createEmail = (EditText) view.findViewById(R.id.email_create);
 	    	//createEmail.setText(kunde.email);
 	    	
-	    	createPlz = (EditText) view.findViewById(R.id.plz_create);
-	    	//createPlz.setText(kunde.adresse.plz);
 	    	
-	    	createOrt = (EditText) view.findViewById(R.id.ort_create);
-	    	//createOrt.setText(kunde.adresse.ort);
+	    	createGeschlecht = (EditText) view.findViewById(R.id.geschlecht_create);
 	    	
-	    	createStrasse = (EditText) view.findViewById(R.id.strasse_create);
-	    	//createStrasse.setText(kunde.adresse.strasse);
-	    	
-	    	createHausnr = (EditText) view.findViewById(R.id.hausnr_create);
-	    	//createHausnr.setText(kunde.adresse.hausnr);
-	    	
-	    	
-	    	rbMaennlich = (RadioButton) view.findViewById(R.id.maennlich);
-	    	rbWeiblich = (RadioButton) view.findViewById(R.id.weiblich);
 	    	
 	    	tglAGBs =(ToggleButton) view.findViewById(R.id.agb_tgl);
 	    	/*
@@ -134,7 +122,7 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 		// Nur aufgerufen, falls setHasOptionsMenu(true) in onCreateView() aufgerufen wird
 		public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 			super.onCreateOptionsMenu(menu, inflater);
-			inflater.inflate(R.menu.kunde_edit_options, menu);
+			inflater.inflate(R.menu.benutzer_edit_options, menu);
 		}
 		
 		@Override
@@ -146,20 +134,20 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 					final Activity activity = getActivity();
 					
 					// Das Fragment KundeEdit kann von Main und von KundeListe aus aufgerufen werden
-					KundeServiceBinder kundeServiceBinder;
+					BenutzerServiceBinder benutzerServiceBinder;
 					if (Main.class.equals(activity.getClass())) {
 						Main main = (Main) activity;
-						kundeServiceBinder = main.getKundeServiceBinder();
+						benutzerServiceBinder = main.getBenutzerServiceBinder();
 					}
-					else if (KundenListe.class.equals(activity.getClass())) {
-						KundenListe kundenListe = (KundenListe) activity;
-						kundeServiceBinder = kundenListe.getKundeServiceBinder();
+					else if (BenutzerListe.class.equals(activity.getClass())) {
+						BenutzerListe kundenListe = (BenutzerListe) activity;
+						benutzerServiceBinder = kundenListe.getBenutzerServiceBinder();
 					}
 					else {
 						return true;
 					}
 					
-					final HttpResponse<Kunde> result = kundeServiceBinder.createKunde( kunde, activity);
+					final HttpResponse<Benutzer> result = benutzerServiceBinder.createBenutzer(benutzer, activity);
 					final int statuscode = result.responseCode;
 					if (statuscode != HTTP_NO_CONTENT && statuscode != HTTP_OK) {
 						String msg = null;
@@ -168,10 +156,10 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 								msg = result.content;
 								break;
 							case HTTP_UNAUTHORIZED:
-								msg = getString(R.string.s_error_prefs_login, kunde.id);
+								msg = getString(R.string.s_error_prefs_login, benutzer.uid);
 								break;
 							case HTTP_FORBIDDEN:
-								msg = getString(R.string.s_error_forbidden, kunde.id);
+								msg = getString(R.string.s_error_forbidden, benutzer.uid);
 								break;
 						}
 						
@@ -186,16 +174,16 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 			    		return true;
 					}
 					
-					kunde = result.resultObject;  // ggf. erhoehte Versionsnr. bzgl. konkurrierender Updates
+					benutzer = result.resultObject;  // ggf. erhoehte Versionsnr. bzgl. konkurrierender Updates
 					
-					// Gibt es in der Navigationsleiste eine KundenListe? Wenn ja: Refresh mit geaendertem Kunde-Objekt
-					final Fragment fragment = getFragmentManager().findFragmentById(R.id.kunden_liste_nav);
+					// Gibt es in der Navigationsleiste eine BenutzerListe? Wenn ja: Refresh mit geaendertem Kunde-Objekt
+					final Fragment fragment = getFragmentManager().findFragmentById(R.id.benutzer_liste_nav);
 					if (fragment != null) {
-						final KundenListeNav kundenListeFragment = (KundenListeNav) fragment;
-						kundenListeFragment.refresh(kunde);
+						final BenutzerListeNav kundenListeFragment = (BenutzerListeNav) fragment;
+						kundenListeFragment.refresh(benutzer);
 					}
 					
-					final Fragment neuesFragment = new KundeDetails();
+					final Fragment neuesFragment = new BenutzerDetails();
 					neuesFragment.setArguments(args);
 					
 					// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
@@ -218,34 +206,26 @@ package de.kneipe.kneipenquartett.ui.benutzer;
 		}
 		
 		private void createKunde() {
-			kunde=new Kunde();
-			kunde.adresse=new Adresse();
-			kunde.passwort = createPasswort.getText().toString();
-			kunde.login = createLogin.getText().toString();
-			kunde.nachname = createNachname.getText().toString();
-			kunde.vorname = createVorname.getText().toString();
-			kunde.email = createEmail.getText().toString();
-			kunde.adresse.plz = createPlz.getText().toString();
-			kunde.adresse.ort = createOrt.getText().toString();
-			kunde.adresse.strasse = createStrasse.getText().toString();
-			kunde.adresse.hausnr = createHausnr.getText().toString();
-			if (rbMaennlich.isChecked()) {
-				kunde.geschlecht = GeschlechtType.MAENNLICH;
-			} else if (rbWeiblich.isChecked()) {
-				kunde.geschlecht = GeschlechtType.WEIBLICH;
-			}
-			kunde.agbAkzeptiert = tglAGBs.isChecked();
+			benutzer=new Benutzer();
+			
+			benutzer.password = createPasswort.getText().toString();
+			benutzer.username = createUsername.getText().toString();
+			benutzer.nachname = createNachname.getText().toString();
+			benutzer.vorname = createVorname.getText().toString();
+			benutzer.email = createEmail.getText().toString();
+			benutzer.geschlecht = createGeschlecht.getText().toString();
+			benutzer.agbAkzeptiert = tglAGBs.isChecked();
 	/*
 			final GregorianCalendar cal = new GregorianCalendar(Locale.getDefault());
 			cal.set(dpSeit.getYear(), dpSeit.getMonth(), dpSeit.getDayOfMonth());
-			kunde.seit = cal.getTime();
+			benutzer.seit = cal.getTime();
 			
-			kunde.kategorie = (short) npKategorie.getValue();
+			benutzer.kategorie = (short) npKategorie.getValue();
 			
-			kunde.newsletter = tglNewsletter.isChecked();	
+			benutzer.newsletter = tglNewsletter.isChecked();	
 	*/
-			Log.d(LOG_TAG, kunde.toString());
+			Log.d(LOG_TAG, benutzer.toString());
 		}
 	}
 
-}
+

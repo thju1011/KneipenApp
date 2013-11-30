@@ -1,0 +1,95 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ui.main.Main" >
+
+<TableLayout
+	    android:layout_width="match_parent"
+		android:layout_height="wrap_content" >
+	
+		<TableRow>
+	
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/b_benutzer_id" />
+			
+			<TextView
+			    style="@style/RechteSpalteText"
+				android:id="@+id/benutzer_id"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textIsSelectable="false" />
+	
+		</TableRow>
+		
+		<TableRow>
+	
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/b_nachname" />
+			
+			<TextView
+			    style="@style/RechteSpalteText"
+				android:id="@+id/nachname_txt"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textIsSelectable="true" />
+	
+		</TableRow>
+		
+		<TableRow>
+		
+	        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/b_vorname" />
+	        
+	        <TextView
+	        	style="@style/RechteSpalteText"
+	            android:id="@+id/vorname"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:textIsSelectable="false" />
+	
+	    </TableRow>
+	    
+	    <TableRow>
+	
+	        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/b_email" />
+	        
+	        <TextView
+	        	style="@style/RechteSpalteText"
+	            android:id="@+id/email"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:textIsSelectable="true" />
+	
+	    </TableRow>
+	    
+	      <TableRow>
+	
+	        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/b_geschlecht" />
+	        
+	        <TextView
+	        	style="@style/RechteSpalteText"
+	            android:id="@+id/geschlecht"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:textIsSelectable="true" />
+	
+	    </TableRow>
+	    
+
+	
+	</TableLayout>
+
+</ScrollView>
