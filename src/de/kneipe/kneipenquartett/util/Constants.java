@@ -4,8 +4,10 @@ import static de.kneipe.kneipenquartett.util.Constants.HOST_DEFAULT;
 import static de.kneipe.kneipenquartett.util.Constants.LOCALHOST_DEVICE;
 
 public final class Constants {
-	public static final String BENUTZER_KEY = "kunde";
-	public static final String BENUTZERN_KEY = "kunden";
+	public static final String BENUTZER_KEY = "benutzer";
+	public static final String KNEIPEN_KEY = "kneipen";
+	
+	public static final String BENUTZERN_KEY = "benutzern";
 	
 	public static final String BESTELLUNG_KEY = "bestellung";
 	public static final String BESTELLUNGEN_KEY = "bestellungen";
