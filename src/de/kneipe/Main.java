@@ -41,7 +41,7 @@ public class Main extends Activity implements OnClickListener {
 		login.password = benutzerpw;
 		
 		
-		
+		//VORÜBERGEHEND WIRD HIER NUR EIN GET ABGESETZT
 		
 		
 		
