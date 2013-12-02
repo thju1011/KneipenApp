@@ -7,6 +7,7 @@ import de.kneipe.R.menu;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.service.BenutzerService;
 import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
+import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -28,6 +29,7 @@ public class Main extends Activity implements OnClickListener {
 	private static final String LOG_TAG = Main.class.getSimpleName();
 	
 	private BenutzerServiceBinder benutzerServiceBinder;
+	private KneipeServiceBinder kneipeServiceBinder;
 	
 	private ServiceConnection benutzerServiceConnection = new ServiceConnection() {
 		@Override
@@ -43,6 +45,23 @@ public class Main extends Activity implements OnClickListener {
 	};
 	
 	public BenutzerServiceBinder getBenutzerServiceBinder() {
+		return benutzerServiceBinder;
+	}
+	
+	private ServiceConnection kneipeServiceConnection = new ServiceConnection() {
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder serviceBinder) {
+			Log.v(LOG_TAG, "onServiceConnected() fuer KundeServiceBinder");
+			benutzerServiceBinder = (BenutzerServiceBinder) serviceBinder;
+		}
+
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			benutzerServiceBinder = null;
+		}
+	};
+	
+	public BenutzerServiceBinder getKneipeServiceBinder() {
 		return benutzerServiceBinder;
 	}
 	
