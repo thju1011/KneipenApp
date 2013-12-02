@@ -23,12 +23,15 @@ public final class Constants {
 	public static final int TAB_KUNDE_BESTELLUNGEN = 1;
 	
 	public static final String BENUTZER_PATH = "/benutzer";
+	public static final String KNEIPE_PATH = "/kneipe";
 	public static final String GUTSCHEIN_PATH = "/gutschein";
 	public static final String BEWERTUNG_PATH = "/bewertung";
 	public static final String USERNAMEN_PATH = BENUTZER_PATH + "?nachname=";
 	public static final String NAME_PATH = BENUTZER_PATH + "?name=";
 	public static final String KUNDEN_PREFIX_PATH = BENUTZER_PATH + "/prefix";
 	public static final String KUNDEN_ID_PREFIX_PATH = KUNDEN_PREFIX_PATH + "/id";
+	public static final String KNEIPE_PREFIX_PATH = KNEIPE_PATH + "/prefix";
+	public static final String KNEIPE_ID_PREFIX_PATH = KNEIPE_PREFIX_PATH + "/id";
 	public static final String USERNAMEN_PREFIX_PATH = KUNDEN_PREFIX_PATH + "/nachname";
 	public static final String NAME_PREFIX_PATH = KUNDEN_PREFIX_PATH + "/name";
 	
