@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="k_kneipe_id">Kneipen ID</string>
+	<string name="k_name">Name</string>
+	<string name="k_internetadresse">Internetadresse</string>
+	<string name="k_adresse">Adresse</string>
+	<string name="k_head_list_bewertung">Bewertungen</string>
+
+   
+     
+</resources>
