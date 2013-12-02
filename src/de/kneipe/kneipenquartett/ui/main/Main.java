@@ -32,6 +32,7 @@ public class Main extends Activity implements OnClickListener {
 		public void onServiceConnected(ComponentName name, IBinder serviceBinder) {
 			Log.v(LOG_TAG, "onServiceConnected() fuer benutzerServiceBinder");
 			benutzerServiceBinder = (BenutzerServiceBinder) serviceBinder;
+			
 		}
 
 		@Override

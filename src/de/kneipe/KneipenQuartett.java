@@ -7,10 +7,8 @@ import java.io.OutputStream;
 import javax.json.Json;
 import javax.json.JsonBuilderFactory;
 import javax.json.JsonReaderFactory;
-
 import android.app.Application;
 import android.content.Context;
-
 public class KneipenQuartett extends Application {
 	private static final String LOG_TAG = KneipenQuartett.class.getSimpleName();
 

@@ -465,6 +465,7 @@ final class WebServiceClient {
 				catch(Exception e){
 					System.out.println(e.toString());
 				}
+				Log.v(LOG_TAG,"WRITER WIRD JETZT MIT jsonMAppable.toJsonObject aufgerufen");
 				writer.write(jsonMappable.toJsonObject().toString());
 				Log.v(LOG_TAG,"JSON ERSTELLT");
 				

@@ -48,21 +48,9 @@ public class Benutzer implements JsonMappable, Serializable {
 	
 	
 	protected JsonObjectBuilder getJsonObjectBuilder() {
-//		if(password==null) {
-//		
-//			return jsonBuilderFactory.createObjectBuilder()
-//	           
-//                    .add("username", username)
-//                    .add("email", email)
-//                    .add("name", nachname)
-//                    .add("vorname", vorname)
-//                    .add("password", password)
-//                    .add("agbAkzeptiert", agbAkzeptiert)
-//                    .add("geschlecht", geschlecht)
-//                    ;
-//		} else
+		Log.v(LOG_TAG,"getJsonObjectBuilder wird augerufen!");
+		Log.v(LOG_TAG, "IST DIE FACTORY NULL?"+jsonBuilderFactory.getClass().toString());
 		
-			//zum Anlegen eines Benutzer
 			return jsonBuilderFactory.createObjectBuilder()
                 .add("username", username)
                 .add("nachname", nachname)

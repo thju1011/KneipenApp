@@ -148,7 +148,7 @@ public class BenutzerService extends Service {
 		    		Log.v(LOG_TAG, benutzer.toString());
 		    		Log.v(LOG_TAG,"jz kommmmmmmmmmmmmmmmmmmmmt jsssssssssssssssssssssssssssoooooooooooooooooooooooooooooooooooooooooooooooon!!!");
 		    		final HttpResponse<Benutzer> result = WebServiceClient.postJson(be, path);
-		    		
+		    		Log.v(LOG_TAG,"WebServiceClient.postJson durchgelaufen!!");
 					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
 					return result;
 				}
