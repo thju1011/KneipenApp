@@ -146,6 +146,7 @@ public class BenutzerService extends Service {
 		    		final String path = BENUTZER_PATH;
 		    		Log.v(LOG_TAG, "path = " + path);
 		    		Log.v(LOG_TAG, benutzer.toString());
+		    		Log.v(LOG_TAG,"jz kommmmmmmmmmmmmmmmmmmmmt jsssssssssssssssssssssssssssoooooooooooooooooooooooooooooooooooooooooooooooon!!!");
 		    		final HttpResponse<Benutzer> result = WebServiceClient.postJson(be, path);
 		    		
 					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
@@ -161,7 +162,8 @@ public class BenutzerService extends Service {
 			createBenutzerTask.execute(be);
 			HttpResponse<Benutzer> response = null; 
 			try {
-				response = createBenutzerTask.get(timeout, SECONDS);
+				
+				response = createBenutzerTask.get(1000, SECONDS);
 			}
 	    	catch (Exception e) {
 	    		throw new InternalShopError(e.getMessage(), e);

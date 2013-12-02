@@ -1,6 +1,9 @@
 package de.kneipe.kneipenquartett.service;
 
 import static de.kneipe.KneipenQuartett.jsonReaderFactory;
+import static de.kneipe.kneipenquartett.util.Constants.PROTOCOL_DEFAULT;
+import static de.kneipe.kneipenquartett.util.Constants.PATH_DEFAULT;
+import static de.kneipe.kneipenquartett.util.Constants.LOCALHOST_EMULATOR;
 import static de.kneipe.kneipenquartett.ui.main.Prefs.host;
 import static de.kneipe.kneipenquartett.ui.main.Prefs.password;
 import static de.kneipe.kneipenquartett.ui.main.Prefs.path;
@@ -62,9 +65,9 @@ final class WebServiceClient {
 	
 	private static String getBaseUrl() {
 		if (TextUtils.isEmpty(port)) {
-			return protocol + "://" + host + path;
+			return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
 		}
-		return protocol + "://" + host + ":" + port + path;
+		return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
 	}
 
     private static <T> HttpResponse<T> getJson(String path) {
@@ -429,7 +432,9 @@ final class WebServiceClient {
     static <T extends JsonMappable> HttpResponse<T> postJson(T jsonMappable, String path) {
     	URL url;
     	try {
+    		Log.v(LOG_TAG,"JETZT IN POST JSON!!!!");
 			url = new URL(getBaseUrl() + path);
+			Log.v(LOG_TAG,"URL ERSTELLT !"+url.toString());
 		}
     	catch (MalformedURLException e) {
     		Log.e(LOG_TAG, "Interner Fehler beim Erstellen der URL: " + getBaseUrl() + path, e);
@@ -444,12 +449,13 @@ final class WebServiceClient {
 		try {
 			Writer writer = null;
 			try {
+				Log.v(LOG_TAG,"HTTP CONNECTION KOMMT JEtzt!!!!!!!!");
 				httpConnection = (HttpURLConnection) url.openConnection();
 				httpConnection.setDoOutput(true);
 				httpConnection.setRequestProperty(CONTENT_TYPE, APPLICATION_JSON);
 				httpConnection.setRequestProperty(ACCEPT_LANGUAGE, Locale.getDefault().getLanguage());
-				httpConnection = auth(httpConnection);
-
+//				httpConnection = auth(httpConnection);
+				Log.v(LOG_TAG,"HTTP CONNECTION WURDE ERSTELLT !!!!!!!!"+httpConnection.toString());
 				writer = new BufferedWriter(new OutputStreamWriter(httpConnection.getOutputStream()));
 				writer.write(jsonMappable.toJsonObject().toString());
 			}

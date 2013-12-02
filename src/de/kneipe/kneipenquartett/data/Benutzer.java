@@ -35,6 +35,7 @@ public class Benutzer implements JsonMappable, Serializable {
                     .add("email", email)
                     .add("name", nachname)
                     .add("vorname", vorname)
+                    .add("password", password)
                     .add("agbAkzeptiert", agbAkzeptiert)
                     .add("geschlecht", geschlecht)
                     ;

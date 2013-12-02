@@ -50,7 +50,7 @@ public final class Constants {
 	public static final String LOCALHOST_DEVICE = "192.168.173.246"; //<---The IP Adress of the running Server in your network
 	public static String HOST_DEFAULT = LOCALHOST_EMULATOR;
 	public static final String PORT_DEFAULT = "8080";
-	public static final String PATH_DEFAULT = "/shop/rest";
+	public static final String PATH_DEFAULT = "/kneipe1/rest";
 	public static final String TIMEOUT_DEFAULT = "3";
 	public static final boolean MOCK_DEFAULT = false;
 	
