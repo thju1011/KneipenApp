@@ -1,26 +1,18 @@
 package de.kneipe.kneipenquartett.ui.main;
 
-import de.kneipe.R;
-import de.kneipe.R.id;
-import de.kneipe.R.layout;
-import de.kneipe.R.menu;
-import de.kneipe.kneipenquartett.data.Benutzer;
-import de.kneipe.kneipenquartett.service.BenutzerService;
-import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
-import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
-import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
-import android.os.Bundle;
-import android.os.IBinder;
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.Intent;
 import android.content.ServiceConnection;
-import android.text.TextUtils;
+import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
+import de.kneipe.R;
+import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
+import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
+import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
 
 public class Main extends Activity implements OnClickListener {
 
@@ -34,7 +26,7 @@ public class Main extends Activity implements OnClickListener {
 	private ServiceConnection benutzerServiceConnection = new ServiceConnection() {
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder serviceBinder) {
-			Log.v(LOG_TAG, "onServiceConnected() fuer KundeServiceBinder");
+			Log.v(LOG_TAG, "onServiceConnected() fuer benutzerServiceBinder");
 			benutzerServiceBinder = (BenutzerServiceBinder) serviceBinder;
 		}
 
