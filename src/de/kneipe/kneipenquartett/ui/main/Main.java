@@ -51,6 +51,7 @@ public class Main extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		findViewById(R.id.registrieren).setOnClickListener(this);
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class Main extends Activity implements OnClickListener {
 	
 	public void onClick(View view) {
 		// Eingabetext ermitteln
-		switch (view.getId()) {
+		/*switch (view.getId()) {
 		case R.id.loginbutton:
 		EditText benutzerid = (EditText) findViewById(R.id.nutzername);
 		EditText passwort = (EditText) findViewById(R.id.passwort);
@@ -88,11 +89,11 @@ public class Main extends Activity implements OnClickListener {
 	
 		break;
 	
-		case R.id.registrieren:
-			Intent benutzeranlegen = new Intent(this, BenutzerCreate.class);
-			startActivity(benutzeranlegen);
-			break;
-		default:
+		case R.id.registrieren:*/
+			getFragmentManager().beginTransaction()
+			.replace(R.id.details, new BenutzerCreate())
+			.commit();
+		
 		}
-	}
+	
 }
