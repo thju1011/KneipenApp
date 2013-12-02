@@ -61,9 +61,9 @@ public class Main extends Activity implements OnClickListener {
 		}
 	};
 	
-	public BenutzerServiceBinder getKneipeServiceBinder() {
-		return benutzerServiceBinder;
-	}
+	/*public KneipenServiceBinder getKneipenServiceBinder() {
+		return KneipenServiceBinder;
+	}*/
 	
 	
 	@Override
