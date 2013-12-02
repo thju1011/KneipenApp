@@ -61,10 +61,15 @@ public class Main extends Activity implements OnClickListener {
 		}
 	};
 	
+
 	/*public KneipenServiceBinder getKneipenServiceBinder() {
 		return KneipenServiceBinder;
 	}*/
 	
+	public KneipeServiceBinder getKneipeServiceBinder() {
+		return kneipeServiceBinder;
+	}
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

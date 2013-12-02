@@ -107,84 +107,82 @@ public class KneipeService extends Service {
 		    return result;
 		}
 	
-//		public HttpResponse<Kunde> sucheKundenByName(String Name, final Context ctx) {
-//			// (evtl. mehrere) Parameter vom Typ "String", Resultat vom Typ "List<Kunde>"
-//			final AsyncTask<String, Void, HttpResponse<Kunde>> sucheKundenByNameTask = new AsyncTask<String, Void, HttpResponse<Kunde>>() {
-//				@Override
-//	    		protected void onPreExecute() {
-//					progressDialog = showProgressDialog(ctx);
-//				}
-//				
-//				@Override
-//				// Neuer Thread, damit der UI-Thread nicht blockiert wird
-//				protected HttpResponse<Kunde> doInBackground(String... namen) {
-//					final String name = namen[0];
-//					final String path = NAME_PATH + name;
-//					Log.v(LOG_TAG, "path = " + path);
-//		    		final HttpResponse<Kunde> result = mock
-//		    				                                   ? Mock.sucheKundenByNachname(name)
-//		    				                                   : WebServiceClient.getJsonList(path, Kunde.class);
-//					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
-//					return result;
-//				}
-//				
-//				@Override
-//	    		protected void onPostExecute(HttpResponse<Kunde> unused) {
-//					progressDialog.dismiss();
-//	    		}
-//			};
-//			
-//			sucheKundenByNameTask.execute(Name);
-//			HttpResponse<Kunde> result = null;
-//			try {
-//				result = sucheKundenByNameTask.get(timeout, SECONDS);
-//			}
-//	    	catch (Exception e) {
-//	    		throw new InternalShopError(e.getMessage(), e);
-//			}
-//
-//	    	if (result.responseCode != HTTP_OK) {
-//	    		return result;
-//	    	}
-//	    	
-//	    	final ArrayList<Kunde> kunden = result.resultList;
-//	    	// URLs fuer Emulator anpassen
-//	    	/*
-//	    	for (Kunde k : kunden) {
-//	    		setBestellungenUri(k);
-//	    	}
-//	    	*/
-//			return result;
-//	    }
-//	
-//	
-//		
-//		public List<Long> sucheIds(String prefix) {
-//			final String path = KNEIPE_ID_PREFIX_PATH + "/" + prefix;
-//		    Log.v(LOG_TAG, "sucheIds: path = " + path);
-//
-//    		final List<Long> ids =  WebServiceClient.getJsonLongList(path);
-//
-//			Log.d(LOG_TAG, "sucheIds: " + ids.toString());
-//			return ids;
-//		}
-//		
-//		/**
-//		 * Annahme: wird ueber AutoCompleteTextView aufgerufen, wobei die dortige Methode
-//		 * performFiltering() schon einen neuen Worker-Thread startet, so dass AsyncTask hier
-//		 * ueberfluessig ist.
-//		 */
-//		public List<String> sucheUsernamen(String prefix) {
-//			final String path = USERNAMEN_PREFIX_PATH +  "/" + prefix;
-//		    Log.v(LOG_TAG, "sucheUsernamen: path = " + path);
-//
-//    		final List<String> nachnamen = WebServiceClient.getJsonStringList(path);
-//			Log.d(LOG_TAG, "sucheUsernamen: " + nachnamen);
-//
-//			return nachnamen;
-//		}
-//		
-//		
+		public HttpResponse<Kneipe> sucheKneipenByName(String Name, final Context ctx) {
+			// (evtl. mehrere) Parameter vom Typ "String", Resultat vom Typ "List<Kneipe>"
+			final AsyncTask<String, Void, HttpResponse<Kneipe>> sucheKneipenByNameTask = new AsyncTask<String, Void, HttpResponse<Kneipe>>() {
+				@Override
+	    		protected void onPreExecute() {
+					progressDialog = showProgressDialog(ctx);
+				}
+				
+				@Override
+				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+				protected HttpResponse<Kneipe> doInBackground(String... namen) {
+					final String name = namen[0];
+					final String path = NAME_PATH + name;
+					Log.v(LOG_TAG, "path = " + path);
+		    		final HttpResponse<Kneipe> result = WebServiceClient.getJsonList(path, Kneipe.class);
+					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+					return result;
+				}
+				
+				@Override
+	    		protected void onPostExecute(HttpResponse<Kneipe> unused) {
+					progressDialog.dismiss();
+	    		}
+			};
+			
+			sucheKneipenByNameTask.execute(Name);
+			HttpResponse<Kneipe> result = null;
+			try {
+				result = sucheKneipenByNameTask.get(timeout, SECONDS);
+			}
+	    	catch (Exception e) {
+	    		throw new InternalShopError(e.getMessage(), e);
+			}
+
+	    	if (result.responseCode != HTTP_OK) {
+	    		return result;
+	    	}
+	    	
+	    	final ArrayList<Kneipe> kunden = result.resultList;
+	    	// URLs fuer Emulator anpassen
+	    	/*
+	    	for (Kneipe k : kunden) {
+	    		setBestellungenUri(k);
+	    	}
+	    	*/
+			return result;
+	    }
+	
+	
+		
+		public List<Long> sucheIds(String prefix) {
+			final String path = KNEIPE_ID_PREFIX_PATH + "/" + prefix;
+		    Log.v(LOG_TAG, "sucheIds: path = " + path);
+
+    		final List<Long> ids =  WebServiceClient.getJsonLongList(path);
+
+			Log.d(LOG_TAG, "sucheIds: " + ids.toString());
+			return ids;
+		}
+		
+		/**
+		 * Annahme: wird ueber AutoCompleteTextView aufgerufen, wobei die dortige Methode
+		 * performFiltering() schon einen neuen Worker-Thread startet, so dass AsyncTask hier
+		 * ueberfluessig ist.
+		 */
+		public List<String> sucheUsernamen(String prefix) {
+			final String path = USERNAMEN_PREFIX_PATH +  "/" + prefix;
+		    Log.v(LOG_TAG, "sucheUsernamen: path = " + path);
+
+    		final List<String> nachnamen = WebServiceClient.getJsonStringList(path);
+			Log.d(LOG_TAG, "sucheUsernamen: " + nachnamen);
+
+			return nachnamen;
+		}
+		
+		
 		/**
 		 */
 		public HttpResponse<Kneipe> createKneipe(Kneipe kneipe, final Context ctx) {

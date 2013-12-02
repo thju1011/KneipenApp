@@ -1,0 +1,86 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/kunde_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.kunde.KneipeDetails" >
+
+	<TableRow>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/k_kneipe_id"
+			android:textStyle="bold" />
+		
+		<TextView
+			android:id="@+id/kneipe_id"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+	</TableRow>
+	
+	<TableRow>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/k_name"
+			android:textStyle="bold" />
+		
+		<TextView
+			android:id="@+id/name"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+	</TableRow>
+	
+	<TableRow>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/k_internetadresse"
+			android:textStyle="bold" />
+		
+		<TextView
+			android:id="@+id/kunde_internetadresse"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+	</TableRow>
+	
+	<TableRow>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/k_adresse"
+			android:textStyle="bold" />
+		
+		<TextView
+			android:id="@+id/kunde_adresse"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+	</TableRow>
+	
+	<TableRow>
+		<TextView
+        android:text="@string/k_head_list_bewertung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" />
+	
+		<ListView
+	    android:id="@+id/bewertung_list"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+		</ListView>
+		</TableRow>
+
+</TableLayout>
