@@ -453,11 +453,21 @@ final class WebServiceClient {
 				httpConnection = (HttpURLConnection) url.openConnection();
 				httpConnection.setDoOutput(true);
 				httpConnection.setRequestProperty(CONTENT_TYPE, APPLICATION_JSON);
-				httpConnection.setRequestProperty(ACCEPT_LANGUAGE, Locale.getDefault().getLanguage());
+				//httpConnection.setRequestProperty(ACCEPT_LANGUAGE, Locale.getDefault().getLanguage());
 //				httpConnection = auth(httpConnection);
 				Log.v(LOG_TAG,"HTTP CONNECTION WURDE ERSTELLT !!!!!!!!"+httpConnection.toString());
+				
+				try{
+					Log.v(LOG_TAG,"BUFFERED READER WIRD JETZT ERSTELLT");
 				writer = new BufferedWriter(new OutputStreamWriter(httpConnection.getOutputStream()));
+					Log.v(LOG_TAG,"BUFFERED READER WURDE ERSTELLT");
+				}
+				catch(Exception e){
+					System.out.println(e.toString());
+				}
 				writer.write(jsonMappable.toJsonObject().toString());
+				Log.v(LOG_TAG,"JSON ERSTELLT");
+				
 			}
 			finally {
 				writer.close();

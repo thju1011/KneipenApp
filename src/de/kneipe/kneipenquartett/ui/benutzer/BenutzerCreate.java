@@ -229,7 +229,7 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 			String email = createEmail.getText().toString();
 			String geschlecht = createGeschlecht.getText().toString();
 			Boolean agbAkzeptiert = tglAGBs.isChecked();
-			if(password.isEmpty()||username.isEmpty()|nachname.isEmpty()||vorname.isEmpty()||!agbAkzeptiert)
+			if(password.isEmpty()||username.isEmpty()||nachname.isEmpty()||vorname.isEmpty()||!agbAkzeptiert)
 			{
 				createNachname.setError("Alle Felder vollmachen ;)");
 				

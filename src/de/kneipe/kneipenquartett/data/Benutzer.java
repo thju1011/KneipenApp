@@ -8,6 +8,10 @@ import javax.json.JsonObjectBuilder;
 
 
 
+
+
+
+import android.util.Log;
 import static de.kneipe.KneipenQuartett.jsonBuilderFactory;
 
 public class Benutzer implements JsonMappable, Serializable {
@@ -15,8 +19,9 @@ public class Benutzer implements JsonMappable, Serializable {
 	/**
 	 * 
 	 */
+	private static final String LOG_TAG = Benutzer.class.getSimpleName();
 	private static final long serialVersionUID = -2843760959760554956L;
-/////
+
 	public Long uid;
 	public String username;
 	public String email;
@@ -26,32 +31,47 @@ public class Benutzer implements JsonMappable, Serializable {
 	public String nachname;
 	public String vorname;
 	
+	public Benutzer(){
+		super();
+	}
+	
+	public Benutzer(String username, String email, Boolean agb, String password, String geschlecht, String nname, String vname) {
+		super();
+		this.agbAkzeptiert = agb;
+		this.email = email;
+		this.password = password;
+		this.geschlecht = geschlecht;
+		this.nachname = nname;
+		this.vorname = vname;
+		this.username = username;
+	}
+	
+	
 	protected JsonObjectBuilder getJsonObjectBuilder() {
-		if(password==null) {
+//		if(password==null) {
+//		
+//			return jsonBuilderFactory.createObjectBuilder()
+//	           
+//                    .add("username", username)
+//                    .add("email", email)
+//                    .add("name", nachname)
+//                    .add("vorname", vorname)
+//                    .add("password", password)
+//                    .add("agbAkzeptiert", agbAkzeptiert)
+//                    .add("geschlecht", geschlecht)
+//                    ;
+//		} else
 		
-			return jsonBuilderFactory.createObjectBuilder()
-	                .add("id", uid)
-                    .add("username", username)
-                    .add("email", email)
-                    .add("name", nachname)
-                    .add("vorname", vorname)
-                    .add("password", password)
-                    .add("agbAkzeptiert", agbAkzeptiert)
-                    .add("geschlecht", geschlecht)
-                    ;
-		} else
-		{		
 			//zum Anlegen eines Benutzer
 			return jsonBuilderFactory.createObjectBuilder()
                 .add("username", username)
-                .add("name", nachname)
+                .add("nachname", nachname)
                 .add("vorname", vorname)
                 .add("email", email)
                 .add("agbAkzeptiert", agbAkzeptiert)
                 .add("geschlecht", geschlecht)
-                .add("password", password)
-                ;
-		}
+                .add("password", password);
+		
 	}
 
 	public void fromJsonObject(JsonObject jsonObject) {
@@ -61,6 +81,7 @@ public class Benutzer implements JsonMappable, Serializable {
 		nachname = jsonObject.getString("name");
 		vorname = jsonObject.getString("vorname");
 		geschlecht = jsonObject.getString("geschlecht");
+		password = jsonObject.getString("password");
 		email = jsonObject.getString("email");
 		agbAkzeptiert = jsonObject.getBoolean("agbAkzeptiert");
 
@@ -69,6 +90,7 @@ public class Benutzer implements JsonMappable, Serializable {
 	
 	@Override
 	public JsonObject toJsonObject() {
+		Log.v(LOG_TAG,"TO JSON OBJECT IN BENUTZER.JAVA AUFGERUFEN!");
 		return getJsonObjectBuilder().build();
 	}
 		
