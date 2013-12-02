@@ -234,22 +234,19 @@ import de.kneipe.kneipenquartett.ui.main.Main;
 	*/
 			
 				final Context ctxx = view.getContext();
+				Log.d(LOG_TAG,view.toString());
 				Log.d(LOG_TAG,"Create Aufruf ");
-
+				Log.d(LOG_TAG,benutzer.toString());
 				final Main mainActivity = (Main) getActivity();
+				Log.d(LOG_TAG,mainActivity.toString());
 				final HttpResponse<? extends Benutzer> result = mainActivity.getBenutzerServiceBinder().createBenutzer(benutzer, ctxx);	
 				
 				Log.d(LOG_TAG, benutzer.toString());
 				 Log.d(LOG_TAG,"http response in artikelsucheID wurde befüllt : " + result.toString());
 
-			/*	final Artikel artikel = result.resultObject;
-				final Bundle args = new Bundle(1);
-				args.putSerializable(ARTIKEL_KEY, artikel);
-				 final Fragment neuesFragment = new ArtikelDetails();
-					neuesFragment.setArguments(args);
-					
+	
 					// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
-					getFragmentManager().beginTransaction()
+				/*	getFragmentManager().beginTransaction()
 					                    .replace(R.id.details, neuesFragment)
 					                    .addToBackStack(null)
 					                    .commit();*/

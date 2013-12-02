@@ -57,79 +57,79 @@ public class BenutzerService extends Service {
 		
 		/**
 		 */
-		public HttpResponse<Benutzer> sucheBenutzerById(Long id, final Context ctx) {
-			
-			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "Benutzer"
-			final AsyncTask<Long, Void, HttpResponse<Benutzer>> sucheBenutzerByIdTask = new AsyncTask<Long, Void, HttpResponse<Benutzer>>() {
-				@Override
-	    		protected void onPreExecute() {
-					progressDialog = showProgressDialog(ctx);
-				}
-				
-				@Override
-				// Neuer Thread, damit der UI-Thread nicht blockiert wird
-				protected HttpResponse<Benutzer> doInBackground(Long... ids) {
-					final Long id = ids[0];
-		    		final String path = BENUTZER_PATH + "/" + id;
-		    		Log.v(LOG_TAG, "path = " + path);
-		    		final HttpResponse<Benutzer> result = WebServiceClient.getJsonSingle(path, Benutzer.class);
-
-					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
-					return result;
-				}
-				
-				@Override
-	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
-					progressDialog.dismiss();
-	    		}
-			};
-
-    		sucheBenutzerByIdTask.execute(id);
-    		HttpResponse<Benutzer> result = null;
-	    	try {
-	    		result = sucheBenutzerByIdTask.get(timeout, SECONDS);
-			}
-	    	catch (Exception e) {
-	    		throw new InternalShopError(e.getMessage(), e);
-			}
-	    	
-    		if (result.responseCode != HTTP_OK) {
-	    		return result;
-		    }
-    		
-    	//	setBestellungenUri(result.resultObject);
-		    return result;
-		}
-	
-		
-		public List<Long> sucheIds(String prefix) {
-			final String path = KUNDEN_ID_PREFIX_PATH + "/" + prefix;
-		    Log.v(LOG_TAG, "sucheIds: path = " + path);
-
-    		final List<Long> ids =  WebServiceClient.getJsonLongList(path);
-
-			Log.d(LOG_TAG, "sucheIds: " + ids.toString());
-			return ids;
-		}
-		
-		/**
-		 * Annahme: wird ueber AutoCompleteTextView aufgerufen, wobei die dortige Methode
-		 * performFiltering() schon einen neuen Worker-Thread startet, so dass AsyncTask hier
-		 * ueberfluessig ist.
-		 */
-		public List<String> sucheUsernamen(String prefix) {
-			final String path = USERNAMEN_PREFIX_PATH +  "/" + prefix;
-		    Log.v(LOG_TAG, "sucheUsernamen: path = " + path);
-
-    		final List<String> nachnamen = WebServiceClient.getJsonStringList(path);
-			Log.d(LOG_TAG, "sucheUsernamen: " + nachnamen);
-
-			return nachnamen;
-		}
-		
-		
-		/**
-		 */
+//		public HttpResponse<Benutzer> sucheBenutzerById(Long id, final Context ctx) {
+//			
+//			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "Benutzer"
+//			final AsyncTask<Long, Void, HttpResponse<Benutzer>> sucheBenutzerByIdTask = new AsyncTask<Long, Void, HttpResponse<Benutzer>>() {
+//				@Override
+//	    		protected void onPreExecute() {
+//					progressDialog = showProgressDialog(ctx);
+//				}
+//				
+//				@Override
+//				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+//				protected HttpResponse<Benutzer> doInBackground(Long... ids) {
+//					final Long id = ids[0];
+//		    		final String path = BENUTZER_PATH + "/" + id;
+//		    		Log.v(LOG_TAG, "path = " + path);
+//		    		final HttpResponse<Benutzer> result = WebServiceClient.getJsonSingle(path, Benutzer.class);
+//
+//					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+//					return result;
+//				}
+//				
+//				@Override
+//	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
+//					progressDialog.dismiss();
+//	    		}
+//			};
+//
+//    		sucheBenutzerByIdTask.execute(id);
+//    		HttpResponse<Benutzer> result = null;
+//	    	try {
+//	    		result = sucheBenutzerByIdTask.get(timeout, SECONDS);
+//			}
+//	    	catch (Exception e) {
+//	    		throw new InternalShopError(e.getMessage(), e);
+//			}
+//	    	
+//    		if (result.responseCode != HTTP_OK) {
+//	    		return result;
+//		    }
+//    		
+//    	//	setBestellungenUri(result.resultObject);
+//		    return result;
+//		}
+//	
+//		
+//		public List<Long> sucheIds(String prefix) {
+//			final String path = KUNDEN_ID_PREFIX_PATH + "/" + prefix;
+//		    Log.v(LOG_TAG, "sucheIds: path = " + path);
+//
+//    		final List<Long> ids =  WebServiceClient.getJsonLongList(path);
+//
+//			Log.d(LOG_TAG, "sucheIds: " + ids.toString());
+//			return ids;
+//		}
+//		
+//		/**
+//		 * Annahme: wird ueber AutoCompleteTextView aufgerufen, wobei die dortige Methode
+//		 * performFiltering() schon einen neuen Worker-Thread startet, so dass AsyncTask hier
+//		 * ueberfluessig ist.
+//		 */
+//		public List<String> sucheUsernamen(String prefix) {
+//			final String path = USERNAMEN_PREFIX_PATH +  "/" + prefix;
+//		    Log.v(LOG_TAG, "sucheUsernamen: path = " + path);
+//
+//    		final List<String> nachnamen = WebServiceClient.getJsonStringList(path);
+//			Log.d(LOG_TAG, "sucheUsernamen: " + nachnamen);
+//
+//			return nachnamen;
+//		}
+//		
+//		
+//		/**
+//		 */
 		public HttpResponse<Benutzer> createBenutzer(Benutzer be, final Context ctx) {
 			// (evtl. mehrere) Parameter vom Typ "Benutzer", Resultat vom Typ "void"
 			final AsyncTask<Benutzer, Void, HttpResponse<Benutzer>> createBenutzerTask = new AsyncTask<Benutzer, Void, HttpResponse<Benutzer>>() {
