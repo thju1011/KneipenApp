@@ -1,6 +1,6 @@
 package de.kneipe.kneipenquartett.ui.benutzer;
 
-	import android.app.Fragment;
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -16,6 +17,7 @@ import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.ui.main.Main;
+import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 
 	public class BenutzerCreate extends Fragment implements OnClickListener {
 		private static final String LOG_TAG = BenutzerCreate.class.getSimpleName();
@@ -27,6 +29,7 @@ import de.kneipe.kneipenquartett.ui.main.Main;
 		private EditText createEmail;
 		private EditText createUsername;
 		private EditText createPasswort;
+		
 
 		private EditText createGeschlecht;
 		
@@ -42,7 +45,7 @@ import de.kneipe.kneipenquartett.ui.main.Main;
 			Log.d(LOG_TAG, kunde.toString());
 	 */       
 			// Voraussetzung fuer onOptionsItemSelected()
-			setHasOptionsMenu(false);
+			setHasOptionsMenu(true);
 			
 			// attachToRoot = false, weil die Verwaltung des Fragments durch die Activity erfolgt
 			return inflater.inflate(R.layout.benutzer_create, container, false);
@@ -51,8 +54,10 @@ import de.kneipe.kneipenquartett.ui.main.Main;
 		@Override
 		public void onViewCreated(View view, Bundle savedInstanceState) {
 	    	
-			
-			final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
+			Log.d(LOG_TAG, "View wird aufgebaut");
+			final  String LOG_TAG = BenutzerCreate.class.getSimpleName();
+
+//			final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
 	    	//txtId.setText(String.valueOf(kunde.id));
 	    	
 			createPasswort = (EditText) view.findViewById(R.id.passwort_create);
@@ -94,14 +99,25 @@ import de.kneipe.kneipenquartett.ui.main.Main;
 	    	*/
 	    	final Main mainActivity = (Main) getActivity();
 			
-			//mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+			mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 			
 			view.findViewById(R.id.btn_reg).setOnClickListener(this);
 	    }
+		
 		@Override // OnClickListener
 		public void onClick(View view) {
-			createBenutzer(view);
+			switch (view.getId()) {
+				case R.id.btn_reg:
+					Log.d(LOG_TAG,"create wird ausgeführt");
+					createBenutzer(view);
+					break;
+					
+				default:
+					break;
 			}
+			
+		}
+
 //		@Override
 //		// Nur aufgerufen, falls setHasOptionsMenu(true) in onCreateView() aufgerufen wird
 //		public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -202,8 +218,10 @@ import de.kneipe.kneipenquartett.ui.main.Main;
 		
 		
 		private void createBenutzer(View view) {
+			final  String LOG_TAG = BenutzerCreate.class.getSimpleName();
+			final Context ctxx = view.getContext();
+			Log.d(LOG_TAG,"Create Aufruf ");
 			
-			benutzer = new Benutzer();
 			String password = createPasswort.getText().toString();
 			String username = createUsername.getText().toString();
 			String nachname = createNachname.getText().toString();
@@ -216,12 +234,14 @@ import de.kneipe.kneipenquartett.ui.main.Main;
 				createNachname.setError("Alle Felder vollmachen ;)");
 				
 			}
+			benutzer = new Benutzer();
 			benutzer.password=password;
 			benutzer.username=username;
 			benutzer.nachname=nachname;
 			benutzer.vorname=vorname;
 			benutzer.email=email;
 			benutzer.geschlecht= geschlecht;
+		
 			benutzer.agbAkzeptiert= agbAkzeptiert;
 				/*		
 			final GregorianCalendar cal = new GregorianCalendar(Locale.getDefault());
@@ -233,18 +253,28 @@ import de.kneipe.kneipenquartett.ui.main.Main;
 			benutzer.newsletter = tglNewsletter.isChecked();	
 	*/
 			
-				final Context ctxx = view.getContext();
+				
 				Log.d(LOG_TAG,view.toString());
-				Log.d(LOG_TAG,"Create Aufruf ");
+				
 				Log.d(LOG_TAG,benutzer.toString());
 				final Main mainActivity = (Main) getActivity();
 				Log.d(LOG_TAG,mainActivity.toString());
 				final HttpResponse<? extends Benutzer> result = mainActivity.getBenutzerServiceBinder().createBenutzer(benutzer, ctxx);	
 				
 				Log.d(LOG_TAG, benutzer.toString());
-				 Log.d(LOG_TAG,"http response in artikelsucheID wurde befüllt : " + result.toString());
+				 
 
-	
+				 final Benutzer benutzer = result.resultObject;
+					final Bundle args = new Bundle(1);
+					args.putSerializable(BENUTZER_KEY, benutzer);
+					 final Fragment neuesFragment = new BenutzerDetails();
+						neuesFragment.setArguments(args);
+						
+						// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
+						getFragmentManager().beginTransaction()
+						                    .replace(R.id.details, neuesFragment)
+						                    .addToBackStack(null)
+						                    .commit();
 					// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
 				/*	getFragmentManager().beginTransaction()
 					                    .replace(R.id.details, neuesFragment)
