@@ -4,5 +4,5 @@
 	 <string name="k_name_auswahl_hint">Wählen Sie einen Namen aus</string>
 	   <string name="k_name_hint">Name eingeben</string>
 	   <string name="k_name_fehlt">Der Name fehlt.</string>
-	  <string name="k_kneipe_not_found">Keine Kunden mit Name %s gefunden.</string>
+	  <string name="k_kneipe_not_found">Keine Kneipe mit Name %s gefunden.</string>
 </resources>
