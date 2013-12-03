@@ -9,5 +9,7 @@
 	 <string name="s_akzeptiert">Akzeptieren</string>
     <string name="s_nicht_akzeptiert">Nicht akzeptieren</string>
    <string name="s_bitte_warten">Bitte warten </string>
+   <string name="edit">Jetzt ändern</string>
+   <string name="login">Jetzt einloggen</string>
      
 </resources>
