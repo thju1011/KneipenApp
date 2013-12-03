@@ -9,6 +9,7 @@ import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -182,9 +183,11 @@ public class BenutzerEdit extends Fragment {
 //		}
 //	}
 	
-	private void setBenutzer() {
-		benutzer.nachname = edtNachname.getText().toString();
+	private void setBenutzer(View view) {
+		final Context ctxx = view.getContext();
+		Log.d(LOG_TAG,"Create Aufruf ");
 		
+		benutzer.nachname = edtNachname.getText().toString();		
 		benutzer.vorname = edtVorname.getText().toString();
 		benutzer.email = edtEmail.getText().toString();
 		benutzer.geschlecht = edtGeschlecht.getText().toString();
@@ -200,6 +203,29 @@ public class BenutzerEdit extends Fragment {
 		benutzer.newsletter = tglNewsletter.isChecked();	
 */
 		Log.d(LOG_TAG, benutzer.toString());
+		
+		Log.d(LOG_TAG,view.toString());
+		
+		Log.d(LOG_TAG,benutzer.toString());
+		final Main mainActivity = (Main) getActivity();
+		Log.d(LOG_TAG,mainActivity.toString());
+		final HttpResponse<? extends Benutzer> result = mainActivity.getBenutzerServiceBinder().updateBenutzer(benutzer, ctxx);	
+		
+		Log.d(LOG_TAG, benutzer.toString());
+		 
+
+		 final Benutzer benutzer = result.resultObject;
+			final Bundle args = new Bundle(1);
+			args.putSerializable(BENUTZER_KEY, benutzer);
+			 final Fragment neuesFragment = new BenutzerDetails();
+			neuesFragment.setArguments(args);
+				
+				
+				// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
+				getFragmentManager().beginTransaction()
+				                    .replace(R.id.details, neuesFragment)
+				                    .addToBackStack(null)
+				                    .commit();
 	}
 }
 

@@ -176,48 +176,48 @@ public class BenutzerService extends Service {
 		
 		/**
 		 */
-//		public HttpResponse<Benutzer> updateBenutzer(Benutzer be, final Context ctx) {
-//			// (evtl. mehrere) Parameter vom Typ "Benutzer", Resultat vom Typ "void"
-//			final AsyncTask<Benutzer, Void, HttpResponse<Benutzer>> updateBenutzerTask = new AsyncTask<Benutzer, Void, HttpResponse<Benutzer>>() {
-//				@Override
-//	    		protected void onPreExecute() {
-//					progressDialog = showProgressDialog(ctx);
-//				}
-//				
-//				@Override
-//				// Neuer Thread, damit der UI-Thread nicht blockiert wird
-//				protected HttpResponse<Benutzer> doInBackground(Benutzer... benutzer) {
-//					final Benutzer be = benutzer[0];
-//		    		final String path = BENUTZER_PATH;
-//		    		Log.v(LOG_TAG, "path = " + path);
-//
-//		    		final HttpResponse<Benutzer> result = WebServiceClient.putJson(be, path);
-//					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
-//					return result;
-//				}
-//				
-//				@Override
-//	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
-//					progressDialog.dismiss();
-//	    		}
-//			};
-//			
-//			updateBenutzerTask.execute(be);
-//			final HttpResponse<Benutzer> result;
-//			try {
-//				result = updateBenutzerTask.get(timeout, SECONDS);
-//			}
-//	    	catch (Exception e) {
-//	    		throw new InternalShopError(e.getMessage(), e);
-//			}
-//			
-//			if (result.responseCode == HTTP_NO_CONTENT || result.responseCode == HTTP_OK) {
-//				//be.updateVersion();  // kein konkurrierendes Update auf Serverseite
-//				result.resultObject = be;
-//			}
-//			
-//			return result;
-//	    }
+		public HttpResponse<Benutzer> updateBenutzer(Benutzer be, final Context ctx) {
+			// (evtl. mehrere) Parameter vom Typ "Benutzer", Resultat vom Typ "void"
+			final AsyncTask<Benutzer, Void, HttpResponse<Benutzer>> updateBenutzerTask = new AsyncTask<Benutzer, Void, HttpResponse<Benutzer>>() {
+				@Override
+	    		protected void onPreExecute() {
+					progressDialog = showProgressDialog(ctx);
+				}
+				
+				@Override
+				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+				protected HttpResponse<Benutzer> doInBackground(Benutzer... benutzer) {
+					final Benutzer be = benutzer[0];
+		    		final String path = BENUTZER_PATH;
+		    		Log.v(LOG_TAG, "path = " + path);
+
+		    		final HttpResponse<Benutzer> result = WebServiceClient.putJson(be, path);
+					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+					return result;
+				}
+				
+				@Override
+	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
+					progressDialog.dismiss();
+	    		}
+			};
+			
+			updateBenutzerTask.execute(be);
+			final HttpResponse<Benutzer> result;
+			try {
+				result = updateBenutzerTask.get(timeout, SECONDS);
+			}
+	    	catch (Exception e) {
+	    		throw new InternalShopError(e.getMessage(), e);
+			}
+			
+			if (result.responseCode == HTTP_NO_CONTENT || result.responseCode == HTTP_OK) {
+				//be.updateVersion();  // kein konkurrierendes Update auf Serverseite
+				result.resultObject = be;
+			}
+			
+			return result;
+	    }
 //		
 //		/**
 //		 */
