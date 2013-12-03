@@ -9,7 +9,7 @@
 	
 	<!-- Verhaeltnis zwischen Master und Detail wird auf 1:4 durch layout_weight gesetzt -->
 	<!-- layout_width darf deshalb nicht wirksam sein -->
-    
+
 	<!-- <FrameLayout> statt <fragment>, damit das Fragment spaeter dynamisch austauschbar ist -->
     <FrameLayout
     	android:id="@+id/details"
