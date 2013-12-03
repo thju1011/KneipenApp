@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import de.kneipe.R;
+import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.service.BenutzerService;
 import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
 import de.kneipe.kneipenquartett.service.KneipeService;
@@ -83,6 +84,12 @@ public class Main extends Activity implements OnClickListener {
 	}
 	
 	public void onClick(View view) {
+		
+	getFragmentManager().beginTransaction()
+	.replace(R.id.details, new BenutzerCreate())
+	.commit();
+		
+		
 		// Eingabetext ermitteln
 		/*switch (view.getId()) {
 		case R.id.loginbutton:
@@ -111,9 +118,7 @@ public class Main extends Activity implements OnClickListener {
 		break;
 	
 		case R.id.registrieren:*/
-			getFragmentManager().beginTransaction()
-			.replace(R.id.details, new BenutzerCreate())
-			.commit();
+			
 		
 		}
 	

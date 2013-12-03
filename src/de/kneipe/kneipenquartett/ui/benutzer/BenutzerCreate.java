@@ -1,8 +1,13 @@
 package de.kneipe.kneipenquartett.ui.benutzer;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,12 +20,16 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
+import de.kneipe.kneipenquartett.service.BenutzerService;
 import de.kneipe.kneipenquartett.service.HttpResponse;
+import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
 import de.kneipe.kneipenquartett.ui.main.Main;
 import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 
 	public class BenutzerCreate extends Fragment implements OnClickListener {
 		private static final String LOG_TAG = BenutzerCreate.class.getSimpleName();
+		
+
 		
 		private Bundle args;
 		private Benutzer benutzer;
@@ -38,16 +47,15 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//			super.onCreate(savedInstanceState);
+//			setContentView(R.layout.benutzer_create);
+//			findViewById(R.id.btn_reg).setOnClickListener(this);
+			
 			args = getArguments();
-			//kunde = (Kunde) args.get(KUNDE_KEY);
-	/*		
-			kunde = new Kunde();
-			Log.d(LOG_TAG, kunde.toString());
-	 */       
-			// Voraussetzung fuer onOptionsItemSelected()
+			
 			setHasOptionsMenu(true);
 			
-			// attachToRoot = false, weil die Verwaltung des Fragments durch die Activity erfolgt
+			
 			return inflater.inflate(R.layout.benutzer_create, container, false);
 		}
 		
@@ -81,22 +89,8 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 	    	
 	    	
 	    	tglAGBs =(ToggleButton) view.findViewById(R.id.agb_tgl);
-	    	/*
-	    	if (kunde.geschlecht != null) {
-		    	switch (kunde.geschlecht) {
-			    	case MAENNLICH:
-			        	rbMaennlich.setChecked(true);
-				    	break;
-				    	
-			    	case WEIBLICH:
-			        	rbWeiblich.setChecked(true);
-				    	break;
-				    	
-				    default:
-		    	}
-		    	
-	    	}
-	    	*/
+
+
 	    	final Main mainActivity = (Main) getActivity();
 			
 			mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
@@ -207,13 +201,7 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 //			}
 //		}
 //		
-		
-		
-		
-		
-		
-		
-		
+				
 		
 		
 		
@@ -268,23 +256,22 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 					final Bundle args = new Bundle(1);
 					args.putSerializable(BENUTZER_KEY, benutzer);
 					 final Fragment neuesFragment = new BenutzerDetails();
-						neuesFragment.setArguments(args);
+					neuesFragment.setArguments(args);
+						
 						
 						// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
 						getFragmentManager().beginTransaction()
 						                    .replace(R.id.details, neuesFragment)
 						                    .addToBackStack(null)
 						                    .commit();
-					// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
-				/*	getFragmentManager().beginTransaction()
-					                    .replace(R.id.details, neuesFragment)
-					                    .addToBackStack(null)
-					                    .commit();*/
+					
 				
 			
 			
 		
 		}
+		
+		
 	}
 
 
