@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+	tools:context=".ui.main.Main" >
+
+	<!-- Fragmente gibt es erst ab Honeycomb bzw. Version 3.0 -->
+	
+	<!-- Verhaeltnis zwischen Master und Detail wird auf 1:4 durch layout_weight gesetzt -->
+	<!-- layout_width darf deshalb nicht wirksam sein -->
+
+	<!-- <FrameLayout> statt <fragment>, damit das Fragment spaeter dynamisch austauschbar ist -->
+<TableLayout 
+	    android:layout_width="match_parent"
+		android:layout_height="wrap_content" >
+	
+		<TableRow>
+	
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/b_email" />
+			
+			<TextView
+				android:id="@+id/email"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textIsSelectable="true"
+				android:paddingLeft="5dp" />
+	
+		</TableRow>
+		
+		<TableRow>
+	
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/b_passwort" />
+			
+			<TextView
+				android:id="@+id/password"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textIsSelectable="true"
+				android:paddingLeft="5dp" /> 
+	
+		</TableRow>
+		
+		<Button
+    		android:id="@+id/btn_login"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:layout_margin="50dp"
+    		android:text="@string/login" />
+
+    <FrameLayout
+    	android:id="@+id/details"
+    	android:layout_width="0dp"
+    	android:layout_height="match_parent"
+    	android:layout_weight="5" >
+
+    	<Button
+    		android:id="@+id/btn_registrieren"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="@string/registrieren" />
+
+    	<Button
+    		android:id="@+id/btn_edit"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:layout_margin="50dp"
+    		android:text="@string/edit" />
+
+    </FrameLayout>
+</TableLayout> 
+   <!-- <EditText
+    	android:id="@+id/passwort"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="44dp"
+    	android:ems="10"
+    	android:inputType="textPassword" />
+
+    <EditText
+    	android:id="@+id/nutzername"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="60dp"
+    	android:ems="10" />
+
+	<TextView
+		android:id="@+id/textView1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/hello_world" />
+
+	<Button
+		android:id="@+id/loginbutton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/passwort"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="61dp"
+		android:text="@string/login_button" />
+
+	<Button
+		android:id="@+id/registrieren"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="37dp"
+		android:layout_toRightOf="@+id/loginbutton"
+		android:text="@string/registrieren" />
+-->
+</LinearLayout>
