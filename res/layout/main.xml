@@ -11,17 +11,21 @@
 	<!-- layout_width darf deshalb nicht wirksam sein -->
 
 	<!-- <FrameLayout> statt <fragment>, damit das Fragment spaeter dynamisch austauschbar ist -->
+
     <FrameLayout
     	android:id="@+id/details"
-    	android:layout_weight="5"
-    	android:layout_width="0dp"
-    	android:layout_height="match_parent" >
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent" >
 
-        <Button
-        	android:id="@+id/registrieren"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/registrieren" />
+    	<Button
+    		android:id="@+id/registrieren"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:layout_marginBottom="5dp"
+    		android:layout_marginLeft="5dp"
+    		android:layout_marginRight="5dp"
+    		android:layout_marginTop="5dp"
+    		android:text="@string/registrieren" />
 
     </FrameLayout>
 
