@@ -35,8 +35,9 @@ public class Benutzer implements JsonMappable, Serializable {
 		super();
 	}
 	
-	public Benutzer(String username, String email, Boolean agb, String password, String geschlecht, String nname, String vname) {
+	public Benutzer(Long uid, String username, String email, Boolean agb, String password, String geschlecht, String nname, String vname) {
 		super();
+		this.uid= uid;
 		this.agbAkzeptiert = agb;
 		this.email = email;
 		this.password = password;
@@ -63,10 +64,10 @@ public class Benutzer implements JsonMappable, Serializable {
 	}
 
 	public void fromJsonObject(JsonObject jsonObject) {
-
-		uid = Long.valueOf(jsonObject.getJsonNumber("id").longValue());
+		Log.v(LOG_TAG,"JETZT FROM JSONOBJECT!!!!!");
+		uid = Long.valueOf(jsonObject.getJsonNumber("uid").longValue());
 	    username = jsonObject.getString("username");
-		nachname = jsonObject.getString("name");
+		nachname = jsonObject.getString("nachname");
 		vorname = jsonObject.getString("vorname");
 		geschlecht = jsonObject.getString("geschlecht");
 		password = jsonObject.getString("password");

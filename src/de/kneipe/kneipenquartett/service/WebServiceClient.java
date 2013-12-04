@@ -87,8 +87,8 @@ final class WebServiceClient {
 		try {
 			httpConnection = (HttpURLConnection) url.openConnection();
 			httpConnection.setRequestProperty(ACCEPT, APPLICATION_JSON);
-			httpConnection.setRequestProperty(ACCEPT_LANGUAGE, Locale.getDefault().getLanguage());
-			httpConnection = basicAuth(httpConnection);
+			//httpConnection.setRequestProperty(ACCEPT_LANGUAGE, Locale.getDefault().getLanguage());
+			//httpConnection = basicAuth(httpConnection);
 			reader =  new BufferedReader(new InputStreamReader(httpConnection.getInputStream()));
 		}
 		catch (IOException e) {
@@ -191,6 +191,8 @@ final class WebServiceClient {
     	Log.v(LOG_TAG, "path = " + path);
 		try {
 			result.resultObject = clazz.newInstance();
+			Log.v(LOG_TAG,result.toString());
+			
 		}
 		catch (InstantiationException e) {
 			throw new InternalShopError(e.getMessage(), e);

@@ -9,6 +9,8 @@
     <string name="b_nachname_hint">Nachname eingeben</string>
     <string name="b_nachname_auswahl_hint">Wählen Sie einen Nachnamen aus</string>
     <string name="b_nachname_fehlt">Der Nachname fehlt.</string>
+     <string name="b_email_auswahl_hint">Select a email</string>
+       <string name="b_email_hint">Email eingeben</string>
     <string name="b_vorname">Vorname</string>
     <string name="b_bategorie">Kategorie</string>
     <string name="b_email">Email</string>

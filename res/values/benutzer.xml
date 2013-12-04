@@ -7,6 +7,8 @@
     <string name="b_nachname">Lastname</string>
     <string name="b_nachname_hint">Enter the lastname</string>
     <string name="b_nachname_auswahl_hint">Select a lastname</string>
+     <string name="b_email_auswahl_hint">Select a email</string>
+       <string name="b_email_hint">Enter a email</string>
     <string name="b_nachname_fehlt">The lastname is missing.</string>
     <string name="b_vorname">Firstname</string>
     <string name="b_bategorie">Category</string>

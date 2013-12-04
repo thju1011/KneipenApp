@@ -11,7 +11,9 @@ import static java.net.HttpURLConnection.HTTP_OK;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 
+
 import java.util.List;
+
 import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
@@ -57,49 +59,48 @@ public class BenutzerService extends Service {
 		
 		/**
 		 */
-//		public HttpResponse<Benutzer> sucheBenutzerById(Long id, final Context ctx) {
-//			
-//			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "Benutzer"
-//			final AsyncTask<Long, Void, HttpResponse<Benutzer>> sucheBenutzerByIdTask = new AsyncTask<Long, Void, HttpResponse<Benutzer>>() {
-//				@Override
-//	    		protected void onPreExecute() {
-//					progressDialog = showProgressDialog(ctx);
-//				}
-//				
-//				@Override
-//				// Neuer Thread, damit der UI-Thread nicht blockiert wird
-//				protected HttpResponse<Benutzer> doInBackground(Long... ids) {
-//					final Long id = ids[0];
-//		    		final String path = BENUTZER_PATH + "/" + id;
-//		    		Log.v(LOG_TAG, "path = " + path);
-//		    		final HttpResponse<Benutzer> result = WebServiceClient.getJsonSingle(path, Benutzer.class);
-//
-//					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
-//					return result;
-//				}
-//				
-//				@Override
-//	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
-//					progressDialog.dismiss();
-//	    		}
-//			};
-//
-//    		sucheBenutzerByIdTask.execute(id);
-//    		HttpResponse<Benutzer> result = null;
-//	    	try {
-//	    		result = sucheBenutzerByIdTask.get(timeout, SECONDS);
-//			}
-//	    	catch (Exception e) {
-//	    		throw new InternalShopError(e.getMessage(), e);
-//			}
-//	    	
-//    		if (result.responseCode != HTTP_OK) {
-//	    		return result;
-//		    }
-//    		
-//    	//	setBestellungenUri(result.resultObject);
-//		    return result;
-//		}
+		public HttpResponse<Benutzer> sucheBenutzerByEmail(String email, final Context ctx) {
+			
+			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "Benutzer"
+			final AsyncTask<String, Void, HttpResponse<Benutzer>> sucheBenutzerByEmailTask = new AsyncTask<String, Void, HttpResponse<Benutzer>>() {
+				@Override
+	    		protected void onPreExecute() {
+					progressDialog = showProgressDialog(ctx);
+				}
+				
+				@Override
+				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+				protected HttpResponse<Benutzer> doInBackground(String... emails) {
+					final String email = emails[0];
+		    		final String path = BENUTZER_PATH + "/" + email;
+		    		Log.v(LOG_TAG, "path = " + path);
+		    		final HttpResponse<Benutzer> result = WebServiceClient.getJsonSingle(path, Benutzer.class);
+					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+					return result;
+				}
+				
+				@Override
+	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
+					progressDialog.dismiss();
+	    		}
+			};
+
+    		sucheBenutzerByEmailTask.execute(email);
+    		HttpResponse<Benutzer> result = null;
+	    	try {
+	    		result = sucheBenutzerByEmailTask.get(timeout, SECONDS);
+			}
+	    	catch (Exception e) {
+	    		throw new InternalShopError(e.getMessage(), e);
+			}
+	    	
+    		if (result.responseCode != HTTP_OK) {
+	    		return result;
+		    }
+    		
+    	//	setBestellungenUri(result.resultObject);
+		    return result;
+		}
 //	
 //		
 //		public List<Long> sucheIds(String prefix) {
