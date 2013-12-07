@@ -1,6 +1,9 @@
 package de.kneipe.kneipenquartett.ui.main;
 
 import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
+
+import java.util.List;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ComponentName;
@@ -13,13 +16,16 @@ import android.util.Log;
 import android.view.Menu;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
+import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.BenutzerService;
 import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
+import de.kneipe.kneipenquartett.service.KneipeService;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 
 public class Main extends Activity  {
 
-	
+	public List<Kneipe> kneipenArray;
+	public KneipeService ks = new KneipeService();
 
 	private static final String LOG_TAG = Main.class.getSimpleName();
 	
@@ -116,12 +122,14 @@ public class Main extends Activity  {
 	   @Override
 		public void onStart() {
 			super.onStart();
-			
+//			
+//			kneipenArray = KneipeServiceBinder.initKneipen();
+//			
 			Intent intent = new Intent(this, BenutzerService.class);
 			bindService(intent, benutzerServiceConnection, Context.BIND_AUTO_CREATE);
 			
-//			intent = new Intent(this, KneipeService.class);
-//			bindService(intent, KneipeServiceConnection, Context.BIND_AUTO_CREATE);
+//		intent = new Intent(this, KneipeService.class);
+//	bindService(intent, KneipeServiceConnection, Context.BIND_AUTO_CREATE);
 	    }
 	    
 		@Override

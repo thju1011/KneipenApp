@@ -13,23 +13,24 @@ public class Kneipe implements JsonMappable, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -8465867216246621016L;
-	public Long kid;
+	public int kid;
 	public String name;
 	public String adresse;
 	public String internetadresse;
 	public String haltestelle;
 	public String art;
-	public float guenstigstesBier;
+	public double guenstigstesBier;
 	public int personalanzahl;
+	public int gruendungsjahr;
 	public String specials;
-	public float longitude;
-	public float latitude;
+	public double longitude;
+	public double latitude;
 	
 	public Kneipe(){
 		super();
 	}
-	public Kneipe(Long Kid, String Name, String Adresse, String Internetadresse, String Haltestelle, String Art,
-			float GuenstigstesBier, int Personalanzahl, String Specials, float Longitude, float Latitude) {
+	public Kneipe(int Kid, String Name, String Adresse, String Internetadresse, String Haltestelle, String Art,
+			double GuenstigstesBier, int Personalanzahl, int Gruendungsjahr, String Specials, double Longitude, double Latitude) {
 		kid = Kid;
 		name = Name;
 		adresse = Adresse;
@@ -38,6 +39,7 @@ public class Kneipe implements JsonMappable, Serializable {
 		art = Art;
 		guenstigstesBier = GuenstigstesBier;
 		personalanzahl = Personalanzahl;
+		gruendungsjahr = Gruendungsjahr;
 		specials = Specials;
 		longitude = Longitude;
 		latitude = Latitude;
@@ -57,7 +59,7 @@ public class Kneipe implements JsonMappable, Serializable {
 	}
 	@Override
 	public void fromJsonObject(JsonObject jsonObject) {
-		kid = Long.valueOf(jsonObject.getJsonNumber("id").longValue());
+		//kid = Long.valueOf(jsonObject.getJsonNumber("id").longValue());
 		name = jsonObject.getString("name");
 		adresse = jsonObject.getString("adresse");
 		guenstigstesBier = Float.valueOf(jsonObject.getJsonNumber("guenstigstesBier").toString());
@@ -87,7 +89,7 @@ public class Kneipe implements JsonMappable, Serializable {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((haltestelle == null) ? 0 : haltestelle.hashCode());
 		result = prime * result + ((internetadresse == null) ? 0 : internetadresse.hashCode());
-		result = prime * result + ((kid == null) ? 0 : kid.hashCode());
+		result = prime * result + kid;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + personalanzahl;
 		result = prime * result + ((specials == null) ? 0 : specials.hashCode());
@@ -125,10 +127,7 @@ public class Kneipe implements JsonMappable, Serializable {
 				return false;
 		} else if (!internetadresse.equals(other.internetadresse))
 			return false;
-		if (kid == null) {
-			if (other.kid != null)
-				return false;
-		} else if (!kid.equals(other.kid))
+		if (kid != other.kid)
 			return false;
 		if (name == null) {
 			if (other.name != null)

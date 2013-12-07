@@ -3,6 +3,7 @@ package de.kneipe;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.json.Json;
@@ -17,7 +18,6 @@ public class KneipenQuartett extends Application {
 
 	public static JsonReaderFactory jsonReaderFactory;
 	public static JsonBuilderFactory jsonBuilderFactory;
-	public List<Kneipe> kneipenArray;
 
 	private static Context ctx;
 	
