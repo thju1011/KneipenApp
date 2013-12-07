@@ -28,6 +28,20 @@ public class Kneipe implements JsonMappable, Serializable {
 	public Kneipe(){
 		super();
 	}
+	public Kneipe(Long Kid, String Name, String Adresse, String Internetadresse, String Haltestelle, String Art,
+			float GuenstigstesBier, int Personalanzahl, String Specials, float Longitude, float Latitude) {
+		kid = Kid;
+		name = Name;
+		adresse = Adresse;
+		internetadresse = Internetadresse;
+		haltestelle = Haltestelle;
+		art = Art;
+		guenstigstesBier = GuenstigstesBier;
+		personalanzahl = Personalanzahl;
+		specials = Specials;
+		longitude = Longitude;
+		latitude = Latitude;
+	}
 	
 	// fuer Kneipe.toJsonObject()
 	JsonObjectBuilder getJsonBuilderFactory() {

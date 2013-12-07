@@ -3,9 +3,10 @@
     android:id="@+id/kunde_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:stretchColumns="1,2"
     tools:context=".ui.kunde.KneipeDetails" >
 
-	<TableRow>
+	<TableRow android:layout_width="match_parent" >
 
 		<TextView
 			android:layout_width="match_parent"
@@ -17,6 +18,7 @@
 			android:id="@+id/kneipe_id"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_span="2"
 			android:paddingLeft="5dp" />
 
 	</TableRow>
@@ -62,7 +64,7 @@
 			android:textStyle="bold" />
 		
 		<TextView
-			android:id="@+id/kunde_adresse"
+			android:id="@+id/k_adresse"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:paddingLeft="5dp" />
@@ -70,17 +72,21 @@
 	</TableRow>
 	
 	<TableRow>
-		<TextView
-        android:text="@string/k_head_list_bewertung"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold" />
-	
-		<ListView
-	    android:id="@+id/bewertung_list"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" >
-		</ListView>
-		</TableRow>
+
+	    <TextView
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="@string/k_head_list_bewertung"
+	        android:textStyle="bold" />
+
+	    <RatingBar
+	        android:id="@+id/ratingBar1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:numStars="5"
+	        android:rating="3.5"
+	        android:stepSize="0.5" />
+	</TableRow>
 
 </TableLayout>
