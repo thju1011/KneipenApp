@@ -12,7 +12,7 @@
 	
 	<FrameLayout
 		android:id="@+id/nav"
-    	android:name="de.shop.ui.main.MainNav"
+    	android:name="de.kneipe.ui.main.Main"
     	android:layout_weight="0"
     	android:layout_width="0dp"
     	android:layout_height="0dp" />
@@ -20,7 +20,7 @@
 	<!-- <FrameLayout> statt <fragment>, damit das Fragment spaeter dynamisch austauschbar ist -->
     <FrameLayout
     	android:id="@+id/details"
-    	android:layout_weight="5"
+    	android:layout_weight="4"
     	android:layout_width="0dp"
     	android:layout_height="match_parent" />
 

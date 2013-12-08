@@ -86,7 +86,7 @@ public class KneipeDetails extends Fragment {
 		final Bundle args = new Bundle(1);
 		args.putSerializable(KNEIPEN_KEY, kneipe);
 		final TextView txtId = (TextView) view.findViewById(R.id.kneipe_id);
-		txtId.setText(kneipe.kid.toString());
+		txtId.setText(kneipe.kid);
 
 		final TextView txtName = (TextView) view.findViewById(R.id.name);
 		txtName.setText(kneipe.name);
@@ -95,8 +95,9 @@ public class KneipeDetails extends Fragment {
 				.findViewById(R.id.kunde_internetadresse);
 		txtPreis.setText(kneipe.internetadresse);
 
-		final TextView txtverf = (TextView) view.findViewById(R.id.kunde_adresse);
-		txtverf.setText(kneipe.adresse);
+	 /*Hab hier auskommentiert um emulator starten zu können
+	  * final TextView txtverf = (TextView) view.findViewById(R.id.kunde_adresse);
+		txtverf.setText(kneipe.adresse);*/
 
 		// if (Main.class.equals(activity.getClass())) {
 		Main main = (Main) activity;
