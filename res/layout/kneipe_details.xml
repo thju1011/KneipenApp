@@ -6,52 +6,36 @@
     android:stretchColumns="1,2"
     tools:context=".ui.kunde.KneipeDetails" >
 
-	<TableRow android:layout_width="match_parent" >
+	
+	<TableRow>
 
 		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/k_kneipe_id"
-			android:textStyle="bold" />
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text="@string/k_name"
+		    android:textStyle="bold" />
 		
 		<TextView
-			android:id="@+id/kneipe_id"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_span="2"
-			android:paddingLeft="5dp" />
+		    android:id="@+id/txt_KneipeName"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:paddingLeft="5dp" />
 
 	</TableRow>
 	
 	<TableRow>
 
 		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/k_name"
-			android:textStyle="bold" />
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text="@string/k_internetadresse"
+		    android:textStyle="bold" />
 		
 		<TextView
-			android:id="@+id/name"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="5dp" />
-
-	</TableRow>
-	
-	<TableRow>
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/k_internetadresse"
-			android:textStyle="bold" />
-		
-		<TextView
-			android:id="@+id/kunde_internetadresse"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="5dp" />
+		    android:id="@+id/txt_KneipeInternetadresse"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:paddingLeft="5dp" />
 
 	</TableRow>
 	
@@ -64,7 +48,7 @@
 			android:textStyle="bold" />
 		
 		<TextView
-			android:id="@+id/k_adresse"
+			android:id="@+id/txt_kneipeAdresse"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:paddingLeft="5dp" />
@@ -79,14 +63,100 @@
 	        android:layout_weight="1"
 	        android:text="@string/k_head_list_bewertung"
 	        android:textStyle="bold" />
+	</TableRow>
 
-	    <RatingBar
-	        android:id="@+id/ratingBar1"
+	<TableRow
+	    android:id="@+id/tableRow6"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+
+		<RatingBar
+		    android:id="@+id/ratingBar1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:numStars="5"
+		    android:rating="3.5"
+		    android:stepSize="0.5" />
+
+	</TableRow>
+
+	<TableRow
+	    android:id="@+id/tableRow1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+
+		<CheckBox
+		    android:id="@+id/checkBox1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="TV" />
+
+		<Button
+		    android:id="@+id/button2"
+		    style="?android:attr/buttonStyleSmall"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Gutschein" />
+
+	</TableRow>
+
+	<TableRow
+	    android:id="@+id/tableRow2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+
+	    <CheckBox
+	        android:id="@+id/checkBox2"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:numStars="5"
-	        android:rating="3.5"
-	        android:stepSize="0.5" />
+	        android:text="Essen" />
+
+	    <Button
+	        android:id="@+id/button3"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Bewerten" />
+
 	</TableRow>
+
+	<TableRow
+	    android:id="@+id/tableRow3"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+
+	    <CheckBox
+	        android:id="@+id/checkBox3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="DJ" />
+
+	    <Button
+	        android:id="@+id/button4"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Infos" />
+
+	</TableRow>
+
+	<TableRow
+	    android:id="@+id/tableRow4"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+
+	    <CheckBox
+	        android:id="@+id/checkBox4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Raucherbereich" />
+	</TableRow>
+
+	<Button
+	    android:id="@+id/button1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="24dp"
+	    android:text="Hier hin navigieren!" />
 
 </TableLayout>
