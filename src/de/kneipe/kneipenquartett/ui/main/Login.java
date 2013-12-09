@@ -32,6 +32,7 @@ import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerEdit;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerSucheEmail;
+import de.kneipe.kneipenquartett.util.Startseite;
 
 	
 	public class Login extends Fragment implements OnClickListener {
@@ -94,15 +95,21 @@ import de.kneipe.kneipenquartett.ui.benutzer.BenutzerSucheEmail;
 						email.setError("Eingabe fehlt");
 					
 
-					
+				Bundle args = new Bundle();
+				
 					
 				 
 					Benutzer db = suchen(view, benutzerStr);
 					Log.v(LOG_TAG,db.toString());
 					if(benutzerpw.equals(db.password))
 					{
+						args.putSerializable("be", db);
+						
+						Fragment nf = new Startseite();
+						nf.setArguments(args);
+						
 						getFragmentManager().beginTransaction()
-			            .replace(R.id.details, new BenutzerCreate())
+			            .replace(R.id.details, nf)
 			            .addToBackStack(null)
 			            .commit();
 						
@@ -121,6 +128,7 @@ import de.kneipe.kneipenquartett.ui.benutzer.BenutzerSucheEmail;
 				.replace(R.id.details, new BenutzerCreate())
 				.commit();
 				break;
+							
 			}
 			
 			// Eingabetext ermitteln
