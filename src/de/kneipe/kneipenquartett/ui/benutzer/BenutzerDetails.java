@@ -27,7 +27,10 @@ public class BenutzerDetails extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		args = getArguments();
-        benutzer = (Benutzer) args.get(BENUTZER_KEY);
+		
+		setHasOptionsMenu(true);
+		
+        benutzer = (Benutzer) args.get("be");
         Log.d(LOG_TAG, benutzer.toString());
         
 		// attachToRoot = false, weil die Verwaltung des Fragments durch die Activity erfolgt

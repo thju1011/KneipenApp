@@ -17,15 +17,17 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.RadioButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
+import de.kneipe.kneipenquartett.util.Startseite;
 import de.kneipe.kneipenquartett.util.WischenListener;
 
-public class BenutzerStammdaten extends Fragment {
+public class BenutzerStammdaten extends Fragment implements OnClickListener {
 	private static final String LOG_TAG = BenutzerStammdaten.class.getSimpleName();
 
 	
@@ -33,12 +35,37 @@ public class BenutzerStammdaten extends Fragment {
 	private Benutzer benutzer;
 	
 	@Override
+	public void onClick(View view) {
+		Log.v(LOG_TAG,"hallllllllllihallllo");
+		switch (view.getId()) {
+		case R.id.btn_edit:
+			
+			args.putSerializable("be", benutzer);
+			Log.v(LOG_TAG, "bundle key anlegen");
+			
+			Fragment nf = new BenutzerEdit();
+			nf.setArguments(args);
+			
+			Log.v(LOG_TAG,"Fragment Startseite aufrufen"); 
+			Log.v(LOG_TAG,"edit wird ausgeführt");
+			getFragmentManager().beginTransaction()
+			 .replace(R.id.details, nf)			
+			.commit();
+			break;
+			
+			
+		default:
+			break;
+	}
+		}
+	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		args = getArguments();
         benutzer = (Benutzer) args.get("be");
         Log.d(LOG_TAG, benutzer.toString());
     	
-    	Log.v(LOG_TAG,"hallllllllllihallllo");
+    	
         // Voraussetzung fuer onOptionsItemSelected()
         setHasOptionsMenu(true);
         
@@ -50,6 +77,8 @@ public class BenutzerStammdaten extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		fillValues(view);
     	
+		view.findViewById(R.id.btn_edit).setOnClickListener(this);
+		
 	    final GestureDetector gestureDetector = new GestureDetector(getActivity(), new WischenListener(this));
 	    view.setOnTouchListener(new View.OnTouchListener() {
 			@Override
@@ -62,7 +91,7 @@ public class BenutzerStammdaten extends Fragment {
 	private void fillValues(View view) {
 //		final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
 //    	txtId.setText(benutzer.uid.toString());
-    	
+	
     	final TextView txtNachname = (TextView) view.findViewById(R.id.nachname_txt);
     	txtNachname.setText(benutzer.nachname);
     	
@@ -74,64 +103,54 @@ public class BenutzerStammdaten extends Fragment {
     	
     	final TextView txtPlz = (TextView) view.findViewById(R.id.geschlecht);
     	txtPlz.setText(benutzer.geschlecht);
-   
+    
    
 	}
 	
-	public void onClick(View view) {
-		final Context ctx = view.getContext();
-		switch(view.getId()){
-		case R.id.btn_edit:	
-			getFragmentManager().beginTransaction()
-			.replace(R.id.details, new BenutzerEdit())
-			.commit();
-			
-			break;
-		}
-		}
+	
 
-	@Override
+//	@Override
 	// http://developer.android.com/guide/topics/ui/actionbar.html#ChoosingActionItems :
 	// "As a general rule, all items in the options menu (let alone action items) should have a global impact on the app,
 	//  rather than affect only a small portion of the interface."
 	// Nur aufgerufen, falls setHasOptionsMenu(true) in onCreateView() aufgerufen wird
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.benutzer_stammdaten_options, menu);
-		
-		// "Searchable Configuration" in res\xml\searchable.xml wird der SearchView zugeordnet
-		final Activity activity = getActivity();
-	    final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-	    final SearchView searchView = (SearchView) menu.findItem(R.id.suchen).getActionView();
-	    searchView.setSearchableInfo(searchManager.getSearchableInfo(activity.getComponentName()));
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.edit:
-				// Evtl. vorhandene Tabs der ACTIVITY loeschen
-		    	getActivity().getActionBar().removeAllTabs();
-		    	
-				final Fragment neuesFragment = new BenutzerEdit();
-				neuesFragment.setArguments(args);
-				
-				// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
-				getFragmentManager().beginTransaction()
-				                    .replace(R.id.details, neuesFragment)
-				                    .addToBackStack(null)  
-				                    .commit();
-				return true;
-				
-			case R.id.einstellungen:
-				getFragmentManager().beginTransaction()
-                                    .replace(R.id.details, new Prefs())
-                                    .addToBackStack(null)
-                                    .commit();
-				return true;
-
-			default:
-				return super.onOptionsItemSelected(item);
-		}
-	}
+//	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//		super.onCreateOptionsMenu(menu, inflater);
+//		inflater.inflate(R.menu.benutzer_stammdaten_options, menu);
+//		
+//		// "Searchable Configuration" in res\xml\searchable.xml wird der SearchView zugeordnet
+//		final Activity activity = getActivity();
+//	    final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+//	    final SearchView searchView = (SearchView) menu.findItem(R.id.suchen).getActionView();
+//	    searchView.setSearchableInfo(searchManager.getSearchableInfo(activity.getComponentName()));
+//	}
+//
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch (item.getItemId()) {
+//			case R.id.edit:
+//				// Evtl. vorhandene Tabs der ACTIVITY loeschen
+//		    	getActivity().getActionBar().removeAllTabs();
+//		    	
+//				final Fragment neuesFragment = new BenutzerEdit();
+//				neuesFragment.setArguments(args);
+//				
+//				// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
+//				getFragmentManager().beginTransaction()
+//				                    .replace(R.id.details, neuesFragment)
+//				                    .addToBackStack(null)  
+//				                    .commit();
+//				return true;
+//				
+//			case R.id.einstellungen:
+//				getFragmentManager().beginTransaction()
+//                                    .replace(R.id.details, new Prefs())
+//                                    .addToBackStack(null)
+//                                    .commit();
+//				return true;
+//
+//			default:
+//				return super.onOptionsItemSelected(item);
+//		}
+//	}
 }

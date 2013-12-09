@@ -668,10 +668,10 @@ final class WebServiceClient {
     	}
     	
     	switch (AUTH_TYPE) {
-    		case BASIC:
-    			httpConnection = basicAuth(httpConnection);
-    			break;
-    			
+//    		case BASIC:
+//    			httpConnection = basicAuth(httpConnection);
+//    			break;
+//    			
     		case FORM:
     			httpConnection = formAuth(httpConnection);
     			break;
@@ -684,19 +684,19 @@ final class WebServiceClient {
     }
     
     
-    private static HttpURLConnection basicAuth(HttpURLConnection httpConnection) {
-    	if (TextUtils.isEmpty(username)) {
-    		return httpConnection;
-    	}
-    	
-		final String usernamePassword = username + ':' + password;
-
-    	Log.v(LOG_TAG, "Passwort:"+usernamePassword);
-    	
-		httpConnection.setRequestProperty(AUTHORIZATION, "Basic " + Base64.encodeToString(usernamePassword.getBytes(), Base64.DEFAULT));
-		
-		return httpConnection;    	
-    }
+//    private static HttpURLConnection basicAuth(HttpURLConnection httpConnection) {
+//    	if (TextUtils.isEmpty(username)) {
+//    		return httpConnection;
+//    	}
+//    	
+//		final String usernamePassword = username + ':' + password;
+//
+//    	Log.v(LOG_TAG, "Passwort:"+usernamePassword);
+//    	
+//		httpConnection.setRequestProperty(AUTHORIZATION, "Basic " + Base64.encodeToString(usernamePassword.getBytes(), Base64.DEFAULT));
+//		
+//		return httpConnection;    	
+//    }
     
     
     private static HttpURLConnection formAuth(HttpURLConnection httpConnection) {

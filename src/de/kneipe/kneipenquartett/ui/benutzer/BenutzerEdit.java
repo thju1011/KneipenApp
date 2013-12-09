@@ -1,6 +1,6 @@
 package de.kneipe.kneipenquartett.ui.benutzer;
 
-import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
+
 import static java.net.HttpURLConnection.HTTP_CONFLICT;
 import static java.net.HttpURLConnection.HTTP_FORBIDDEN;
 import static java.net.HttpURLConnection.HTTP_NO_CONTENT;
@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -29,27 +30,34 @@ import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
 import de.kneipe.kneipenquartett.ui.main.Main;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
 
-public class BenutzerEdit extends Fragment {
+public class BenutzerEdit extends Fragment implements OnClickListener {
 	private static final String LOG_TAG = BenutzerEdit.class.getSimpleName();
 	
 	private Bundle args;
 	
-	private Benutzer benutzer;
+	private Benutzer benutzer = new Benutzer();
 	private EditText edtNachname;
 	private EditText edtVorname;
 	private EditText edtEmail;
-
 	private EditText edtGeschlecht;
 
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		
 		args = getArguments();
-		benutzer = (Benutzer) args.get("be");
-		Log.d(LOG_TAG, benutzer.toString());
+		
+//		Log.d(LOG_TAG, benutzer.toString());
+		
+		Log.v(LOG_TAG, "OnCreateView-BenutzerEdit");
         
 		// Voraussetzung fuer onOptionsItemSelected()
 		setHasOptionsMenu(true);
+		
+
+		
+		benutzer = (Benutzer) getArguments() .get("be");
+		Log.v(LOG_TAG,benutzer.toString());
 		
 		// attachToRoot = false, weil die Verwaltung des Fragments durch die Activity erfolgt
 		return inflater.inflate(R.layout.benutzer_edit, container, false);
@@ -57,8 +65,12 @@ public class BenutzerEdit extends Fragment {
 	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-    	final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
-    	txtId.setText(String.valueOf(benutzer.uid));
+//    	final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
+//    	txtId.setText(String.valueOf(benutzer.uid));
+		view.findViewById(R.id.btn_edit_speicher).setOnClickListener(this);
+		
+		Bundle args = new Bundle(1);
+		args.putSerializable("be", benutzer);
 
     	edtNachname = (EditText) view.findViewById(R.id.nachname_edt);
     	edtNachname.setText(benutzer.nachname);
@@ -70,30 +82,12 @@ public class BenutzerEdit extends Fragment {
     	edtEmail.setText(benutzer.email);
     	
 
-    	edtEmail = (EditText) view.findViewById(R.id.geschlecht_edt);
-    	edtEmail.setText(benutzer.geschlecht);
+    	edtGeschlecht = (EditText) view.findViewById(R.id.geschlecht_edt);
+    	edtGeschlecht.setText(benutzer.geschlecht);
     	
     	
     	}
-    	/*
-    	dpSeit = (DatePicker) view.findViewById(R.id.seit);
-    	final GregorianCalendar cal = new GregorianCalendar(Locale.getDefault());
-    	cal.setTime(benutzer.seit);
-    	final int jahr = cal.get(YEAR);
-    	final int monat = cal.get(MONTH);
-    	final int tag = cal.get(DAY_OF_MONTH);
-    	dpSeit.init(jahr, monat, tag, null);
-    	
-    	npKategorie = (NumberPicker) view.findViewById(R.id.kategorie);
-    	npKategorie.setMinValue(MIN_KATEGORIE);
-    	npKategorie.setMaxValue(MAX_KATEGORIE);
-    	npKategorie.setWrapSelectorWheel(false); // kein zyklisches Scrollen
-    	npKategorie.setValue(benutzer.kategorie);
-
-    	tglNewsletter.setChecked(benutzer.newsletter);
-
-	*/
-
+    
     
 //    
 //	@Override
@@ -183,25 +177,34 @@ public class BenutzerEdit extends Fragment {
 //		}
 //	}
 	
+	@Override // OnClickListener
+	public void onClick(View view) {
+		switch (view.getId()) {
+			case R.id.btn_edit_speicher:
+				Log.d(LOG_TAG,"create wird ausgeführt");
+				setBenutzer(view);
+				break;
+				
+			default:
+				break;
+		}
+		
+	}
+	
 	private void setBenutzer(View view) {
 		final Context ctxx = view.getContext();
 		Log.d(LOG_TAG,"Create Aufruf ");
 		
-		benutzer.nachname = edtNachname.getText().toString();		
+		benutzer.nachname = edtNachname.getText().toString();
+		Log.d(LOG_TAG,"nachname wird geändert");
 		benutzer.vorname = edtVorname.getText().toString();
+		Log.d(LOG_TAG,"vorname wird geändert ");
 		benutzer.email = edtEmail.getText().toString();
+		Log.d(LOG_TAG,"email wird geändert ");
 		benutzer.geschlecht = edtGeschlecht.getText().toString();
+		Log.d(LOG_TAG,"geschlecht wird geändert ");
 		
 		
-/*
-		final GregorianCalendar cal = new GregorianCalendar(Locale.getDefault());
-		cal.set(dpSeit.getYear(), dpSeit.getMonth(), dpSeit.getDayOfMonth());
-		benutzer.seit = cal.getTime();
-		
-		benutzer.kategorie = (short) npKategorie.getValue();
-		
-		benutzer.newsletter = tglNewsletter.isChecked();	
-*/
 		Log.d(LOG_TAG, benutzer.toString());
 		
 		Log.d(LOG_TAG,view.toString());
@@ -216,8 +219,8 @@ public class BenutzerEdit extends Fragment {
 
 		 final Benutzer benutzer = result.resultObject;
 			final Bundle args = new Bundle(1);
-			args.putSerializable(BENUTZER_KEY, benutzer);
-			 final Fragment neuesFragment = new BenutzerDetails();
+			args.putSerializable("be", benutzer);
+			 final Fragment neuesFragment = new BenutzerStammdaten();
 			neuesFragment.setArguments(args);
 				
 				

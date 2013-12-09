@@ -63,7 +63,7 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 		public void onViewCreated(View view, Bundle savedInstanceState) {
 	    	
 			Log.d(LOG_TAG, "View wird aufgebaut");
-			final  String LOG_TAG = BenutzerCreate.class.getSimpleName();
+			
 
 //			final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
 	    	//txtId.setText(String.valueOf(kunde.id));
