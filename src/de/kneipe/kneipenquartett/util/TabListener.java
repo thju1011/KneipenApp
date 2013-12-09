@@ -6,10 +6,13 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import de.kneipe.R;
 
 // http://developer.android.com/guide/topics/ui/actionbar.html#Tabs
 public class TabListener<T extends Fragment> implements ActionBar.TabListener {
+	
+	private static final String LOG_TAG = TabListener.class.getSimpleName();
     private final Activity activity;
     private final String classnameFragment;
     private final Bundle args;
@@ -29,12 +32,13 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
             // Das Fragment wird instanziiert und zur Activity als Detail-Fragment hinzugefuegt
         	fragment = Fragment.instantiate(activity, classnameFragment);
         	if (args != null) {
+        		Log.v(LOG_TAG, "Benutzer im Tablistener vorhanden");
         		fragment.setArguments(args);
         	}
         	
         	//später wieder rein???
         	
-          //  ft.replace(R.id.details, fragment); // siehe layout-swXXXdp\main.xml und layout-swXXXdp\kunden_liste.xml 
+           ft.replace(R.id.details, fragment); // siehe layout-swXXXdp\main.xml und layout-swXXXdp\kunden_liste.xml 
             // WICHTIG: Nicht commit() aufrufen und auch nicht auf dem "Back Stack" ablegen
         }
         else {

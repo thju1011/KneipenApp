@@ -96,7 +96,7 @@ import de.kneipe.kneipenquartett.util.Startseite;
 						email.setError("Eingabe fehlt");
 					
 
-				Bundle args = new Bundle();
+				Bundle args = new Bundle(1);
 				
 					
 				 

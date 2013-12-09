@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ import de.kneipe.kneipenquartett.util.WischenListener;
 
 public class BenutzerStammdaten extends Fragment {
 	private static final String LOG_TAG = BenutzerStammdaten.class.getSimpleName();
+
 	
 	private Bundle args;
 	private Benutzer benutzer;
@@ -33,9 +35,10 @@ public class BenutzerStammdaten extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		args = getArguments();
-        benutzer = (Benutzer) args.get(BENUTZER_KEY);
+        benutzer = (Benutzer) args.get("be");
         Log.d(LOG_TAG, benutzer.toString());
-
+    	
+    	Log.v(LOG_TAG,"hallllllllllihallllo");
         // Voraussetzung fuer onOptionsItemSelected()
         setHasOptionsMenu(true);
         
@@ -57,8 +60,8 @@ public class BenutzerStammdaten extends Fragment {
     }
 	
 	private void fillValues(View view) {
-		final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
-    	txtId.setText(benutzer.uid.toString());
+//		final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
+//    	txtId.setText(benutzer.uid.toString());
     	
     	final TextView txtNachname = (TextView) view.findViewById(R.id.nachname_txt);
     	txtNachname.setText(benutzer.nachname);
@@ -74,6 +77,18 @@ public class BenutzerStammdaten extends Fragment {
    
    
 	}
+	
+	public void onClick(View view) {
+		final Context ctx = view.getContext();
+		switch(view.getId()){
+		case R.id.btn_edit:	
+			getFragmentManager().beginTransaction()
+			.replace(R.id.details, new BenutzerEdit())
+			.commit();
+			
+			break;
+		}
+		}
 
 	@Override
 	// http://developer.android.com/guide/topics/ui/actionbar.html#ChoosingActionItems :

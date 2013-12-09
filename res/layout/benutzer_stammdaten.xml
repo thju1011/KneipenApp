@@ -5,24 +5,8 @@
 	tools:context=".ui.main.Main" >
 
 <TableLayout
-	    android:layout_width="match_parent"
-		android:layout_height="wrap_content" >
-	
-		<TableRow>
-	
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/b_benutzer_id" />
-			
-			<TextView
-			    style="@style/RechteSpalteText"
-				android:id="@+id/benutzer_id"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textIsSelectable="false" />
-	
-		</TableRow>
+	android:layout_width="match_parent"
+	android:layout_height="134dp" >
 		
 		<TableRow>
 	
@@ -88,6 +72,11 @@
 	
 	    </TableRow>
 	    
+	  <Button
+		android:id="@+id/btn_edit"
+		android:layout_width="160dp"
+		android:layout_height="wrap_content"
+		android:text="@string/edit" />
 
 	
 	</TableLayout>
