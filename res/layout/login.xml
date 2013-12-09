@@ -15,6 +15,7 @@
 			android:id="@+id/emaillogin"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:hint="@string/b_emailthint"
 			android:ems="10" >
 
 			<requestFocus />
@@ -25,6 +26,7 @@
 		android:id="@+id/passwordlogin"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:hint="@string/b_passworthint"
 		android:ems="10"
 		android:inputType="textPassword" />
 
@@ -38,6 +40,6 @@
 		android:id="@+id/btn_reg"
 		android:layout_width="160dp"
 		android:layout_height="wrap_content"
-		android:text="@string/registrieren" />
+		android:text="@string/registrieren" /> 
 
 </LinearLayout>

@@ -67,8 +67,9 @@ import de.kneipe.kneipenquartett.util.Startseite;
 		public void onViewCreated(View view, Bundle savedInstanceState) {
 	    	
 			Log.d(LOG_TAG, "View wird aufgebaut");
-			final  String LOG_TAG = Login.class.getSimpleName();
+		
 			 email= (EditText) view.findViewById(R.id.emaillogin);
+			 
 			 password = (EditText) view.findViewById(R.id.passwordlogin);
 //			final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
 	    	//txtId.setText(String.valueOf(kunde.id));

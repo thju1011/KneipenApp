@@ -7,7 +7,7 @@
     <string name="b_nachname">Lastname</string>
     <string name="b_nachname_hint">Enter the lastname</string>
     <string name="b_nachname_auswahl_hint">Select a lastname</string>
-     <string name="b_email_auswahl_hint">Select a email</string>
+     <string name="b_emailthint">Email Adresse</string>
        <string name="b_email_hint">Enter a email</string>
     <string name="b_nachname_fehlt">The lastname is missing.</string>
     <string name="b_vorname">Firstname</string>
@@ -21,7 +21,7 @@
     <string name="b_seit">Since</string>
     <string name="b_login">Login</string>
     <string name="b_passwort">Password</string>
-    <string name="b_newsletter">Newsletter</string>
+    <string name="b_passworthint">Passwort</string>
     <string name="b_geschlecht">Gender</string>
     <string name="b_maennlich">Male</string>
     <string name="b_weiblich">Female</string>
@@ -51,5 +51,6 @@
     <string name="b_barte">Custommer card</string>
     <string name="b_name">Custommer name</string>
     <string name="b_agbs">AGBs</string>
+ 
     
 </resources>
