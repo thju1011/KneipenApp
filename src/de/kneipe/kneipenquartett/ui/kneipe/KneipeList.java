@@ -1,12 +1,15 @@
 package de.kneipe.kneipenquartett.ui.kneipe;
 
 import static android.app.ActionBar.NAVIGATION_MODE_TABS;
+import static android.content.Intent.getIntent;
 import static de.kneipe.kneipenquartett.util.Constants.KNEIPEN_KEY;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +30,7 @@ import de.kneipe.kneipenquartett.ui.main.Prefs;
 public class KneipeList extends ListFragment{
 	
 	private static final String LOG_TAG = KneipeList.class.getSimpleName();
-	private Kneipe kneipe;
+	private List<Kneipe> kneipen;
 	private List<Long> bewertungIds;
 	private KneipeServiceBinder kneipeServiceBinder;
 
@@ -36,8 +39,8 @@ public class KneipeList extends ListFragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		kneipe = (Kneipe) getArguments().get(KNEIPEN_KEY);
-		Log.d(LOG_TAG, kneipe.toString());
+		kneipen = (List<Kneipe>) getArguments().get(KNEIPEN_KEY);
+		Log.d(LOG_TAG, kneipen.toString());
 		setHasOptionsMenu(true);
 		// attachToRoot = false, weil die Verwaltung des Fragments durch die
 		// Activity erfolgt
@@ -72,8 +75,8 @@ public class KneipeList extends ListFragment{
 	    String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
 	        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
 	        "Linux", "OS/2" };
-	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-	        android.R.layout.simple_list_item_1, values);
+	    ArrayAdapter<Kneipe> adapter = new ArrayAdapter<Kneipe>(getActivity(),
+	        android.R.layout.simple_list_item_1, kneipen);
 	    setListAdapter(adapter);
 	  }
 
@@ -94,8 +97,21 @@ public class KneipeList extends ListFragment{
 															// Platz fuer die Tabs
 															// zu haben
 
-			final Bundle args = new Bundle(1);
-			args.putSerializable(KNEIPEN_KEY, kneipe);
+			final Fragment details = new KneipeList();
+			final Bundle extras = new Bundle();
+	        if (extras != null) {
+	        	@SuppressWarnings("unchecked")
+				final List<Kneipe> kneipen = (List<Kneipe>) extras.get(KNEIPEN_KEY);
+	        	if (kneipen != null && !kneipen.isEmpty()) {
+	        		final Bundle args = new Bundle(1);
+	        		args.putSerializable(KNEIPEN_KEY, kneipen.get(0));
+	        		details.setArguments(args);
+	        	}
+	        }
+			
+			
+			
+//			args.putSerializable(KNEIPEN_KEY, (Serializable) kneipen);
 
 			Main main = (Main) activity;
 			kneipeServiceBinder = main.getKneipeServiceBinder();

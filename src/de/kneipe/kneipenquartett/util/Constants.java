@@ -5,6 +5,7 @@ import static de.kneipe.kneipenquartett.util.Constants.LOCALHOST_DEVICE;
 
 public final class Constants {
 	public static final String BENUTZER_KEY = "benutzer";
+	public static final String KNEIPE_KEY = "kneipe";
 	public static final String KNEIPEN_KEY = "kneipen";
 	
 	public static final String BENUTZERN_KEY = "benutzern";
