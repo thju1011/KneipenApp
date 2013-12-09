@@ -33,6 +33,12 @@
 			</intent-filter>
 		</activity>
 		
+		<activity uiOptions="splitActionBarWhenNarrow" ... >
+        <meta-data android:name="android.support.UI_OPTIONS"
+                   android:value="splitActionBarWhenNarrow" />
+    </activity>
+		
+		
 				<activity
 			android:name="de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate"
 			android:label="@string/app_name" >

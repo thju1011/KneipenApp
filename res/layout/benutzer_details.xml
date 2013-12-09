@@ -3,18 +3,18 @@
 	android:id="@+id/benutzer_details"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.kunde.KundeDetails" >
+	tools:context=".ui.Benutzer.BenutzerDetails" >
 
 	<TableRow>
 
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/b_benutzer_id"
+			android:text="@string/b_vorname"
 			android:paddingLeft="5dp" />
 		
 		<TextView
-			android:id="@+id/benutzer_id"
+			android:id="@+id/b_details_vorname"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:paddingLeft="5dp" />
@@ -30,11 +30,49 @@
 			android:paddingLeft="5dp" />
 		
 		<TextView
-			android:id="@+id/name"
+			android:id="@+id/b_details_nachname"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:paddingLeft="5dp" />
 
 	</TableRow>
+	
+	<TableRow>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/b_geschlecht"
+			android:paddingLeft="5dp" />
+		
+		<TextView
+			android:id="@+id/b_details_geschlecht"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+	</TableRow>
+	
+	<TableRow>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/b_email"
+			android:paddingLeft="5dp" />
+		
+		<TextView
+			android:id="@+id/b_details_email"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+	</TableRow>
+	
+		<Button
+		android:id="@+id/btn_edit"
+		android:layout_width="160dp"
+		android:layout_height="wrap_content"
+		android:text="@string/edit" />
 
 </TableLayout>

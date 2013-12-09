@@ -60,5 +60,8 @@
     <string name="s_mobile">Mobile Netzwerkverbindung</string>
     <string name="s_not_connected">Keine Netzwerkverbindung</string>
     <string name="s_mock">ACHTUNG: Testmodus im Offline-Betrieb</string>
+  
+ <string name="benutzer">Profil</string>
+   <string name="kneipe">Kneipen</string>
     
 </resources>
