@@ -6,20 +6,35 @@ import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerStammdaten;
+import de.kneipe.kneipenquartett.ui.main.Login;
 
 
 public class Startseite extends Fragment {
 	
+	private static final String LOG_TAG = Startseite.class.getSimpleName();
+	
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		// attachToRoot = false, weil die Verwaltung des Fragments durch die Activity erfolgt
+		Log.v(LOG_TAG,"hallo");
+		return inflater.inflate(R.layout.startseite, container, false);
+	}
+	
+
 	Benutzer benutzer = (Benutzer) getArguments() .get("be");
+	
 	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState){
+		Log.v(LOG_TAG,"onViewCREATED DER STARTSEITE!!");
 		final Activity a = getActivity();
 		ActionBar actionBar = a.getActionBar();
 		actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
@@ -41,9 +56,5 @@ public class Startseite extends Fragment {
 				 
 	}
 	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		// attachToRoot = false, weil die Verwaltung des Fragments durch die Activity erfolgt
-		return inflater.inflate(R.layout.startseite, container, false);
-	}
+	
 }

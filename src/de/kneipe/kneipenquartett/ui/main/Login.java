@@ -2,7 +2,7 @@ package de.kneipe.kneipenquartett.ui.main;
 
 
 
-	import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
+import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ComponentName;
@@ -69,9 +69,7 @@ import de.kneipe.kneipenquartett.util.Startseite;
 			Log.d(LOG_TAG, "View wird aufgebaut");
 			final  String LOG_TAG = Login.class.getSimpleName();
 			 email= (EditText) view.findViewById(R.id.emaillogin);
-			 email.setText("E-Mail Adresse");
 			 password = (EditText) view.findViewById(R.id.passwordlogin);
-			 password.setText("Kennwort");
 //			final TextView txtId = (TextView) view.findViewById(R.id.benutzer_id);
 	    	//txtId.setText(String.valueOf(kunde.id));
 	    	
