@@ -86,10 +86,7 @@ public class KneipeDetails extends Fragment {
 		final Bundle args = new Bundle(1);
 		args.putSerializable(KNEIPEN_KEY, kneipe);
 		final TextView txtId = (TextView) view.findViewById(R.id.txt_KneipeName);
-		txtId.setText(kneipe.kid);
-
-		final TextView txtName = (TextView) view.findViewById(R.id.name);
-		txtName.setText(kneipe.name);
+		txtId.setText(kneipe.name);
 
 		final TextView txtPreis = (TextView) view
 				.findViewById(R.id.txt_KneipeInternetadresse);
