@@ -105,10 +105,14 @@ import de.kneipe.kneipenquartett.util.Startseite;
 					Log.v(LOG_TAG,db.toString());
 					if(benutzerpw.equals(db.password))
 					{
+						
 						args.putSerializable("be", db);
+						Log.v(LOG_TAG, "bundle key anlegen");
 						
 						Fragment nf = new Startseite();
 						nf.setArguments(args);
+						
+						Log.v(LOG_TAG,"Fragment Startseite aufrufen");
 						
 						getFragmentManager().beginTransaction()
 			            .replace(R.id.details, nf)

@@ -28,16 +28,16 @@ public class Startseite extends Fragment {
 		args.putSerializable("be", benutzer);
 		
 		Tab tab = actionBar.newTab()
-							.setText(R.string.be)
+							.setText("Profil")
 							.setTabListener(new TabListener<BenutzerStammdaten>(a, BenutzerStammdaten.class, args));
 		
 		actionBar.addTab(tab);
 		
-		tab = actionBar.newTab()
-				.setText(R.string.k)
-				.setTabListener(new TabListener<BenutzerStammdaten>(a, BenutzerStammdaten.class, args));
-
-actionBar.addTab(tab);
+//		tab = actionBar.newTab()
+//				.setText("Kneipen")
+//				.setTabListener(new TabListener<KneipeStammdaten>(a, BenutzerStammdaten.class, args));
+//
+//actionBar.addTab(tab);
 				 
 	}
 	
