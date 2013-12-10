@@ -53,6 +53,7 @@ public class Benutzer implements JsonMappable, Serializable {
 		Log.v(LOG_TAG, "IST DIE FACTORY NULL?"+jsonBuilderFactory.getClass().toString());
 		
 			return jsonBuilderFactory.createObjectBuilder()
+				.add("uid", uid)
                 .add("username", username)
                 .add("nachname", nachname)
                 .add("vorname", vorname)
