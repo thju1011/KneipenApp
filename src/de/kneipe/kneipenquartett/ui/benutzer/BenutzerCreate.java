@@ -248,13 +248,13 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 				final Main mainActivity = (Main) getActivity();
 				Log.d(LOG_TAG,mainActivity.toString());
 				final HttpResponse<? extends Benutzer> result = mainActivity.getBenutzerServiceBinder().createBenutzer(benutzer, ctxx);	
-				
+				Log.d(LOG_TAG, result.toString());
 				Log.d(LOG_TAG, benutzer.toString());
 				 
-
-				 final Benutzer benutzer = result.resultObject;
+				final HttpResponse<? extends Benutzer> angelegterbenutzer = mainActivity.getBenutzerServiceBinder().sucheBenutzerByEmail(benutzer.email, ctxx);
+				 final Benutzer benutzer = angelegterbenutzer.resultObject;
 					final Bundle args = new Bundle(1);
-					args.putSerializable(BENUTZER_KEY, benutzer);
+					args.putSerializable("be", benutzer);
 					 final Fragment neuesFragment = new BenutzerDetails();
 					neuesFragment.setArguments(args);
 						
