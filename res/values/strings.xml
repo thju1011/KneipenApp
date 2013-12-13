@@ -10,6 +10,7 @@
     <string name="s_nicht_akzeptiert">Nicht akzeptieren</string>
    <string name="s_bitte_warten">Bitte warten </string>
    <string name="edit">Benutzer ändern</string>
+   <string name="delete">Benutzer löschen</string>
    <string name="login">Jetzt einloggen</string>
    <string name="benutzer">Profil</string>
    <string name="kneipe">Kneipen</string>
