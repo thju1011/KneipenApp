@@ -52,11 +52,6 @@ public class BenutzerDetails extends Fragment {
 	                    		                                            args));
 	    actionBar.addTab(tab);
 	    
-//	    tab = actionBar.newTab()
-//                       .setText(getString(R.string.k_bestellungen))
-//                       .setTabListener(new TabListener<BenutzerBestellungen>(activity,
-//                    		                                              BenutzerBestellungen.class,
-//                    		                                              args));
-//	    actionBar.addTab(tab);
+
 	}
 }

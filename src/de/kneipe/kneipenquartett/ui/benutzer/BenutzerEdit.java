@@ -47,7 +47,6 @@ public class BenutzerEdit extends Fragment implements OnClickListener {
 		
 		args = getArguments();
 		
-//		Log.d(LOG_TAG, benutzer.toString());
 		
 		Log.v(LOG_TAG, "OnCreateView-BenutzerEdit");
         
@@ -89,93 +88,7 @@ public class BenutzerEdit extends Fragment implements OnClickListener {
     	}
     
     
-//    
-//	@Override
-//	// Nur aufgerufen, falls setHasOptionsMenu(true) in onCreateView() aufgerufen wird
-//	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//		super.onCreateOptionsMenu(menu, inflater);
-//		inflater.inflate(R.menu.benutzer_edit_options, menu);
-//	}
-//	
-//	@Override
-//	public boolean onOptionsItemSelected(MenuItem item) {
-//		switch (item.getItemId()) {
-//			case R.id.speichern:
-//				setBenutzer();
-//
-//				final Activity activity = getActivity();
-//				
-//				// Das Fragment BenutzerEdit kann von Main und von BenutzerListe aus aufgerufen werden
-//				BenutzerServiceBinder benutzerServiceBinder;
-//				if (Main.class.equals(activity.getClass())) {
-//					Main main = (Main) activity;
-//					benutzerServiceBinder = main.getBenutzerServiceBinder();
-//				}
-//				else if (BenutzerListe.class.equals(activity.getClass())) {
-//					BenutzerListe benutzernListe = (BenutzerListe) activity;
-//					benutzerServiceBinder = benutzernListe.getBenutzerServiceBinder();
-//				}
-//				else {
-//					return true;
-//				}
-//				
-//				final HttpResponse<Benutzer> result = benutzerServiceBinder.updateBenutzer( benutzer, activity);
-//				final int statuscode = result.responseCode;
-//				if (statuscode != HTTP_NO_CONTENT && statuscode != HTTP_OK) {
-//					String msg = null;
-//					switch (statuscode) {
-//						case HTTP_CONFLICT:
-//							msg = result.content;
-//							break;
-//						case HTTP_UNAUTHORIZED:
-//							msg = getString(R.string.s_error_prefs_login, benutzer.uid);
-//							break;
-//						case HTTP_FORBIDDEN:
-//							msg = getString(R.string.s_error_forbidden, benutzer.uid);
-//							break;
-//					}
-//					
-//		    		final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-//		    		final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int which) {}
-//                    };
-//		    		builder.setMessage(msg)
-//		    		       .setNeutralButton(R.string.s_ok, listener)
-//		    		       .create()
-//		    		       .show();
-//		    		return true;
-//				}
-//				
-//				benutzer = result.resultObject;  // ggf. erhoehte Versionsnr. bzgl. konkurrierender Updates
-//				
-//				// Gibt es in der Navigationsleiste eine BenutzernListe? Wenn ja: Refresh mit geaendertem Benutzer-Objekt
-//				final Fragment fragment = getFragmentManager().findFragmentById(R.id.benutzer_liste_nav);
-//				if (fragment != null) {
-//					final BenutzerListeNav benutzernListeFragment = (BenutzerListeNav) fragment;
-//					benutzernListeFragment.refresh(benutzer);
-//				}
-//				
-//				final Fragment neuesFragment = new BenutzerDetails();
-//				neuesFragment.setArguments(args);
-//				
-//				// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
-//				getFragmentManager().beginTransaction()
-//				                    .replace(R.id.details, neuesFragment)
-//				                    .addToBackStack(null)  
-//				                    .commit();
-//				return true;
-//				
-//			case R.id.einstellungen:
-//				getFragmentManager().beginTransaction()
-//                                    .replace(R.id.details, new Prefs())
-//                                    .addToBackStack(null)
-//                                    .commit();
-//				return true;
-//				
-//			default:
-//				return super.onOptionsItemSelected(item);
-//		}
-//	}
+
 	
 	@Override // OnClickListener
 	public void onClick(View view) {

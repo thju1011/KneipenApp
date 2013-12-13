@@ -53,6 +53,21 @@ public class BenutzerStammdaten extends Fragment implements OnClickListener {
 			.commit();
 			break;
 			
+		case R.id.btn_delete:
+			
+			args.putSerializable("be", benutzer);
+			Log.v(LOG_TAG, "bundle key anlegen");
+			
+			Fragment newf = new BenutzerDelete();
+			newf.setArguments(args);
+			
+			Log.v(LOG_TAG,"Fragment Startseite aufrufen"); 
+			Log.v(LOG_TAG,"delet wird ausgeführt");
+			getFragmentManager().beginTransaction()
+			 .replace(R.id.details, newf)			
+			 .commit();
+			break;	
+			
 			
 		default:
 			break;
@@ -78,6 +93,7 @@ public class BenutzerStammdaten extends Fragment implements OnClickListener {
 		fillValues(view);
     	
 		view.findViewById(R.id.btn_edit).setOnClickListener(this);
+		view.findViewById(R.id.btn_delete).setOnClickListener(this);
 		
 	    final GestureDetector gestureDetector = new GestureDetector(getActivity(), new WischenListener(this));
 	    view.setOnTouchListener(new View.OnTouchListener() {

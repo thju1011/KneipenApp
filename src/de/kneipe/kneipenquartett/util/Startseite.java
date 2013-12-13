@@ -52,8 +52,14 @@ public class Startseite extends Fragment {
 		args.putSerializable("be", benutzer);
 		
 		Log.v(LOG_TAG,benutzer.toString());
-		
+	
 		Tab tab = actionBar.newTab()
+				.setText("Kneipen")
+				.setTabListener(new TabListener<KneipeSucheKategorie>(a,KneipeSucheKategorie.class, args));
+
+		actionBar.addTab(tab);
+		
+		 tab = actionBar.newTab()
 							.setText("Profil")
 							.setTabListener(new TabListener<BenutzerStammdaten>(a, BenutzerStammdaten.class, args));
 		
@@ -61,11 +67,7 @@ public class Startseite extends Fragment {
 		actionBar.addTab(tab);
 		Log.v(LOG_TAG,"tablistener");
 		
-		tab = actionBar.newTab()
-				.setText("Kneipen")
-				.setTabListener(new TabListener<KneipeSucheKategorie>(a,KneipeSucheKategorie.class, args));
 
-		actionBar.addTab(tab);
 				 
 
 	}
