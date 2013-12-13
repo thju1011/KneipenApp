@@ -68,6 +68,8 @@ final class WebServiceClient {
 			return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
 		}
 		return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
+		
+	//	return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR;
 	}
 
     private static <T> HttpResponse<T> getJson(String path) {

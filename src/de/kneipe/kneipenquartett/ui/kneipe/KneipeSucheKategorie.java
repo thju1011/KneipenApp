@@ -17,13 +17,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import de.kneipe.R;
-import de.kneipe.kneipenquartett.data.Benutzer;
+import static de.kneipe.kneipenquartett.util.Constants.KNEIPEN_KEY;
 import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
 import de.kneipe.kneipenquartett.ui.main.Login;
 import de.kneipe.kneipenquartett.ui.main.Main;
-import de.kneipe.kneipenquartett.util.Startseite;
 
 public class KneipeSucheKategorie extends Fragment implements OnClickListener, OnEditorActionListener{
 	private static final String LOG_TAG = KneipeSucheKategorie.class.getSimpleName();
@@ -71,6 +70,7 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 				
 			 
 				Kneipe k = suchen(view, kneipeNameStr);
+				if(k==null)System.out.println("Fehler");
 				Log.v(LOG_TAG,k.toString());
 			
 					
@@ -114,6 +114,7 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 			
 			kneipeName.setError("suchbegriff ist falsch");
     		return null;
+
     	}
 		final Main mg = (Main) getActivity();
 		final HttpResponse<Kneipe> result = mg.getKneipeServiceBinder().sucheKneipenByName(name, ctx);
@@ -126,7 +127,8 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		
 		Log.d(LOG_TAG, result.toString());
 		
-		Kneipe k=(Kneipe) result.resultObject;
+		Kneipe k = (Kneipe)result.resultObject;
+		
 		
 		return k;
 		/*

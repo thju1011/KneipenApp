@@ -128,6 +128,9 @@ public class Main extends Activity  {
 			Intent intent = new Intent(this, BenutzerService.class);
 			bindService(intent, benutzerServiceConnection, Context.BIND_AUTO_CREATE);
 			
+			intent = new Intent(this, KneipeService.class);
+			bindService(intent, kneipeServiceConnection, Context.BIND_AUTO_CREATE);
+			
 //		intent = new Intent(this, KneipeService.class);
 //	bindService(intent, KneipeServiceConnection, Context.BIND_AUTO_CREATE);
 	    }
@@ -137,6 +140,7 @@ public class Main extends Activity  {
 			super.onStop();
 			
 			unbindService(benutzerServiceConnection);
+			unbindService(kneipeServiceConnection);
 //			unbindService(artikelServiceConnection);
 		}
 		
