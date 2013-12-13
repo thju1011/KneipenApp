@@ -64,12 +64,12 @@ final class WebServiceClient {
 	private static final String DELETE_METHOD = "DELETE";
 	
 	private static String getBaseUrl() {
-		if (TextUtils.isEmpty(port)) {
+	/*	if (TextUtils.isEmpty(port)) {
 			return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
 		}
 		return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
-		
-	//	return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR;
+		*/
+		return "http://www.iwi.hs-karlsruhe.de/eb15";
 	}
 
     private static <T> HttpResponse<T> getJson(String path) {

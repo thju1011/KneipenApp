@@ -27,6 +27,7 @@
         android:textSize="12sp" />
 
     <TextView
+        android:id="@+id/txt_kneipeName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/secondLine"
