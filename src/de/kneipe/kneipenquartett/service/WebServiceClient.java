@@ -69,7 +69,8 @@ final class WebServiceClient {
 		}
 		return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
 		*/
-		return "http://www.iwi.hs-karlsruhe.de/eb15";
+		//return "http://www.iwi.hs-karlsruhe.de/eb15";
+		return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
 	}
 
     private static <T> HttpResponse<T> getJson(String path) {
