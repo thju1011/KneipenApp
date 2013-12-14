@@ -91,15 +91,15 @@ import de.kneipe.kneipenquartett.util.Startseite;
 			case R.id.btn_login:	
 				 String benutzerStr = email.getText().toString();
 				 String benutzerpw = password.getText().toString();
+				
+				
 				 
-				 if(TextUtils.isEmpty(benutzerStr) ||TextUtils.isEmpty(benutzerpw) )
-						email.setError("Eingabe fehlt");
-					
-
-				Bundle args = new Bundle(1);
+							
+				
+				 Bundle args = new Bundle(1);
 				
 					
-				 
+				 try {
 					Benutzer db = suchen(view, benutzerStr);
 					Log.v(LOG_TAG,db.toString());
 					if(benutzerpw.equals(db.password))
@@ -117,10 +117,28 @@ import de.kneipe.kneipenquartett.util.Startseite;
 			            .replace(R.id.details, nf)
 			            .addToBackStack(null)
 			            .commit();
-						
-
+			
 					}
 					
+					 if (benutzerpw != db.password)
+						 password.setError("Ihre Eingabedaten sind fehlerhaft");
+				 }
+			
+				 catch(Exception e) {
+					 if(TextUtils.isEmpty(benutzerStr) && TextUtils.isEmpty(benutzerpw)){
+						 	 password.setError("Bitte geben Sie Daten ein");
+						 	 email.setError("Bitte geben Sie Daten ein"); }
+					 else {	 
+					
+					 	email.setError("Ihre Eingabedaten sind fehlerhaft");
+					 	password.setError("Ihre Eingabedaten sind fehlerhaft");}
+				 }
+					
+			
+					
+					 
+
+					 
 					
 					
 					break;

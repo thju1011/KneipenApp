@@ -12,6 +12,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -92,23 +93,31 @@ public class BenutzerEdit extends Fragment implements OnClickListener {
 	
 	@Override // OnClickListener
 	public void onClick(View view) {
-		switch (view.getId()) {
+	
+			
+			switch (view.getId()) {
 			case R.id.btn_edit_speicher:
+			
 				Log.d(LOG_TAG,"create wird ausgeführt");
-				setBenutzer(view);
-				break;
-				
-			default:
-				break;
+				setBenutzer(view); 
+				break; 
+	
+			
+			}
 		}
 		
-	}
+	
+				
+		
+	
 	
 	private void setBenutzer(View view) {
+	
 		final Context ctxx = view.getContext();
 		Log.d(LOG_TAG,"Create Aufruf ");
-		
 		benutzer.nachname = edtNachname.getText().toString();
+		if(TextUtils.isEmpty(benutzer.nachname)){
+			edtNachname.setError("Bitte überprüfen Sie Ihre Eingabe, Felder dürfen nicht leer sein.");	}
 		Log.d(LOG_TAG,"nachname wird geändert");
 		benutzer.vorname = edtVorname.getText().toString();
 		Log.d(LOG_TAG,"vorname wird geändert ");
@@ -120,28 +129,46 @@ public class BenutzerEdit extends Fragment implements OnClickListener {
 		
 		Log.d(LOG_TAG, benutzer.toString());
 		
-		Log.d(LOG_TAG,view.toString());
-		
-		Log.d(LOG_TAG,benutzer.toString());
+		if(TextUtils.isEmpty(benutzer.nachname)){
+			edtNachname.setError("Bitte überprüfen Sie Ihre Eingabe, Felder dürfen nicht leer sein.");	}
+		if(TextUtils.isEmpty(benutzer.vorname)){
+			edtVorname.setError("Bitte überprüfen Sie Ihre Eingabe, Felder dürfen nicht leer sein.");	}
+		if(TextUtils.isEmpty(benutzer.email)){
+			edtEmail.setError("Bitte überprüfen Sie Ihre Eingabe, Felder dürfen nicht leer sein.");	}
+		if(TextUtils.isEmpty(benutzer.geschlecht)){
+			edtGeschlecht.setError("Bitte überprüfen Sie Ihre Eingabe, Felder dürfen nicht leer sein.");	}
+		else{
 		final Main mainActivity = (Main) getActivity();
-		Log.d(LOG_TAG,mainActivity.toString());
 		final HttpResponse<? extends Benutzer> result = mainActivity.getBenutzerServiceBinder().updateBenutzer(benutzer, ctxx);	
 		
 		Log.d(LOG_TAG, benutzer.toString());
 		 
-
+		
 		 final Benutzer benutzer = result.resultObject;
 			final Bundle args = new Bundle(1);
 			args.putSerializable("be", benutzer);
-			 final Fragment neuesFragment = new BenutzerStammdaten();
-			neuesFragment.setArguments(args);
-				
+			final Fragment neuesFragment;
+			
+			neuesFragment = new BenutzerStammdaten();
+			neuesFragment.setArguments(args); 
+			
+			
+			
 				
 				// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
+	
 				getFragmentManager().beginTransaction()
 				                    .replace(R.id.details, neuesFragment)
 				                    .addToBackStack(null)
 				                    .commit();
+			}
+			
 	}
-}
+	
+		
+	}
+	
+	
+	
+
 
