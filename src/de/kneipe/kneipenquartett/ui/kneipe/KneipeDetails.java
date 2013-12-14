@@ -27,6 +27,7 @@ import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
+import de.kneipe.kneipenquartett.ui.gutschein.GutscheinDetails;
 import de.kneipe.kneipenquartett.ui.main.Main;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
 
@@ -147,7 +148,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 			Log.v(LOG_TAG, "bundle key anlegen");
 			
 			Fragment gutschein = new GutscheinDetails();
-			nf.setArguments(args);
+			gutschein.setArguments(args);
 			
 			Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
 			
@@ -163,17 +164,6 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 			
 	}
 
-	@Override
-	public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		// TODO Auto-generated method stub
-		
-	}
 		
 
 }
