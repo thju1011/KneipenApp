@@ -64,7 +64,7 @@ public class BenutzerStammdaten extends Fragment implements OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		args = getArguments();
         benutzer = (Benutzer) args.get("be");
-        Log.d(LOG_TAG, benutzer.toString());
+
     	
     	
         // Voraussetzung fuer onOptionsItemSelected()
