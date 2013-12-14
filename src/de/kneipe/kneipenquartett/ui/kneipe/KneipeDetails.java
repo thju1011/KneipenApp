@@ -2,42 +2,35 @@ package de.kneipe.kneipenquartett.ui.kneipe;
 
 
 import static android.app.ActionBar.NAVIGATION_MODE_TABS;
-import static de.kneipe.kneipenquartett.util.Constants.KNEIPEN_KEY;
 import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
-import static java.net.HttpURLConnection.HTTP_OK;
 
 import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.ActionBar.Tab;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import de.kneipe.R;
-import de.kneipe.kneipenquartett.data.Bewertung;
-import de.kneipe.kneipenquartett.data.Gutschein;
 import de.kneipe.kneipenquartett.data.Kneipe;
-import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
-import de.kneipe.kneipenquartett.ui.benutzer.BenutzerStammdaten;
 import de.kneipe.kneipenquartett.ui.main.Main;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
-import de.kneipe.kneipenquartett.util.TabListener;
 
-public class KneipeDetails extends Fragment {
+public class KneipeDetails extends Fragment implements  android.view.View.OnClickListener{
 
 	private static final String LOG_TAG = KneipeDetails.class.getSimpleName();
 	private Kneipe kneipe;
@@ -57,6 +50,7 @@ public class KneipeDetails extends Fragment {
 		// attachToRoot = false, weil die Verwaltung des Fragments durch die
 		// Activity erfolgt
 		return inflater.inflate(R.layout.kneipe_details, container, false);
+		
 	}
 
 	@Override
@@ -104,6 +98,7 @@ public class KneipeDetails extends Fragment {
 
 //		actionBar.addTab(tab);
 		Log.v(LOG_TAG,"tablistener");
+		
 
 //		final Bundle args = new Bundle(1);
 //		args.putSerializable(KNEIPEN_KEY, kneipe);
@@ -122,7 +117,8 @@ public class KneipeDetails extends Fragment {
 		Main main = (Main) activity;
 		kneipeServiceBinder = main.getKneipeServiceBinder();
 		
-		
+		view.findViewById(R.id.btn_bewertung).setOnClickListener(this);
+		view.findViewById(R.id.btn_Gutschein).setOnClickListener(this);
 		
 	}
 	
@@ -130,15 +126,6 @@ public class KneipeDetails extends Fragment {
 		final Context ctx = view.getContext();
 		switch(view.getId()){
 		case R.id.btn_bewertung:	
-
-				
-				
-			 
-//				List<Kneipe> k = suchen2(view, kneipeNameStr);
-//				//if(k==null)System.out.println("Fehler");
-//				//Log.v(LOG_TAG,k.toString());
-//			
-//					
 
 					Log.v(LOG_TAG, "bundle key anlegen");
 					
@@ -151,17 +138,22 @@ public class KneipeDetails extends Fragment {
 		            .replace(R.id.details, nf)
 		            .commit();
 
-				
-				
 				break;
 			
 			
 				
 			
-		case R.id.btn_reg:
+		case R.id.btn_Gutschein:
+			Log.v(LOG_TAG, "bundle key anlegen");
+			
+			Fragment gutschein = new GutscheinDetails();
+			nf.setArguments(args);
+			
+			Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
+			
 			getFragmentManager().beginTransaction()
-			.replace(R.id.details, new BenutzerCreate())
-			.commit();
+            .replace(R.id.details, gutschein)
+            .commit();
 			break;
 		}
 		
@@ -169,6 +161,18 @@ public class KneipeDetails extends Fragment {
 		
 			
 			
+	}
+
+	@Override
+	public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 
