@@ -61,7 +61,7 @@ public class Benutzer implements JsonMappable, Serializable {
                 .add("geschlecht", geschlecht)
                 .add("password", password);}
 		else{
-			return jsonBuilderFactory.createObjectBuilder()
+					return jsonBuilderFactory.createObjectBuilder()
 					.add("uid", uid)
 	                .add("username", username)
 	                .add("nachname", nachname)
@@ -70,11 +70,15 @@ public class Benutzer implements JsonMappable, Serializable {
 	                .add("agbAkzeptiert", agbAkzeptiert)
 	                .add("geschlecht", geschlecht)
 	                .add("password", password);
+			
 		}
+		
+		
 		
 	}
 
 	public void fromJsonObject(JsonObject jsonObject) {
+	
 		Log.v(LOG_TAG,"JETZT FROM JSONOBJECT!!!!!");
 		uid = Long.valueOf(jsonObject.getJsonNumber("uid").longValue());
 	    username = jsonObject.getString("username");
@@ -83,9 +87,10 @@ public class Benutzer implements JsonMappable, Serializable {
 		geschlecht = jsonObject.getString("geschlecht");
 		password = jsonObject.getString("password");
 		email = jsonObject.getString("email");
-		agbAkzeptiert = jsonObject.getBoolean("agbAkzeptiert");
+		agbAkzeptiert = jsonObject.getBoolean("agbAkzeptiert"); }
+	
 
-	}
+
 	
 	
 	@Override
