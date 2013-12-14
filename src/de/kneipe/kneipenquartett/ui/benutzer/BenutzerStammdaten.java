@@ -36,7 +36,7 @@ public class BenutzerStammdaten extends Fragment implements OnClickListener {
 	
 	@Override
 	public void onClick(View view) {
-		Log.v(LOG_TAG,"hallllllllllihallllo");
+	
 		switch (view.getId()) {
 		case R.id.btn_edit:
 			

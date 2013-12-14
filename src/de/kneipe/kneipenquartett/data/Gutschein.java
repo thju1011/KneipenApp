@@ -16,6 +16,7 @@ public class Gutschein implements JsonMappable, Serializable {
 	
 	public Long gid;
 	public boolean status;
+	public String code;
 	public String beschreibung;
 	public Kneipe kneipe;
 	public Benutzer benutzer;
@@ -25,7 +26,8 @@ public class Gutschein implements JsonMappable, Serializable {
 			return jsonBuilderFactory.createObjectBuilder()
 			                         .add("gid", gid)
 			                         .add("status", status)
-			                         .add("beschreibung", beschreibung);
+			                         .add("beschreibung", beschreibung)
+									 .add("code", code);
 		}
 		@Override
 		public JsonObject toJsonObject() {
@@ -36,6 +38,7 @@ public class Gutschein implements JsonMappable, Serializable {
 			gid = Long.valueOf(jsonObject.getJsonNumber("gid").longValue());
 			beschreibung = jsonObject.getString("beschreibung");
 			status = jsonObject.getBoolean("status");
+			code = jsonObject.getString("code");
 
 		}
 }

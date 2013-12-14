@@ -12,6 +12,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 
 
+
 import java.util.List;
 
 import android.app.ProgressDialog;
@@ -24,6 +25,7 @@ import android.os.IBinder;
 import android.util.Log;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
+import de.kneipe.kneipenquartett.data.Gutschein;
 import de.kneipe.kneipenquartett.util.InternalShopError;
 
 public class BenutzerService extends Service {
@@ -101,6 +103,36 @@ public class BenutzerService extends Service {
     	//	setBestellungenUri(result.resultObject);
 		    return result;
 		}
+		
+
+		public List<Gutschein> sucheGutscheinByUserID(Long id, final Context ctx) {
+			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "List<Long>"
+			final AsyncTask<Long, Void, List<Gutschein>> sucheGutscheinByUserIDTask = new AsyncTask<Long, Void, List<Gutschein>>() {
+				@Override
+				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+				protected List<Gutschein> doInBackground(Long... ids) {
+					final Long id = ids[0];
+		    		final String path = BENUTZER_PATH + "/" + id + "/gutschein";
+		    		Log.v(LOG_TAG, "path = " + path);
+		    		final List<Gutschein> result = (List<Gutschein>) WebServiceClient.getJsonList(path, Gutschein.class);
+			    	Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+					return result;
+				}
+			};
+			
+			sucheGutscheinByUserIDTask.execute(id);
+			List<Gutschein> gutscheine = null;
+			try {
+				gutscheine = sucheGutscheinByUserIDTask.get(timeout, SECONDS);
+			}
+	    	catch (Exception e) {
+	    		throw new InternalShopError(e.getMessage(), e);
+			}
+	
+			return gutscheine;
+	    }
+		
+
 //	
 //		
 //		public List<Long> sucheIds(String prefix) {
