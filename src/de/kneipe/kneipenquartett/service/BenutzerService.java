@@ -219,45 +219,5 @@ public class BenutzerService extends Service {
 			
 			return result;
 	    }
-		
-		/**
-		 */
-		public HttpResponse<Void> deleteBenutzer(Long id, final Context ctx) {
-			
-			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "Benutzer"
-			final AsyncTask<Long, Void, HttpResponse<Void>> deleteBenutzerTask = new AsyncTask<Long, Void, HttpResponse<Void>>() {
-				@Override
-	    		protected void onPreExecute() {
-					progressDialog = showProgressDialog(ctx);
-				}
-				
-				@Override
-				// Neuer Thread, damit der UI-Thread nicht blockiert wird
-				protected HttpResponse<Void> doInBackground(Long... ids) {
-					final Long beId = ids[0];
-		    		final String path = BENUTZER_PATH + "/" + beId;
-		    		Log.v(LOG_TAG, "path = " + path);
-
-		    		final HttpResponse<Void> result =  WebServiceClient.delete(path);
-			    	return result;
-				}
-				
-				@Override
-	    		protected void onPostExecute(HttpResponse<Void> unused) {
-					progressDialog.dismiss();
-	    		}
-			};
-			
-			deleteBenutzerTask.execute(id);
-			final HttpResponse<Void> result;
-	    	try {
-	    		result = deleteBenutzerTask.get(timeout, SECONDS);
-			}
-	    	catch (Exception e) {
-	    		throw new InternalShopError(e.getMessage(), e);
-			}
-			
-			return result;
-		}
 	}
 }
