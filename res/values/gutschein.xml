@@ -1,0 +1,5 @@
+
+    <resources>
+        <string name="g_beschreibung">Der Gutschein enthält:</string>
+        <string name="g_code">Ihr dazugehöriger Code</string>
+    </resources>

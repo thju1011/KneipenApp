@@ -1,5 +1,6 @@
 package de.kneipe.kneipenquartett.ui.kneipe;
 
+import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
 import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
 
 import java.util.ArrayList;
@@ -7,7 +8,6 @@ import java.util.List;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,9 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import de.kneipe.R;
-import static de.kneipe.kneipenquartett.util.Constants.KNEIPEN_KEY;
-import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
-
+import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
@@ -35,6 +33,7 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 	private static final String LOG_TAG = KneipeSucheKategorie.class.getSimpleName();
 	private Bundle args;
 	private EditText kneipeName;
+	private Benutzer benutzer;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +43,8 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		args = getArguments();
 		
 		setHasOptionsMenu(true);
+
+		benutzer = (Benutzer) getArguments() .get("be");
 		
 		
 		return inflater.inflate(R.layout.kneipe_suche_kategorie, container, false);
@@ -62,6 +63,12 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 		
 		view.findViewById(R.id.btnKneipeSuchen).setOnClickListener(this);
+		view.findViewById(R.id.btn_alleAnzeigen).setOnClickListener(this);
+		view.findViewById(R.id.btn_KategorieKneipe).setOnClickListener(this);
+		view.findViewById(R.id.btn_KategorieBar).setOnClickListener(this);
+		view.findViewById(R.id.btn_KategorieClub).setOnClickListener(this);
+		view.findViewById(R.id.btn_KategorieRestaurant).setOnClickListener(this);
+		view.findViewById(R.id.btn_KategorieCafe).setOnClickListener(this);
     }
 	public void onClick(View view) {
 		final Context ctx = view.getContext();
@@ -72,10 +79,9 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 			 if(TextUtils.isEmpty(kneipeNameStr))
 					kneipeName.setError("Eingabe fehlt");
 
-			 Bundle args = new Bundle();
 				
 				
-			 suchen2(view, kneipeNameStr);
+			 suchen(view, kneipeNameStr);
 //				List<Kneipe> k = suchen2(view, kneipeNameStr);
 //				//if(k==null)System.out.println("Fehler");
 //				//Log.v(LOG_TAG,k.toString());
@@ -100,12 +106,40 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 			
 				
 			
-		case R.id.btn_reg:
-			getFragmentManager().beginTransaction()
-			.replace(R.id.details, new BenutzerCreate())
-			.commit();
+		case R.id.btn_alleAnzeigen:
+			
+			alleKneipen();
 			break;
-		}
+			
+			
+			
+		case R.id.btn_KategorieKneipe:
+			kneipeKategorie("Kneipe");
+			break;
+			
+		case R.id.btn_KategorieBar:
+
+			kneipeKategorie("Bar");
+			break;
+			
+		case R.id.btn_KategorieClub:
+
+			kneipeKategorie("Club");
+			break;
+			
+		case R.id.btn_KategorieRestaurant:
+
+			kneipeKategorie("Restaurant");
+			break;
+			
+		case R.id.btn_KategorieCafe:
+
+			kneipeKategorie("Cafe");
+			break;
+		
+		
+	
+	}
 		
 		// Eingabetext ermitteln
 		
@@ -115,7 +149,7 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 	/*
 	 *alternative Suche nach Kneipen im lokalen Array 
 	 */
-	private void suchen2(View view, String name) {
+	private void suchen(View view, String name) {
 
 			final Main mg = (Main) getActivity();
 	        final List<Kneipe> kneipenArray = mg.getKneipeServiceBinder().initKneipen();
@@ -127,7 +161,8 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		 }
 	 }
 	 
-		final Bundle args = new Bundle(1);
+		final Bundle args = new Bundle(2);
+		args.putSerializable("be", benutzer);
 		args.putSerializable(KNEIPE_KEY,(ArrayList<Kneipe>) result);
 		
 		final Fragment neuesFragment = new KneipeList();
@@ -142,9 +177,9 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 	
 	/*
 	 * 
-	 * 
+	 * Suche nach Kneipen im Webservice
 	 */
-	private Kneipe suchen(View view, String name) {
+	private Kneipe suchenWeb(View view, String name) {
 		final Context ctx = view.getContext();
 		if (TextUtils.isEmpty(name)) {
 			
@@ -171,6 +206,53 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		final Intent intent = new Intent(mainActivity, Kneipe.class);
 		intent.putExtra(KNEIPEN_KEY, result.resultList);
 		startActivity(intent);*/
+	}
+	
+	private void alleKneipen() {
+
+		final Main mg = (Main) getActivity();
+        List<Kneipe> kneipenArray = mg.getKneipeServiceBinder().initKneipen();
+
+ 
+	final Bundle args = new Bundle(2);
+	args.putSerializable("be", benutzer);
+	args.putSerializable(KNEIPE_KEY,(ArrayList<Kneipe>) kneipenArray);
+	
+	final Fragment neuesFragment = new KneipeList();
+	neuesFragment.setArguments(args);
+	
+	// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
+	getFragmentManager().beginTransaction()
+	                    .replace(R.id.details, neuesFragment)
+	                    .addToBackStack(null)  
+	                    .commit();
+}
+	
+	private void kneipeKategorie(String kategorie){
+
+		final Main mg = (Main) getActivity();
+        final List<Kneipe> kneipenArray = mg.getKneipeServiceBinder().initKneipen();
+       List<Kneipe> result = new ArrayList<Kneipe>();
+ 
+ for(Kneipe k : kneipenArray){
+	 if(k.art.contains(kategorie)){
+		 result.add(k);
+	 }
+ }
+ 
+	final Bundle args = new Bundle(2);
+	args.putSerializable("be", benutzer);
+	args.putSerializable(KNEIPE_KEY,(ArrayList<Kneipe>) result);
+	
+	final Fragment neuesFragment = new KneipeList();
+	neuesFragment.setArguments(args);
+	
+	// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
+	getFragmentManager().beginTransaction()
+	                    .replace(R.id.details, neuesFragment)
+	                    .addToBackStack(null)  
+	                    .commit();
+		
 	}
 	
 	

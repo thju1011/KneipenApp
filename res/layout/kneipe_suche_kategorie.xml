@@ -30,40 +30,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="24dp"
         android:text="Kategorie"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/btnKategorieKneipe"
+        android:id="@+id/btn_alleAnzeigen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="16dp"
+        android:text="Alle anzeigen" />
+
+    <Button
+        android:id="@+id/btn_KategorieKneipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Kneipe" />
 
     <Button
-        android:id="@+id/btnKategorieBar"
+        android:id="@+id/btn_KategorieBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Bar" />
 
     <Button
-        android:id="@+id/btnKategorieClub"
+        android:id="@+id/btn_KategorieClub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Club" />
 
     <Button
-        android:id="@+id/btnKategorieRestaurant"
+        android:id="@+id/btn_KategorieRestaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Restaurant" />
 
     <Button
-        android:id="@+id/btnKategorieCafe"
+        android:id="@+id/btn_KategorieCafe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

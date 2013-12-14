@@ -52,7 +52,7 @@ public final class Constants {
 	public static String HOST_DEFAULT = LOCALHOST_EMULATOR;
 	public static final String PORT_DEFAULT = "8080";
 	public static final String PATH_DEFAULT = "/kneipe1/rest";
-	public static final String TIMEOUT_DEFAULT = "3";
+	public static final String TIMEOUT_DEFAULT = "8";
 	public static final boolean MOCK_DEFAULT = false;
 	
 	public static final String LOCALHOST = "localhost";

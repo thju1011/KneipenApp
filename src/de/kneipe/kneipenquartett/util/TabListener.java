@@ -27,6 +27,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
     
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		
 		// Ist das Fragment bereits initialisiert ?
         if (fragment == null) {
             // Das Fragment wird instanziiert und zur Activity als Detail-Fragment hinzugefuegt
@@ -44,6 +45,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
         else {
             // Das Fragment existiert bereits und wird "attach"ed, um es anzeigen zu koennen
         	// attach() ab Android 3.2 bzw. API-Level 13
+
             ft.attach(fragment);
         }
 	}
