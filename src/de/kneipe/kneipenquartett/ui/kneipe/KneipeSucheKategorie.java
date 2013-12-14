@@ -1,6 +1,10 @@
 package de.kneipe.kneipenquartett.ui.kneipe;
 
 import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -18,11 +22,14 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import de.kneipe.R;
 import static de.kneipe.kneipenquartett.util.Constants.KNEIPEN_KEY;
+import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
+
 import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
 import de.kneipe.kneipenquartett.ui.main.Login;
 import de.kneipe.kneipenquartett.ui.main.Main;
+
 
 public class KneipeSucheKategorie extends Fragment implements OnClickListener, OnEditorActionListener{
 	private static final String LOG_TAG = KneipeSucheKategorie.class.getSimpleName();
@@ -68,23 +75,23 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 			 Bundle args = new Bundle();
 				
 				
-			 
-				Kneipe k = suchen(view, kneipeNameStr);
-				if(k==null)System.out.println("Fehler");
-				Log.v(LOG_TAG,k.toString());
-			
-					
-					args.putSerializable("kneipen", k);
-					Log.v(LOG_TAG, "bundle key anlegen");
-					
-					Fragment nf = new KneipeList();
-					nf.setArguments(args);
-					
-					Log.v(LOG_TAG,"Fragment KneipeListe aufrufen");
-					
-					getFragmentManager().beginTransaction()
-		            .replace(R.id.details, nf)
-		            .commit();
+			 suchen2(view, kneipeNameStr);
+//				List<Kneipe> k = suchen2(view, kneipeNameStr);
+//				//if(k==null)System.out.println("Fehler");
+//				//Log.v(LOG_TAG,k.toString());
+//			
+//					
+//					args.putSerializable("kneipe", k.get(0));
+//					Log.v(LOG_TAG, "bundle key anlegen");
+//					
+//					Fragment nf = new KneipeList();
+//					nf.setArguments(args);
+//					
+//					Log.v(LOG_TAG,"Fragment KneipeListe aufrufen");
+//					
+//					getFragmentManager().beginTransaction()
+//		            .replace(R.id.details, nf)
+//		            .commit();
 
 				
 				
@@ -106,6 +113,35 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 			
 	}
 	/*
+	 *alternative Suche nach Kneipen im lokalen Array 
+	 */
+	private void suchen2(View view, String name) {
+
+			final Main mg = (Main) getActivity();
+	        final List<Kneipe> kneipenArray = mg.getKneipeServiceBinder().initKneipen();
+	       List<Kneipe> result = new ArrayList<Kneipe>();
+	 
+	 for(Kneipe k : kneipenArray){
+		 if(k.name.equals(name)){
+			 result.add(k);
+		 }
+	 }
+	 
+		final Bundle args = new Bundle(1);
+		args.putSerializable(KNEIPE_KEY,(ArrayList<Kneipe>) result);
+		
+		final Fragment neuesFragment = new KneipeList();
+		neuesFragment.setArguments(args);
+		
+		// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
+		getFragmentManager().beginTransaction()
+		                    .replace(R.id.details, neuesFragment)
+		                    .addToBackStack(null)  
+		                    .commit();
+	}
+	
+	/*
+	 * 
 	 * 
 	 */
 	private Kneipe suchen(View view, String name) {

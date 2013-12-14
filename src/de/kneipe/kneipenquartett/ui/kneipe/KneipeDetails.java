@@ -2,6 +2,7 @@ package de.kneipe.kneipenquartett.ui.kneipe;
 
 
 import static de.kneipe.kneipenquartett.util.Constants.KNEIPEN_KEY;
+import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
 import static java.net.HttpURLConnection.HTTP_OK;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class KneipeDetails extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		kneipe = (Kneipe) getArguments().get(KNEIPEN_KEY);
+		kneipe = (Kneipe) getArguments().get(KNEIPE_KEY);
 		Log.d(LOG_TAG, kneipe.toString());
 		setHasOptionsMenu(true);
 		// attachToRoot = false, weil die Verwaltung des Fragments durch die
