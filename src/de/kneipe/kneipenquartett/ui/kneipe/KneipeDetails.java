@@ -85,24 +85,24 @@ public class KneipeDetails extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		final Activity activity = getActivity();
 		final ActionBar actionBar = activity.getActionBar();
-		actionBar.removeAllTabs();
+//		actionBar.removeAllTabs();
 		// (horizontale) Tabs; NAVIGATION_MODE_LIST fuer Dropdown Liste
 		actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
 		actionBar.setDisplayShowTitleEnabled(false); // Titel der App
 														// ausblenden, um mehr
 														// Platz fuer die Tabs
 														// zu haben
-		Tab tab = actionBar.newTab()
-				.setText("Kneipen")
-				.setTabListener(new TabListener<KneipeSucheKategorie>(activity,KneipeSucheKategorie.class, args));
+//		Tab tab = actionBar.newTab()
+//				.setText("Kneipen")
+//				.setTabListener(new TabListener<KneipeSucheKategorie>(activity,KneipeSucheKategorie.class, args));
+//
+//		actionBar.addTab(tab);
+//		
+//		 tab = actionBar.newTab()
+//							.setText("Profil")
+//							.setTabListener(new TabListener<BenutzerStammdaten>(activity, BenutzerStammdaten.class, args));
 
-		actionBar.addTab(tab);
-		
-		 tab = actionBar.newTab()
-							.setText("Profil")
-							.setTabListener(new TabListener<BenutzerStammdaten>(activity, BenutzerStammdaten.class, args));
-
-		actionBar.addTab(tab);
+//		actionBar.addTab(tab);
 		Log.v(LOG_TAG,"tablistener");
 
 //		final Bundle args = new Bundle(1);

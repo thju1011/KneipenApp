@@ -63,6 +63,12 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 		
 		view.findViewById(R.id.btnKneipeSuchen).setOnClickListener(this);
+		view.findViewById(R.id.btn_alleAnzeigen).setOnClickListener(this);
+		view.findViewById(R.id.btn_KategorieKneipe).setOnClickListener(this);
+		view.findViewById(R.id.btn_KategorieBar).setOnClickListener(this);
+		view.findViewById(R.id.btn_KategorieClub).setOnClickListener(this);
+		view.findViewById(R.id.btn_KategorieRestaurant).setOnClickListener(this);
+		view.findViewById(R.id.btn_KategorieCafe).setOnClickListener(this);
     }
 	public void onClick(View view) {
 		final Context ctx = view.getContext();
@@ -100,12 +106,40 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 			
 				
 			
-		case R.id.btn_reg:
-			getFragmentManager().beginTransaction()
-			.replace(R.id.details, new BenutzerCreate())
-			.commit();
+		case R.id.btn_alleAnzeigen:
+			
+			alleKneipen();
 			break;
-		}
+			
+			
+			
+		case R.id.btn_KategorieKneipe:
+			kneipeKategorie("Kneipe");
+			break;
+			
+		case R.id.btn_KategorieBar:
+
+			kneipeKategorie("Bar");
+			break;
+			
+		case R.id.btn_KategorieClub:
+
+			kneipeKategorie("Club");
+			break;
+			
+		case R.id.btn_KategorieRestaurant:
+
+			kneipeKategorie("Restaurant");
+			break;
+			
+		case R.id.btn_KategorieCafe:
+
+			kneipeKategorie("Cafe");
+			break;
+		
+		
+	
+	}
 		
 		// Eingabetext ermitteln
 		
@@ -172,6 +206,53 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		final Intent intent = new Intent(mainActivity, Kneipe.class);
 		intent.putExtra(KNEIPEN_KEY, result.resultList);
 		startActivity(intent);*/
+	}
+	
+	private void alleKneipen() {
+
+		final Main mg = (Main) getActivity();
+        List<Kneipe> kneipenArray = mg.getKneipeServiceBinder().initKneipen();
+
+ 
+	final Bundle args = new Bundle(2);
+	args.putSerializable("be", benutzer);
+	args.putSerializable(KNEIPE_KEY,(ArrayList<Kneipe>) kneipenArray);
+	
+	final Fragment neuesFragment = new KneipeList();
+	neuesFragment.setArguments(args);
+	
+	// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
+	getFragmentManager().beginTransaction()
+	                    .replace(R.id.details, neuesFragment)
+	                    .addToBackStack(null)  
+	                    .commit();
+}
+	
+	private void kneipeKategorie(String kategorie){
+
+		final Main mg = (Main) getActivity();
+        final List<Kneipe> kneipenArray = mg.getKneipeServiceBinder().initKneipen();
+       List<Kneipe> result = new ArrayList<Kneipe>();
+ 
+ for(Kneipe k : kneipenArray){
+	 if(k.art.contains(kategorie)){
+		 result.add(k);
+	 }
+ }
+ 
+	final Bundle args = new Bundle(2);
+	args.putSerializable("be", benutzer);
+	args.putSerializable(KNEIPE_KEY,(ArrayList<Kneipe>) result);
+	
+	final Fragment neuesFragment = new KneipeList();
+	neuesFragment.setArguments(args);
+	
+	// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
+	getFragmentManager().beginTransaction()
+	                    .replace(R.id.details, neuesFragment)
+	                    .addToBackStack(null)  
+	                    .commit();
+		
 	}
 	
 	
