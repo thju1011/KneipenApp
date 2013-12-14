@@ -79,11 +79,7 @@
 		android:text="@string/edit" />
 	  
 	  
-	   <Button
-		android:id="@+id/btn_delete"
-		android:layout_width="160dp"
-		android:layout_height="wrap_content"
-		android:text="@string/delete" /> 
+	  
 
 	
 	</TableLayout>
