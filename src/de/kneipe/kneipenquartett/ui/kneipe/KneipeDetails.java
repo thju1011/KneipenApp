@@ -1,6 +1,7 @@
 package de.kneipe.kneipenquartett.ui.kneipe;
 
 
+import static android.app.ActionBar.NAVIGATION_MODE_TABS;
 import static de.kneipe.kneipenquartett.util.Constants.KNEIPEN_KEY;
 import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
 import static java.net.HttpURLConnection.HTTP_OK;
@@ -10,8 +11,10 @@ import java.util.List;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.ActionBar.Tab;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,8 +31,11 @@ import de.kneipe.kneipenquartett.data.Gutschein;
 import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
+import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
+import de.kneipe.kneipenquartett.ui.benutzer.BenutzerStammdaten;
 import de.kneipe.kneipenquartett.ui.main.Main;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
+import de.kneipe.kneipenquartett.util.TabListener;
 
 public class KneipeDetails extends Fragment {
 
@@ -37,6 +43,7 @@ public class KneipeDetails extends Fragment {
 	private Kneipe kneipe;
 	private List<Long> bewertungIds;
 	private KneipeServiceBinder kneipeServiceBinder;
+	private Bundle args;
 
 //	private LazyAdapter adapter;
 
@@ -45,7 +52,8 @@ public class KneipeDetails extends Fragment {
 			Bundle savedInstanceState) {
 		kneipe = (Kneipe) getArguments().get(KNEIPE_KEY);
 		Log.d(LOG_TAG, kneipe.toString());
-		setHasOptionsMenu(true);
+		args = getArguments();
+		setHasOptionsMenu(false);
 		// attachToRoot = false, weil die Verwaltung des Fragments durch die
 		// Activity erfolgt
 		return inflater.inflate(R.layout.kneipe_details, container, false);
@@ -77,15 +85,28 @@ public class KneipeDetails extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		final Activity activity = getActivity();
 		final ActionBar actionBar = activity.getActionBar();
+		actionBar.removeAllTabs();
 		// (horizontale) Tabs; NAVIGATION_MODE_LIST fuer Dropdown Liste
-		// actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
+		actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
 		actionBar.setDisplayShowTitleEnabled(false); // Titel der App
 														// ausblenden, um mehr
 														// Platz fuer die Tabs
 														// zu haben
+		Tab tab = actionBar.newTab()
+				.setText("Kneipen")
+				.setTabListener(new TabListener<KneipeSucheKategorie>(activity,KneipeSucheKategorie.class, args));
 
-		final Bundle args = new Bundle(1);
-		args.putSerializable(KNEIPEN_KEY, kneipe);
+		actionBar.addTab(tab);
+		
+		 tab = actionBar.newTab()
+							.setText("Profil")
+							.setTabListener(new TabListener<BenutzerStammdaten>(activity, BenutzerStammdaten.class, args));
+
+		actionBar.addTab(tab);
+		Log.v(LOG_TAG,"tablistener");
+
+//		final Bundle args = new Bundle(1);
+//		args.putSerializable(KNEIPEN_KEY, kneipe);
 		final TextView txtId = (TextView) view.findViewById(R.id.txt_KneipeName);
 		txtId.setText(kneipe.name);
 
@@ -100,93 +121,54 @@ public class KneipeDetails extends Fragment {
 		// if (Main.class.equals(activity.getClass())) {
 		Main main = (Main) activity;
 		kneipeServiceBinder = main.getKneipeServiceBinder();
-		// }
-		// else {
-		// Log.e(LOG_TAG, "Activity " + activity.getClass().getSimpleName() +
-		// " nicht beruecksichtigt.");
-		// return;
-		// }
-//
-//		bewertungIds = kneipeServiceBinder.sucheBewertungIdsByKneipeId(
-//				kneipe.kid, view.getContext());
-//
-//
-//		if (bewertungIds == null || bewertungIds.isEmpty()) {
-//
-//		} else {
-//			Log.d(LOG_TAG, "Starte get! (Alle Bewertungen)");
+		
+		
+		
+	}
+	
+	public void onClick(View view) {
+		final Context ctx = view.getContext();
+		switch(view.getId()){
+		case R.id.btn_bewertung:	
+
+				
+				
+			 
+//				List<Kneipe> k = suchen2(view, kneipeNameStr);
+//				//if(k==null)System.out.println("Fehler");
+//				//Log.v(LOG_TAG,k.toString());
 //			
-//			
-//			
-//			HttpResponse<Bewertung> bstlngnRes = kneipeServiceBinder
-//					.sucheBewertungByKneipeId(kneipe.kid, view.getContext());
-//			List<Bewertung> bstlngn = bstlngnRes.resultList;
-//			bstlngn.add(0, new Bewertung("ID", "Preis in "));
-//
-//			Log.d(LOG_TAG, "get beendet!");
-//
-//			final ListView list = (ListView) view.findViewById(R.id.best_list);
-//			int anzahl = bewertungIds.size();
-//
-//			if (bstlngnRes.responseCode != HTTP_OK) {
-//				return;
-//			}
-//			for (int i = 0; i < anzahl; i++) {
-//				Log.d(LOG_TAG, String.valueOf(bstlngn.get(i).gesamtpreis));
-//			}
-//			adapter = new LazyAdapter(main, R.layout.row_layout,
-//					bstlngn.toArray(new Bestellung[0]));
-//			list.setAdapter(adapter);
-//
-//		}
-//	}
-//
-//	public class LazyAdapter extends ArrayAdapter<Bewertung> {
-//
-//		public Context context;
-//		public int layoutResourceId;
-//		public Bewertung data[] = null;
-//
-//		public LazyAdapter(Context context, int layoutResourceId,
-//				Bewertung[] data) {
-//
-//			super(context, layoutResourceId, data);
-//			this.layoutResourceId = layoutResourceId;
-//			this.context = context;
-//			this.data = data;
-//		}
-//
-//		public View getView(int position, View convertView, ViewGroup parent) {
-//			View row = convertView;
-//			BestellungHolder holder;
-//			if (row == null) {
-//				LayoutInflater inflater = ((Activity) context)
-//						.getLayoutInflater();
-//				row = inflater.inflate(layoutResourceId, parent, false);
-//
-//				holder = new BestellungHolder();
-//				holder.id = (TextView) row.findViewById(R.id.best_id);
-//				holder.gesamtpreis = (TextView) row
-//						.findViewById(R.id.best_gesamtpreis);
-//				row.setTag(holder);
-//			}
-//
-//			Bewertung bewertung = data[position];
-//
-//			TextView bestId = (TextView) row.findViewById(R.id.best_id);
-//			TextView bestGesPreis = (TextView) row
-//					.findViewById(R.id.best_gesamtpreis);
-//
-//			// Setting all values in listview
-//			bestId.setText(bewertung.bid + "");
-//			bestGesPreis.setText(bestellung.gesamtpreis + "€");
-//			return row;
-//		}
-//	}
-//
-//	static class BestellungHolder {
-//		TextView id;
-//		TextView gesamtpreis;
+//					
+
+					Log.v(LOG_TAG, "bundle key anlegen");
+					
+					Fragment nf = new BewertungCreate();
+					nf.setArguments(args);
+					
+					Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
+					
+					getFragmentManager().beginTransaction()
+		            .replace(R.id.details, nf)
+		            .commit();
+
+				
+				
+				break;
+			
+			
+				
+			
+		case R.id.btn_reg:
+			getFragmentManager().beginTransaction()
+			.replace(R.id.details, new BenutzerCreate())
+			.commit();
+			break;
+		}
+		
+		// Eingabetext ermitteln
+		
+			
+			
 	}
 		
 

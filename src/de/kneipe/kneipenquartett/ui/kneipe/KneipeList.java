@@ -43,6 +43,7 @@ public class KneipeList extends ListFragment{
 	private KneipeServiceBinder kneipeServiceBinder;
 	private Bundle args;
 	private int position = 0;
+	private Benutzer benutzer;
 	
 	private static final String ID = "kid";
 	private static final String KNEIPENNAME = "name";
@@ -58,6 +59,7 @@ public class KneipeList extends ListFragment{
 		
 		setHasOptionsMenu(false);
 		kneipen = (ArrayList<Kneipe>) args.getSerializable(KNEIPE_KEY);
+		benutzer = (Benutzer) getArguments() .get("be");
 		
 //		kneipen = (List<Kneipe>) getActivity().getIntent().getExtras().get(KNEIPEN_KEY);
 		Log.d(LOG_TAG, kneipen.toString());
@@ -131,13 +133,14 @@ public class KneipeList extends ListFragment{
 		Log.d(LOG_TAG, kneipen.get(itemPosition).toString());
 		
 		// Evtl. vorhandene Tabs der ACTIVITY loeschen
-    	getActivity().getActionBar().removeAllTabs();
+    	//getActivity().getActionBar().removeAllTabs();
 		
     	// angeklickte Position fuer evtl. spaeteres Refresh merken, falls der angeklickte Kunde noch aktualisiert wird
     	position = itemPosition;
     	
 		final Kneipe kneipe = kneipen.get(itemPosition);
-		final Bundle args = new Bundle(1);
+		final Bundle args = new Bundle(2);
+		args.putSerializable("be", benutzer);
 		args.putSerializable(KNEIPE_KEY, kneipe);
 		
 		final Fragment neuesFragment = new KneipeDetails();
