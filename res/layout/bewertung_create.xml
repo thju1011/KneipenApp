@@ -77,7 +77,7 @@
     	</TableRow>
 
     	<EditText
-    		android:id="@+id/editText1"
+    		android:id="@+id/edt_bewertung_kommentar"
     		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:ems="10"
