@@ -124,17 +124,13 @@ public class Main extends Activity  {
 	   @Override
 		public void onStart() {
 			super.onStart();
-//			
-//			kneipenArray = KneipeServiceBinder.initKneipen();
-//			
+		
 			Intent intent = new Intent(this, BenutzerService.class);
 			bindService(intent, benutzerServiceConnection, Context.BIND_AUTO_CREATE);
 			
 			intent = new Intent(this, KneipeService.class);
 			bindService(intent, kneipeServiceConnection, Context.BIND_AUTO_CREATE);
 			
-//		intent = new Intent(this, KneipeService.class);
-//	bindService(intent, KneipeServiceConnection, Context.BIND_AUTO_CREATE);
 	    }
 	    
 		@Override

@@ -203,6 +203,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 			final Intent intent = new Intent(ctxx, MapActivity.class);
 //			intent.putExtra(KUNDEN_KEY, result.resultList);
 			startActivity(intent);	
+			break;
 			
 		case R.id.btn_kneipeInfo:
 			Log.v(LOG_TAG, "bundle key anlegen");

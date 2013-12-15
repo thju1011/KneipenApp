@@ -52,6 +52,7 @@ public class BenutzerStammdaten extends Fragment implements OnClickListener {
 			Log.v(LOG_TAG,"Fragment Startseite aufrufen"); 
 			Log.v(LOG_TAG,"edit wird ausgeführt");
 			getFragmentManager().beginTransaction()
+			 .addToBackStack(null) 
 			 .replace(R.id.details, nf)			
 			.commit();
 			break;
@@ -68,6 +69,7 @@ public class BenutzerStammdaten extends Fragment implements OnClickListener {
 		 
 			Log.v(LOG_TAG,"logout wird ausgeführt");
 			getFragmentManager().beginTransaction()
+			 .addToBackStack(null) 
 			 .replace(R.id.details, new Login())			
 			.commit();
 			break;

@@ -51,6 +51,8 @@ public class KneipeInfos extends Fragment{
 		
 		final TextView txtspecials = (TextView) view.findViewById(R.id.k_specials);
 		txtspecials.setText(kneipe.specials);
+		
+	
 		}
 
 		

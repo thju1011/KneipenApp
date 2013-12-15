@@ -1,8 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context=".ui.main.Main" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
 <TableLayout
 	android:layout_width="match_parent"
@@ -19,7 +18,7 @@
 			    style="@style/RechteSpalteText"
 				android:id="@+id/nachname_txt"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				 android:layout_height="wrap_content"	
 				android:textIsSelectable="true" />
 	
 		</TableRow>
@@ -55,37 +54,34 @@
 	            android:textIsSelectable="true" />
 	
 	    </TableRow>
-	    
-	      <TableRow>
-	
-	        <TextView
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:text="@string/b_geschlecht" />
-	        
-	        <TextView
-	        	style="@style/RechteSpalteText"
-	            android:id="@+id/geschlecht"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:textIsSelectable="true" />
-	
+
+	    <TableRow>
+	    	<TextView
+	    		android:layout_width="match_parent"
+	    		android:layout_height="wrap_content"
+	    		android:text="@string/b_geschlecht" />
+
+	    	<TextView
+	    		android:id="@+id/geschlecht"
+	    		style="@style/RechteSpalteText"
+	    		android:layout_width="match_parent"
+	    		android:layout_height="wrap_content"
+	    		android:textIsSelectable="true" />
 	    </TableRow>
-	    
-	  <Button
-		android:id="@+id/btn_edit"
-		android:layout_width="160dp"
-		android:layout_height="wrap_content"
-		android:text="@string/edit" />
+
 	  
-	   <Button
-		android:id="@+id/btn_logout"
-		android:layout_width="160dp"
-		android:layout_height="wrap_content"
-		android:text="@string/logout" />
-	  
-	  
-	  
+	        <Button
+	        	android:id="@+id/btn_edit"
+	           	android:layout_width="160dp"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/edit" />
+
+	   
+	        <Button
+	        	android:id="@+id/btn_logout"
+	        	android:layout_width="160dp"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/logout" />
 
 	
 	</TableLayout>
