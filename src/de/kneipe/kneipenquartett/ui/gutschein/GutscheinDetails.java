@@ -82,9 +82,9 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 			
 			//gutschein zum Benutzer herausfonden
 			final HttpResponse<Gutschein> result =  benutzerServiceBinder.sucheGutscheinByUserID(benutzer.uid, ctxx);
-			Log.v(LOG_TAG, "solltest du hier:");
+		
 			Log.v(LOG_TAG, result.toString());
-			Log.v(LOG_TAG, "nicht etwas ausgeben");
+	
 			List<Gutschein> gutscheine = (ArrayList<Gutschein>)result.resultList;
 			Log.v(LOG_TAG, String.valueOf(gutscheine.size()));
 			Log.v(LOG_TAG, gutscheine.get(0).toString());
@@ -97,18 +97,19 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 				}
 				
 				}
+			try{
 			final TextView txtbeschreibung = (TextView) view.findViewById(R.id.g_gutscheinAnzeigen_beschreibung);
 			txtbeschreibung.setText(aktuellerGutschein.beschreibung);
 
 			final TextView txtcode = (TextView) view.findViewById(R.id.g_gutscheinAnzeigen_code);
-			txtcode.setText(aktuellerGutschein.code);
+			txtcode.setText(aktuellerGutschein.code); }
+			catch (Exception e){
+			 	e.getMessage().toString();
 			}
-//			if (gutscheine == null || gutscheine.isEmpty()) {
-//				txtbeschreibung.setText(getString(R.string.b_benutzer_not_found, benutzer.uid));
-//			}
-//			else {
-//				
-//			}
+			
+				 
+			}
+	
 			
 		}
 		

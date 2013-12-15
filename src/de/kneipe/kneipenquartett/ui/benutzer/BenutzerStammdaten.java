@@ -1,7 +1,9 @@
 package de.kneipe.kneipenquartett.ui.benutzer;
 
 
+import static android.app.ActionBar.NAVIGATION_MODE_TABS;
 import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.SearchManager;
@@ -23,6 +25,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
+import de.kneipe.kneipenquartett.ui.main.Login;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
 import de.kneipe.kneipenquartett.util.Startseite;
 import de.kneipe.kneipenquartett.util.WischenListener;
@@ -53,7 +56,21 @@ public class BenutzerStammdaten extends Fragment implements OnClickListener {
 			.commit();
 			break;
 			
-		
+		case R.id.btn_logout:
+
+			final Activity activity = getActivity();
+			final ActionBar actionBar = activity.getActionBar();
+			actionBar.removeAllTabs();
+			
+			actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
+			actionBar.setDisplayShowTitleEnabled(false); 
+			
+		 
+			Log.v(LOG_TAG,"logout wird ausgeführt");
+			getFragmentManager().beginTransaction()
+			 .replace(R.id.details, new Login())			
+			.commit();
+			break;
 			
 		default:
 			break;
@@ -79,6 +96,7 @@ public class BenutzerStammdaten extends Fragment implements OnClickListener {
 		fillValues(view);
     	
 		view.findViewById(R.id.btn_edit).setOnClickListener(this);
+		view.findViewById(R.id.btn_logout).setOnClickListener(this);
 		
 		
 	    final GestureDetector gestureDetector = new GestureDetector(getActivity(), new WischenListener(this));

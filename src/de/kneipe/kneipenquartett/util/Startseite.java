@@ -5,19 +5,16 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
-import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerStammdaten;
 import de.kneipe.kneipenquartett.ui.kneipe.KneipeSucheKategorie;
-import de.kneipe.kneipenquartett.ui.main.Login;
+
 
 
 public class Startseite extends Fragment {
@@ -65,7 +62,8 @@ public class Startseite extends Fragment {
 		
 		
 		actionBar.addTab(tab,1,false);
-		Log.v(LOG_TAG,"tablistener");
+
+
 		
 
 				 
