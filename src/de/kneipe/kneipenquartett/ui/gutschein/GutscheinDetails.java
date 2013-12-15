@@ -37,7 +37,7 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 		
 		private Bundle args;
 		private Benutzer benutzer;
-		private Kneipe kneipe;
+		private Kneipe kneipe1;
 		private Gutschein gutschein;
 		private GutscheinServiceBinder gutscheinServiceBinder;
 		private BenutzerServiceBinder benutzerServiceBinder;
@@ -59,8 +59,8 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 	        benutzer = (Benutzer) args.get("be");
 	        Log.d(LOG_TAG, benutzer.toString());
 	        
-	        kneipe = (Kneipe) getArguments().get(KNEIPE_KEY);
-	        Log.d(LOG_TAG, kneipe.toString());
+	        kneipe1 = (Kneipe) getArguments().get(KNEIPE_KEY);
+	        Log.d(LOG_TAG, kneipe1.toString());
 	        
 			return inflater.inflate(R.layout.gutschein_anzeigen, container, false);
 			 
@@ -85,13 +85,15 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 			Log.v(LOG_TAG, "solltest du hier:");
 			Log.v(LOG_TAG, result.toString());
 			Log.v(LOG_TAG, "nicht etwas ausgeben");
-		ArrayList<Gutschein> gutscheine = (ArrayList<Gutschein>)result.resultList;
-			
+			List<Gutschein> gutscheine = (ArrayList<Gutschein>)result.resultList;
+			Log.v(LOG_TAG, String.valueOf(gutscheine.size()));
+			Log.v(LOG_TAG, gutscheine.get(0).toString());
 		//Liste der Gutscheine von Benutzer durchgehen und den passenden zur Kneipe ausgeben
 			for (Gutschein g : gutscheine ) {
-				if (g.kneipe.equals(kneipe)){
+				Log.v(LOG_TAG, g.kneipe.toString());
+				if (g.kneipe.kid==kneipe1.kid){
 					aktuellerGutschein = g;
-					Log.v(LOG_TAG, g.toString());	
+					Log.v(LOG_TAG, g.toString());
 				}
 				
 				}
