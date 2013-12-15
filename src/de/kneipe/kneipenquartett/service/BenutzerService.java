@@ -6,9 +6,11 @@ import static de.kneipe.kneipenquartett.util.Constants.KUNDEN_ID_PREFIX_PATH;
 import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_PATH;
 import static de.kneipe.kneipenquartett.util.Constants.USERNAMEN_PATH;
 import static de.kneipe.kneipenquartett.util.Constants.USERNAMEN_PREFIX_PATH;
+
 import static java.net.HttpURLConnection.HTTP_NO_CONTENT;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static java.util.concurrent.TimeUnit.SECONDS;
+
 
 
 
@@ -27,6 +29,7 @@ import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Gutschein;
 import de.kneipe.kneipenquartett.util.InternalShopError;
+
 
 public class BenutzerService extends Service {
 	private static final String LOG_TAG = BenutzerService.class.getSimpleName();
@@ -104,34 +107,66 @@ public class BenutzerService extends Service {
 		    return result;
 		}
 		
-
-		public List<Gutschein> sucheGutscheinByUserID(Long id, final Context ctx) {
-			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "List<Long>"
-			final AsyncTask<Long, Void, List<Gutschein>> sucheGutscheinByUserIDTask = new AsyncTask<Long, Void, List<Gutschein>>() {
-				@Override
-				// Neuer Thread, damit der UI-Thread nicht blockiert wird
-				protected List<Gutschein> doInBackground(Long... ids) {
+public HttpResponse<Gutschein> sucheGutscheinByUserID(Long id, final Context ctx) {
+			
+			final AsyncTask<Long, Void, HttpResponse<Gutschein>> sucheGutscheinByUserIDTask = new AsyncTask<Long, Void, HttpResponse<Gutschein>>() {
+				protected HttpResponse<Gutschein> doInBackground(Long... ids) {
 					final Long id = ids[0];
-		    		final String path = BENUTZER_PATH + "/" + id + "/gutschein";
-		    		Log.v(LOG_TAG, "path = " + path);
-		    		final List<Gutschein> result = (List<Gutschein>) WebServiceClient.getJsonList(path, Gutschein.class);
-			    	Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
-					return result;
+					final String path = BENUTZER_PATH + "/" + id + "/gutschein";
+					Log.v(LOG_TAG, "path = " + path);
+					
+					//macht er nicht
+					final HttpResponse<Gutschein> resultList = WebServiceClient.getJsonList(path, Gutschein.class);
+					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + resultList);
+				
+					return resultList;
+					
 				}
 			};
 			
 			sucheGutscheinByUserIDTask.execute(id);
-			List<Gutschein> gutscheine = null;
-			try {
-				gutscheine = sucheGutscheinByUserIDTask.get(timeout, SECONDS);
+    		HttpResponse<Gutschein> result = null;
+	    	try {
+	    		result = sucheGutscheinByUserIDTask.get(timeout, SECONDS);
 			}
 	    	catch (Exception e) {
 	    		throw new InternalShopError(e.getMessage(), e);
 			}
-	
-			return gutscheine;
-	    }
-		
+	    	
+    		if (result.responseCode != HTTP_OK) {
+	    		return result;
+		    }
+    		
+		    return result;
+		}
+
+//		public List<Gutschein> sucheGutscheinByUserID(Long id, final Context ctx) {
+//			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "List<Long>"
+//			final AsyncTask<Long, Void, List<Gutschein>> sucheGutscheinByUserIDTask = new AsyncTask<Long, Void, List<Gutschein>>() {
+//				@Override
+//				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+//				protected List<Gutschein> doInBackground(Long... ids) {
+//					final Long id = ids[0];
+//		    		final String path = BENUTZER_PATH + "/" + id + "/gutschein";
+//		    		Log.v(LOG_TAG, "path = " + path);
+//		    		final List<Gutschein> result = (List<Gutschein>) WebServiceClient.getJsonList(path, Gutschein.class);
+//			    	Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+//					return result;
+//				}
+//			};
+//			
+//			sucheGutscheinByUserIDTask.execute(id);
+//			List<Gutschein> gutscheine = null;
+//			try {
+//				gutscheine = (List<Gutschein>) sucheGutscheinByUserIDTask.get(timeout, SECONDS);
+//			}
+//	    	catch (Exception e) {
+//	    		throw new InternalShopError(e.getMessage(), e);
+//			}
+//	
+//			return gutscheine;
+//	    }
+//		
 
 //	
 //		
