@@ -14,5 +14,6 @@
    <string name="login">Jetzt einloggen</string>
    <string name="benutzer">Profil</string>
    <string name="kneipe">Kneipen</string>
+    <string name="logout">Abmelden</string>
      
 </resources>
