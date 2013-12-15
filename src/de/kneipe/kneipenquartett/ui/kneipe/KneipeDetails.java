@@ -38,7 +38,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 	private List<Long> bewertungIds;
 	private KneipeServiceBinder kneipeServiceBinder;
 	private Bundle args;
-
+	private double rating;
 //	private LazyAdapter adapter;
 
 	@Override
@@ -51,6 +51,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		// attachToRoot = false, weil die Verwaltung des Fragments durch die
 		// Activity erfolgt
 		return inflater.inflate(R.layout.kneipe_details, container, false);
+		
 		
 	}
 
@@ -183,6 +184,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 			
 			getFragmentManager().beginTransaction()
             .replace(R.id.details, info)
+            .addToBackStack(null)
             .commit();
 			break;
 		}

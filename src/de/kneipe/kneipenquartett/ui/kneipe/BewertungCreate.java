@@ -172,11 +172,17 @@ public class BewertungCreate extends Fragment implements OnRatingBarChangeListen
 					Fragment nf = new BewertungCreate();
 					nf.setArguments(args);
 					
-					Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
-					
-					getFragmentManager().beginTransaction()
-		            .replace(R.id.details, nf)
-		            .commit();
+					args.putSerializable("be", benutzer);
+					args.putSerializable(KNEIPE_KEY, kneipe);
+					 final Fragment neuesFragment = new KneipeDetails();
+					neuesFragment.setArguments(args);
+						
+						
+						// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
+						getFragmentManager().beginTransaction()
+						                    .replace(R.id.details, neuesFragment)
+						                    .addToBackStack(null)
+						                    .commit();
 
 				
 				
@@ -221,16 +227,7 @@ public class BewertungCreate extends Fragment implements OnRatingBarChangeListen
 			Log.d(LOG_TAG, benutzer.toString());
 			 
 
-				args.putSerializable("be", benutzer);
-				 final Fragment neuesFragment = new BenutzerDetails();
-				neuesFragment.setArguments(args);
-					
-					
-					// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
-					getFragmentManager().beginTransaction()
-					                    .replace(R.id.details, neuesFragment)
-					                    .addToBackStack(null)
-					                    .commit();
+			
 				
 			
 		
