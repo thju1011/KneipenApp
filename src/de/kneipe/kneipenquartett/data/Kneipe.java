@@ -25,12 +25,12 @@ public class Kneipe implements JsonMappable, Serializable {
 	public String specials;
 	public double longitude;
 	public double latitude;
-	public double rating;
+	public String rating;
 	public Kneipe(){
 		super();
 	}
 	public Kneipe(int Kid, String Name, String Adresse, String Internetadresse, String Haltestelle, String Art,
-			double GuenstigstesBier, int Personalanzahl, int Gruendungsjahr, String Specials, double Latitude, double Longitude, double drating) {
+			double GuenstigstesBier, int Personalanzahl, int Gruendungsjahr, String Specials, double Latitude, double Longitude, String drating) {
 		kid = Kid;
 		name = Name;
 		adresse = Adresse;
@@ -78,8 +78,8 @@ public class Kneipe implements JsonMappable, Serializable {
 		haltestelle = jsonObject.getString("haltestelle");
 		specials = jsonObject.getString("specials");
 		art = jsonObject.getString("art");
-		rating = Double.parseDouble(jsonObject.getString("rating"));
-
+		rating = jsonObject.getJsonNumber("rating").toString();
+		
 	}
 
 	@Override

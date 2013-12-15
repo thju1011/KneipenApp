@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -147,7 +148,12 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		txtAdresse.setText(kneipe.adresse);
 		
 		final RatingBar ratingBar = (RatingBar) view.findViewById(R.id.ratingBar1);
+		ratingBar.setClickable(false);
+		ratingBar.setIsIndicator(true);
+		ratingBar.setFocusable(false);
+		ratingBar.setNumStars(5);
 		ratingBar.setRating(Float.parseFloat(String.valueOf(kneipe.rating)));
+		
 	 /*Hab hier auskommentiert um emulator starten zu können
 	  * final TextView txtverf = (TextView) view.findViewById(R.id.kunde_adresse);
 		txtverf.setText(kneipe.adresse);*/
