@@ -113,16 +113,17 @@ public class MapActivity extends Activity{
 	    public List<Kneipe> initKneipen()
 		{
 			
-			Kneipe k1 = new Kneipe(101,"Marktlücke","Zähringerstrasse 96","www.karlsruhermarktluecke.de","Marktplatz","Kneipe,Restaurant,Bar,Club",3.40,80,2009,"TV,Essen,DJ",49.008956,8.403489);
-			Kneipe k2 = new Kneipe(102,"La Cage","Blumenstrasse 25","www.lacage.de","Europaplatz","Sportsbar,Restaurant",3.60,50,1983,"TV,Essen,DJ,Raucherbereich",49.008555,8.395995);
-			Kneipe k3 = new Kneipe(103,"Oxford Cafe","Kaiserstrasse 57","www.oxford-cafe.de","Durlacher Tor","Bar,Restaurant",2.20,20,2007,"TV,Essen",49.00919,8.411828);
-			Kneipe k4 = new Kneipe(104,"Agostea","Rüppurrer Strasse 1","www.agostea-karlsruhe.de","Mendelsohnplatz","Club",2.50,70,2005,"DJ,Essen,Raucherbereich",49.005303,8.410693);
-			Kneipe k5 = new Kneipe(105,"Badisch Brauhaus","Stephanienstrasse 38-40","www.badisch-brauhaus.de","Europaplatz","Brauhaus",3.00,45,1999,"TV,DJ,Essen,Raucherbereich",49.011811,8.393973);
-			Kneipe k6 = new Kneipe(106,"Monkeyz Club","Kaiserallee 3","www.monkeyz-club.de","Mühlburger Tor","Club",3.10,2013,260,"Raucherbereich,Essen,DJ",49.010178,8.386575);
-			Kneipe k7 = new Kneipe(107,"Brasil","Amalienstrasse 32a","www.brasil-ka.de","Europaplatz","Bar,Kneipe",3.50,1994,450,"TV,DJ,Raucherbereich",49.009168,8.391472);
-			Kneipe k8 = new Kneipe(108,"Lehners","Karlstrasse 21a","www.lehners-wirtshaus.de/karlsruhe","Europaplatz","Bar,Restaurant",3.60,50,2001,"TV,Essen",49.00914,8.395129);
-			Kneipe k9 = new Kneipe(109,"Oxford Pub","Fasanenstrasse 6","www.oxford-pub.de","Durlacher Tor","Bar,Restaurant",2.00,25,2013,"TV,Raucherbereich,Essen",49.008659,8.413075);
-			Kneipe k10 = new Kneipe(110,"App Club","Kaiserpassage 6","www.app-club.de","Europaplatz","Club",3.50,50,2010,"DJ",49.010282,8.397324);
+
+			Kneipe k1 = new Kneipe(101,"Marktlücke","Zähringerstrasse 96","www.karlsruhermarktluecke.de","Marktplatz","Kneipe,Restaurant,Bar,Club",3.40,80,2009,"TV,Essen,DJ",49.008956,8.403489,3.5);
+			Kneipe k2 = new Kneipe(102,"La Cage","Blumenstrasse 25","www.lacage.de","Europaplatz","Sportsbar,Restaurant",3.60,50,1983,"TV,Essen,DJ,Raucherbereich",49.008555,8.395995,2.8);
+			Kneipe k3 = new Kneipe(103,"Oxford Cafe","Kaiserstrasse 57","www.oxford-cafe.de","Durlacher Tor","Bar,Restaurant",2.20,20,2007,"TV,Essen",49.00919,8.411828,2.8);
+			Kneipe k4 = new Kneipe(104,"Agostea","Rüppurrer Strasse 1","www.agostea-karlsruhe.de","Mendelsohnplatz","Club",2.50,70,2005,"DJ,Essen,Raucherbereich",49.005303,8.410693,2.6);
+			Kneipe k5 = new Kneipe(105,"Badisch Brauhaus","Stephanienstrasse 38-40","www.badisch-brauhaus.de","Europaplatz","Brauhaus",3.00,45,1999,"TV,DJ,Essen,Raucherbereich",49.011811,8.393973,2.7);
+			Kneipe k6 = new Kneipe(106,"Monkeyz Club","Kaiserallee 3","www.monkeyz-club.de","Mühlburger Tor","Club",3.10,2013,260,"Raucherbereich,Essen,DJ",49.010178,8.386575,2.8);
+			Kneipe k7 = new Kneipe(107,"Brasil","Amalienstrasse 32a","www.brasil-ka.de","Europaplatz","Bar,Kneipe",3.50,1994,450,"TV,DJ,Raucherbereich",49.009168,8.391472,2.8);
+			Kneipe k8 = new Kneipe(108,"Lehners","Karlstrasse 21a","www.lehners-wirtshaus.de/karlsruhe","Europaplatz","Bar,Restaurant",3.60,50,2001,"TV,Essen",49.00914,8.395129,2.7);
+			Kneipe k9 = new Kneipe(109,"Oxford Pub","Fasanenstrasse 6","www.oxford-pub.de","Durlacher Tor","Bar,Restaurant",2.00,25,2013,"TV,Raucherbereich,Essen",49.008659,8.413075,2.5);
+			Kneipe k10 = new Kneipe(110,"App Club","Kaiserpassage 6","www.app-club.de","Europaplatz","Club",3.50,50,2010,"DJ",49.010282,8.397324,4.0);
 				
 			List<Kneipe> res = new ArrayList<Kneipe>();
 						res.add(k1);
