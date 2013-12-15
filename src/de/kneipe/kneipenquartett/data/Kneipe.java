@@ -53,7 +53,7 @@ public class Kneipe implements JsonMappable, Serializable {
 		                         .add("adresse", adresse)
 		                         .add("internetadresse", internetadresse)
 								 .add("guenstigstesBier", guenstigstesBier)
-								 .add("personenanzahl",personalanzahl)
+								 .add("personalanzahl",personalanzahl)
 								 .add("haltestelle", haltestelle)
 								 .add("specials", specials)
 								 .add("longitude",longitude)
