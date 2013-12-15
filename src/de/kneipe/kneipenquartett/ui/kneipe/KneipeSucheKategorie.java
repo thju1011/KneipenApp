@@ -81,23 +81,10 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 
 				
 				
-			 suchen(view, kneipeNameStr);
-//				List<Kneipe> k = suchen2(view, kneipeNameStr);
-//				//if(k==null)System.out.println("Fehler");
-//				//Log.v(LOG_TAG,k.toString());
-//			
-//					
-//					args.putSerializable("kneipe", k.get(0));
-//					Log.v(LOG_TAG, "bundle key anlegen");
-//					
-//					Fragment nf = new KneipeList();
-//					nf.setArguments(args);
-//					
-//					Log.v(LOG_TAG,"Fragment KneipeListe aufrufen");
-//					
-//					getFragmentManager().beginTransaction()
-//		            .replace(R.id.details, nf)
-//		            .commit();
+			
+				 suchen(view, kneipeNameStr);
+			 
+		
 
 				
 				
@@ -156,9 +143,13 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 	       List<Kneipe> result = new ArrayList<Kneipe>();
 	 
 	 for(Kneipe k : kneipenArray){
-		 if(k.name.equals(name)){
+		 if(k.name.toUpperCase().equals(name.toUpperCase())){
 			 result.add(k);
 		 }
+	 }
+	 if(result.isEmpty()){	 
+			kneipeName.setError("suchbegriff ist falsch");
+			return;	 	 
 	 }
 	 
 		final Bundle args = new Bundle(2);
@@ -171,7 +162,7 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		// Kein Name (null) fuer die Transaktion, da die Klasse BackStageEntry nicht verwendet wird
 		getFragmentManager().beginTransaction()
 		                    .replace(R.id.details, neuesFragment)
-		                    .addToBackStack(null)  
+		                    .addToBackStack(null)
 		                    .commit();
 	}
 	
