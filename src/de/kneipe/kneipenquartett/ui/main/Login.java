@@ -115,7 +115,6 @@ import de.kneipe.kneipenquartett.util.Startseite;
 						
 						getFragmentManager().beginTransaction()
 			            .replace(R.id.details, nf)
-			            .addToBackStack(null)
 			            .commit();
 			
 					}
@@ -149,6 +148,7 @@ import de.kneipe.kneipenquartett.util.Startseite;
 			case R.id.btn_reg:
 				getFragmentManager().beginTransaction()
 				.replace(R.id.details, new BenutzerCreate())
+				.addToBackStack(null)
 				.commit();
 				break;
 							

@@ -11,6 +11,7 @@ import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import de.kneipe.kneipenquartett.ui.benutzer.BenutzerStammdaten;
 import de.kneipe.kneipenquartett.ui.gutschein.GutscheinDetails;
 import de.kneipe.kneipenquartett.ui.main.Main;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
+import de.kneipe.kneipenquartett.ui.map.MapActivity;
 import de.kneipe.kneipenquartett.util.TabListener;
 
 public class KneipeDetails extends Fragment implements  android.view.View.OnClickListener{
@@ -122,6 +124,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		
 		view.findViewById(R.id.btn_bewertung).setOnClickListener(this);
 		view.findViewById(R.id.btn_Gutschein).setOnClickListener(this);
+		view.findViewById(R.id.btn_Navigieren).setOnClickListener(this);
 		
 	}
 	
@@ -159,7 +162,15 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
             .replace(R.id.details, gutschein)
             .commit();
 			break;
+			
+		case R.id.btn_Navigieren:
+			
+			final Intent intent = new Intent(ctx, MapActivity.class);
+//			intent.putExtra(KUNDEN_KEY, result.resultList);
+			startActivity(intent);	
 		}
+		
+
 		
 		// Eingabetext ermitteln
 		

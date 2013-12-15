@@ -63,7 +63,7 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 		
 		view.findViewById(R.id.btnKneipeSuchen).setOnClickListener(this);
-		view.findViewById(R.id.btn_alleAnzeigen).setOnClickListener(this);
+		view.findViewById(R.id.btn_Navigieren).setOnClickListener(this);
 		view.findViewById(R.id.btn_KategorieKneipe).setOnClickListener(this);
 		view.findViewById(R.id.btn_KategorieBar).setOnClickListener(this);
 		view.findViewById(R.id.btn_KategorieClub).setOnClickListener(this);
@@ -93,7 +93,7 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 			
 				
 			
-		case R.id.btn_alleAnzeigen:
+		case R.id.btn_Navigieren:
 			
 			alleKneipen();
 			break;
