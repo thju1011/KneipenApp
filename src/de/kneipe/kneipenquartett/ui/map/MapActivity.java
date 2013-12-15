@@ -64,6 +64,7 @@ public class MapActivity extends Activity{
 	        connectService();
 	        kneipenEinzeichen();
 	        zoom();
+	        googleMap.setMyLocationEnabled(true);
 	 
 	    }
 	 
