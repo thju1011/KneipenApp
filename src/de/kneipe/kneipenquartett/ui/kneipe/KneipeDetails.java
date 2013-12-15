@@ -3,6 +3,7 @@ package de.kneipe.kneipenquartett.ui.kneipe;
 
 import static android.app.ActionBar.NAVIGATION_MODE_TABS;
 import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
+import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,9 +22,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import de.kneipe.R;
+import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Kneipe;
+import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerStammdaten;
 import de.kneipe.kneipenquartett.ui.gutschein.GutscheinDetails;
@@ -39,6 +44,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 	private KneipeServiceBinder kneipeServiceBinder;
 	private Bundle args;
 	private double rating;
+	
 //	private LazyAdapter adapter;
 
 	@Override
@@ -62,7 +68,28 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.main, menu);
 	}
+	public Kneipe suchen(View view, Long id)
+	{
+		final Context ctx = view.getContext();
+		
+		final Main mg = (Main) getActivity();
+		final HttpResponse<Kneipe> result = mg.getKneipeServiceBinder().sucheKneipeById(id, ctx);
 
+	
+		Log.d(LOG_TAG, result.toString());
+		
+		Kneipe kneipe =(Kneipe) result.resultObject;
+		
+		return kneipe;
+		/*
+		final Intent intent = new Intent(mainActivity, Benutzer.class);
+		intent.putExtra(BENUTZER_KEY, result.resultList);
+		startActivity(intent);*/
+	}
+
+		
+		
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -79,6 +106,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
+		kneipe  = suchen(view, Long.valueOf(kneipe.kid));
 		final Activity activity = getActivity();
 		final ActionBar actionBar = activity.getActionBar();
 		actionBar.removeAllTabs();
@@ -117,6 +145,9 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 
 		final TextView txtAdresse = (TextView) view.findViewById(R.id.txt_kneipeAdresse);
 		txtAdresse.setText(kneipe.adresse);
+		
+		final RatingBar ratingBar = (RatingBar) view.findViewById(R.id.ratingBar1);
+		ratingBar.setRating(Float.parseFloat(String.valueOf(kneipe.rating)));
 	 /*Hab hier auskommentiert um emulator starten zu können
 	  * final TextView txtverf = (TextView) view.findViewById(R.id.kunde_adresse);
 		txtverf.setText(kneipe.adresse);*/
@@ -134,7 +165,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 	
 	
 	public void onClick(View view) {
-		final Context ctx = view.getContext();
+		final Context ctxx = view.getContext();
 		switch(view.getId()){
 		case R.id.btn_bewertung:	
 
@@ -169,7 +200,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 			
 		case R.id.btn_Navigieren:
 			
-			final Intent intent = new Intent(ctx, MapActivity.class);
+			final Intent intent = new Intent(ctxx, MapActivity.class);
 //			intent.putExtra(KUNDEN_KEY, result.resultList);
 			startActivity(intent);	
 			
@@ -190,13 +221,13 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		
 
 		
-		// Eingabetext ermitteln
+	
 		
 			
 			
 	}
 
-		
+	
 
 }
 
