@@ -7,14 +7,12 @@ import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
 import java.util.List;
 
 import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,14 +20,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
-import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
+import de.kneipe.kneipenquartett.ui.benutzer.BenutzerStammdaten;
 import de.kneipe.kneipenquartett.ui.gutschein.GutscheinDetails;
 import de.kneipe.kneipenquartett.ui.main.Main;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
+import de.kneipe.kneipenquartett.util.TabListener;
 
 public class KneipeDetails extends Fragment implements  android.view.View.OnClickListener{
 
@@ -80,24 +78,28 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		final Activity activity = getActivity();
 		final ActionBar actionBar = activity.getActionBar();
-//		actionBar.removeAllTabs();
+		actionBar.removeAllTabs();
 		// (horizontale) Tabs; NAVIGATION_MODE_LIST fuer Dropdown Liste
 		actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
 		actionBar.setDisplayShowTitleEnabled(false); // Titel der App
 														// ausblenden, um mehr
 														// Platz fuer die Tabs
 														// zu haben
-//		Tab tab = actionBar.newTab()
-//				.setText("Kneipen")
-//				.setTabListener(new TabListener<KneipeSucheKategorie>(activity,KneipeSucheKategorie.class, args));
-//
-//		actionBar.addTab(tab);
-//		
-//		 tab = actionBar.newTab()
-//							.setText("Profil")
-//							.setTabListener(new TabListener<BenutzerStammdaten>(activity, BenutzerStammdaten.class, args));
+		Tab tab = actionBar.newTab()
+				.setText("Kneipen")
+				.setTabListener(new TabListener<KneipeSucheKategorie>(activity,KneipeSucheKategorie.class, args));
 
-//		actionBar.addTab(tab);
+		actionBar.addTab(tab,0,false);
+		
+		 tab = actionBar.newTab()
+							.setText("Profil")
+							.setTabListener(new TabListener<BenutzerStammdaten>(activity, BenutzerStammdaten.class, args));
+		
+		
+		actionBar.addTab(tab,1,false);
+		Log.v(LOG_TAG,"tablistener");
+		
+		 
 		Log.v(LOG_TAG,"tablistener");
 		
 
@@ -123,6 +125,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		
 	}
 	
+	
 	public void onClick(View view) {
 		final Context ctx = view.getContext();
 		switch(view.getId()){
@@ -130,13 +133,13 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 
 					Log.v(LOG_TAG, "bundle key anlegen");
 					
-					Fragment nf = new BewertungCreate();
-					nf.setArguments(args);
+					Fragment bewertung = new BewertungCreate();
+					bewertung.setArguments(args);
 					
 					Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
 					
 					getFragmentManager().beginTransaction()
-		            .replace(R.id.details, nf)
+		            .replace(R.id.details, bewertung)
 		            .commit();
 
 				break;

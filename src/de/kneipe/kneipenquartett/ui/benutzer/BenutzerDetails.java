@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
+import de.kneipe.kneipenquartett.ui.kneipe.KneipeSucheKategorie;
 import de.kneipe.kneipenquartett.util.TabListener;
 
 public class BenutzerDetails extends Fragment {
@@ -51,6 +52,12 @@ public class BenutzerDetails extends Fragment {
 	                    		                                            BenutzerStammdaten.class,
 	                    		                                            args));
 	    actionBar.addTab(tab);
+	    
+	    tab = actionBar.newTab()
+				.setText("Kneipen")
+				.setTabListener(new TabListener<KneipeSucheKategorie>(activity,KneipeSucheKategorie.class, args));
+
+		actionBar.addTab(tab);
 	    
 
 	}

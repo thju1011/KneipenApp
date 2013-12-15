@@ -57,14 +57,14 @@ public class Startseite extends Fragment {
 				.setText("Kneipen")
 				.setTabListener(new TabListener<KneipeSucheKategorie>(a,KneipeSucheKategorie.class, args));
 
-		actionBar.addTab(tab);
+		actionBar.addTab(tab,0,true);
 		
 		 tab = actionBar.newTab()
 							.setText("Profil")
 							.setTabListener(new TabListener<BenutzerStammdaten>(a, BenutzerStammdaten.class, args));
 		
 		
-		actionBar.addTab(tab);
+		actionBar.addTab(tab,1,false);
 		Log.v(LOG_TAG,"tablistener");
 		
 

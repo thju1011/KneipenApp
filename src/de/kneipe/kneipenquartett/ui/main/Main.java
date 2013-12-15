@@ -19,6 +19,7 @@ import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.BenutzerService;
 import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
+import de.kneipe.kneipenquartett.service.GutscheinService.GutscheinServiceBinder;
 import de.kneipe.kneipenquartett.service.KneipeService;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 
@@ -31,6 +32,7 @@ public class Main extends Activity  {
 	
 	private BenutzerServiceBinder benutzerServiceBinder;
 	private KneipeServiceBinder kneipeServiceBinder;
+	private GutscheinServiceBinder gutscheinServiceBinder;
 	
 	
 	
@@ -48,10 +50,6 @@ public class Main extends Activity  {
 		}
 	};
 	
-	public BenutzerServiceBinder getBenutzerServiceBinder() {
-		return benutzerServiceBinder;
-	}
-	
 	private ServiceConnection kneipeServiceConnection = new ServiceConnection() {
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder serviceBinder) {
@@ -65,13 +63,17 @@ public class Main extends Activity  {
 		}
 	};
 	
-
-	/*public KneipenServiceBinder getKneipenServiceBinder() {
-		return KneipenServiceBinder;
-	}*/
+	public BenutzerServiceBinder getBenutzerServiceBinder() {
+		return benutzerServiceBinder;
+	}
+	
 	
 	public KneipeServiceBinder getKneipeServiceBinder() {
 		return kneipeServiceBinder;
+	}
+	
+	public GutscheinServiceBinder getGutscheinServiceBinder() {
+		return gutscheinServiceBinder;
 	}
 
 	
