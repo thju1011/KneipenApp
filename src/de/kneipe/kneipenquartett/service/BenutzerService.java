@@ -4,14 +4,13 @@ import static android.app.ProgressDialog.STYLE_SPINNER;
 import static de.kneipe.kneipenquartett.ui.main.Prefs.timeout;
 import static de.kneipe.kneipenquartett.util.Constants.KUNDEN_ID_PREFIX_PATH;
 import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_PATH;
+import static de.kneipe.kneipenquartett.util.Constants.BEWERTUNG_PATH;
 import static de.kneipe.kneipenquartett.util.Constants.USERNAMEN_PATH;
 import static de.kneipe.kneipenquartett.util.Constants.USERNAMEN_PREFIX_PATH;
+
 import static java.net.HttpURLConnection.HTTP_NO_CONTENT;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static java.util.concurrent.TimeUnit.SECONDS;
-
-
-
 
 import java.util.List;
 
@@ -25,8 +24,10 @@ import android.os.IBinder;
 import android.util.Log;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
+import de.kneipe.kneipenquartett.data.Bewertung;
 import de.kneipe.kneipenquartett.data.Gutschein;
 import de.kneipe.kneipenquartett.util.InternalShopError;
+
 
 public class BenutzerService extends Service {
 	private static final String LOG_TAG = BenutzerService.class.getSimpleName();
@@ -104,34 +105,66 @@ public class BenutzerService extends Service {
 		    return result;
 		}
 		
-
-		public List<Gutschein> sucheGutscheinByUserID(Long id, final Context ctx) {
-			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "List<Long>"
-			final AsyncTask<Long, Void, List<Gutschein>> sucheGutscheinByUserIDTask = new AsyncTask<Long, Void, List<Gutschein>>() {
-				@Override
-				// Neuer Thread, damit der UI-Thread nicht blockiert wird
-				protected List<Gutschein> doInBackground(Long... ids) {
+public HttpResponse<Gutschein> sucheGutscheinByUserID(Long id, final Context ctx) {
+			
+			final AsyncTask<Long, Void, HttpResponse<Gutschein>> sucheGutscheinByUserIDTask = new AsyncTask<Long, Void, HttpResponse<Gutschein>>() {
+				protected HttpResponse<Gutschein> doInBackground(Long... ids) {
 					final Long id = ids[0];
-		    		final String path = BENUTZER_PATH + "/" + id + "/gutschein";
-		    		Log.v(LOG_TAG, "path = " + path);
-		    		final List<Gutschein> result = (List<Gutschein>) WebServiceClient.getJsonList(path, Gutschein.class);
-			    	Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
-					return result;
+					final String path = BENUTZER_PATH + "/" + id + "/gutschein";
+					Log.v(LOG_TAG, "path = " + path);
+					
+					//macht er nicht
+					final HttpResponse<Gutschein> resultList = WebServiceClient.getJsonList(path, Gutschein.class);
+					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + resultList);
+				
+					return resultList;
+					
 				}
 			};
 			
 			sucheGutscheinByUserIDTask.execute(id);
-			List<Gutschein> gutscheine = null;
-			try {
-				gutscheine = sucheGutscheinByUserIDTask.get(timeout, SECONDS);
+    		HttpResponse<Gutschein> result = null;
+	    	try {
+	    		result = sucheGutscheinByUserIDTask.get(timeout, SECONDS);
 			}
 	    	catch (Exception e) {
 	    		throw new InternalShopError(e.getMessage(), e);
 			}
-	
-			return gutscheine;
-	    }
-		
+	    	
+    		if (result.responseCode != HTTP_OK) {
+	    		return result;
+		    }
+    		
+		    return result;
+		}
+
+//		public List<Gutschein> sucheGutscheinByUserID(Long id, final Context ctx) {
+//			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "List<Long>"
+//			final AsyncTask<Long, Void, List<Gutschein>> sucheGutscheinByUserIDTask = new AsyncTask<Long, Void, List<Gutschein>>() {
+//				@Override
+//				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+//				protected List<Gutschein> doInBackground(Long... ids) {
+//					final Long id = ids[0];
+//		    		final String path = BENUTZER_PATH + "/" + id + "/gutschein";
+//		    		Log.v(LOG_TAG, "path = " + path);
+//		    		final List<Gutschein> result = (List<Gutschein>) WebServiceClient.getJsonList(path, Gutschein.class);
+//			    	Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+//					return result;
+//				}
+//			};
+//			
+//			sucheGutscheinByUserIDTask.execute(id);
+//			List<Gutschein> gutscheine = null;
+//			try {
+//				gutscheine = (List<Gutschein>) sucheGutscheinByUserIDTask.get(timeout, SECONDS);
+//			}
+//	    	catch (Exception e) {
+//	    		throw new InternalShopError(e.getMessage(), e);
+//			}
+//	
+//			return gutscheine;
+//	    }
+//		
 
 //	
 //		
@@ -163,10 +196,10 @@ public class BenutzerService extends Service {
 //		
 //		/**
 //		 */
-		public HttpResponse<Benutzer> createBenutzer(Benutzer be, final Context ctx) {
+		public HttpResponse<Bewertung> createBewertung(Bewertung bw, final Context ctx) {
 			Log.d(LOG_TAG,"create benutzer vom ServiceBinder wird aufgerufen");
 			// (evtl. mehrere) Parameter vom Typ "Benutzer", Resultat vom Typ "void"
-			final AsyncTask<Benutzer, Void, HttpResponse<Benutzer>> createBenutzerTask = new AsyncTask<Benutzer, Void, HttpResponse<Benutzer>>() {
+			final AsyncTask<Bewertung, Void, HttpResponse<Bewertung>> createBewertungTask = new AsyncTask<Bewertung, Void, HttpResponse<Bewertung>>() {
 				@Override
 	    		protected void onPreExecute() {
 					progressDialog = showProgressDialog(ctx);
@@ -174,36 +207,36 @@ public class BenutzerService extends Service {
 				
 				@Override
 				// Neuer Thread, damit der UI-Thread nicht blockiert wird
-				protected HttpResponse<Benutzer> doInBackground(Benutzer... benutzer) {
-					final Benutzer be = benutzer[0];
-		    		final String path = BENUTZER_PATH;
+				protected HttpResponse<Bewertung> doInBackground(Bewertung... bewertung) {
+					final Bewertung be = bewertung[0];
+		    		final String path = BEWERTUNG_PATH;
 		    		Log.v(LOG_TAG, "path = " + path);
-		    		Log.v(LOG_TAG, benutzer.toString());
+		    		Log.v(LOG_TAG, bewertung.toString());
 		    		Log.v(LOG_TAG,"jz kommmmmmmmmmmmmmmmmmmmmt jsssssssssssssssssssssssssssoooooooooooooooooooooooooooooooooooooooooooooooon!!!");
-		    		final HttpResponse<Benutzer> result = WebServiceClient.postJson(be, path);
+		    		final HttpResponse<Bewertung> result = WebServiceClient.postJson(be, path);
 		    		Log.v(LOG_TAG,"WebServiceClient.postJson durchgelaufen!!");
 					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
 					return result;
 				}
 				
 				@Override
-	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
+	    		protected void onPostExecute(HttpResponse<Bewertung> unused) {
 					progressDialog.dismiss();
 	    		}
 			};
 			
-			createBenutzerTask.execute(be);
-			HttpResponse<Benutzer> response = null; 
+			createBewertungTask.execute(bw);
+			HttpResponse<Bewertung> response = null; 
 			try {
 				
-				response = createBenutzerTask.get(1000, SECONDS);
+				response = createBewertungTask.get(1000, SECONDS);
 			}
 	    	catch (Exception e) {
 	    		throw new InternalShopError(e.getMessage(), e);
 			}
 			
-			be.uid = Long.valueOf(response.content);
-			final HttpResponse<Benutzer> result = new HttpResponse<Benutzer>(response.responseCode, response.content, be);
+			bw.bid = Long.valueOf(response.content);
+			final HttpResponse<Bewertung> result = new HttpResponse<Bewertung>(response.responseCode, response.content, bw);
 			return result;
 	    }
 		
@@ -249,6 +282,49 @@ public class BenutzerService extends Service {
 				result.resultObject = be;
 			}
 			
+			return result;
+	    }
+		public HttpResponse<Benutzer> createBenutzer(Benutzer be, final Context ctx) {
+			Log.d(LOG_TAG,"create benutzer vom ServiceBinder wird aufgerufen");
+			// (evtl. mehrere) Parameter vom Typ "Benutzer", Resultat vom Typ "void"
+			final AsyncTask<Benutzer, Void, HttpResponse<Benutzer>> createBenutzerTask = new AsyncTask<Benutzer, Void, HttpResponse<Benutzer>>() {
+				@Override
+	    		protected void onPreExecute() {
+					progressDialog = showProgressDialog(ctx);
+				}
+				
+				@Override
+				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+				protected HttpResponse<Benutzer> doInBackground(Benutzer... benutzer) {
+					final Benutzer be = benutzer[0];
+		    		final String path = BENUTZER_PATH;
+		    		Log.v(LOG_TAG, "path = " + path);
+		    		Log.v(LOG_TAG, benutzer.toString());
+		    		Log.v(LOG_TAG,"jz kommmmmmmmmmmmmmmmmmmmmt jsssssssssssssssssssssssssssoooooooooooooooooooooooooooooooooooooooooooooooon!!!");
+		    		final HttpResponse<Benutzer> result = WebServiceClient.postJson(be, path);
+		    		Log.v(LOG_TAG,"WebServiceClient.postJson durchgelaufen!!");
+					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+					return result;
+				}
+				
+				@Override
+	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
+					progressDialog.dismiss();
+	    		}
+			};
+			
+			createBenutzerTask.execute(be);
+			HttpResponse<Benutzer> response = null; 
+			try {
+				
+				response = createBenutzerTask.get(1000, SECONDS);
+			}
+	    	catch (Exception e) {
+	    		throw new InternalShopError(e.getMessage(), e);
+			}
+			
+			be.uid = Long.valueOf(response.content);
+			final HttpResponse<Benutzer> result = new HttpResponse<Benutzer>(response.responseCode, response.content, be);
 			return result;
 	    }
 	}

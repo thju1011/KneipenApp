@@ -4,12 +4,14 @@ import static android.app.ActionBar.NAVIGATION_MODE_TABS;
 import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -22,6 +24,7 @@ import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Gutschein;
 import de.kneipe.kneipenquartett.data.Kneipe;
+import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
 import de.kneipe.kneipenquartett.service.GutscheinService.GutscheinServiceBinder;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
@@ -34,12 +37,12 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 		
 		private Bundle args;
 		private Benutzer benutzer;
-		private Kneipe kneipe;
+		private Kneipe kneipe1;
 		private Gutschein gutschein;
 		private GutscheinServiceBinder gutscheinServiceBinder;
 		private BenutzerServiceBinder benutzerServiceBinder;
 		private KneipeServiceBinder kneipeServiceBinder;
-		private List<Gutschein> gutscheine;
+		//private List <Gutschein> gutscheine;
 		private Gutschein aktuellerGutschein;
 		private String gutscheinbeschreibung;
 		private String gutscheincode;
@@ -56,8 +59,9 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 	        benutzer = (Benutzer) args.get("be");
 	        Log.d(LOG_TAG, benutzer.toString());
 	        
-	        kneipe = (Kneipe) getArguments().get(KNEIPE_KEY);
-			
+	        kneipe1 = (Kneipe) getArguments().get(KNEIPE_KEY);
+	        Log.d(LOG_TAG, kneipe1.toString());
+	        
 			return inflater.inflate(R.layout.gutschein_anzeigen, container, false);
 			 
 		}
@@ -65,11 +69,7 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 		@Override
 		public void onViewCreated(View view, Bundle savedInstanceState) {
 			Log.d(LOG_TAG, "onViewCreated wird aufgerufen");
-			final TextView txtbeschreibung = (TextView) view.findViewById(R.id.g_gutscheinAnzeigen_beschreibung);
-			txtbeschreibung.setText(aktuellerGutschein.beschreibung);
-
-			final TextView txtcode = (TextView) view.findViewById(R.id.g_gutscheinAnzeigen_code);
-			txtcode.setText(aktuellerGutschein.code);
+			final Context ctxx = view.getContext();
 			
 			final Activity activity = getActivity();
 			final ActionBar actionBar = activity.getActionBar();
@@ -77,35 +77,31 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 			actionBar.setDisplayShowTitleEnabled(false);
 			
 			
-			 final GestureDetector gestureDetector = new GestureDetector(getActivity(), new WischenListener(this));
-			    view.setOnTouchListener(new View.OnTouchListener() {
-					@Override
-					public boolean onTouch(View v, MotionEvent event) {
-						return gestureDetector.onTouchEvent(event);
-					}
-				});
-			
 			Main main = (Main) activity;
-			gutscheinServiceBinder = main.getGutscheinServiceBinder();
-			kneipeServiceBinder = main.getKneipeServiceBinder();
+			benutzerServiceBinder = main.getBenutzerServiceBinder();
 			
-			gutscheine = benutzerServiceBinder.sucheGutscheinByUserID(benutzer.uid, view.getContext());
-			Log.v(LOG_TAG, gutscheine.toString());
-			
-			// getGutscheinByBenutzerId
-			// vergleichen mit benutzer(bundle)
-			// zugehörige KneipeId FK raussuchen
-			//diese kneipenId mit kneipe(bundle) vergleichen
-		 
-					
-			kneipen = kneipeServiceBinder.initKneipen();
-			Log.v(LOG_TAG,kneipen.toString());
-			
+			//gutschein zum Benutzer herausfonden
+			final HttpResponse<Gutschein> result =  benutzerServiceBinder.sucheGutscheinByUserID(benutzer.uid, ctxx);
+			Log.v(LOG_TAG, "solltest du hier:");
+			Log.v(LOG_TAG, result.toString());
+			Log.v(LOG_TAG, "nicht etwas ausgeben");
+			List<Gutschein> gutscheine = (ArrayList<Gutschein>)result.resultList;
+			Log.v(LOG_TAG, String.valueOf(gutscheine.size()));
+			Log.v(LOG_TAG, gutscheine.get(0).toString());
+		//Liste der Gutscheine von Benutzer durchgehen und den passenden zur Kneipe ausgeben
 			for (Gutschein g : gutscheine ) {
-				if (g.kneipe.equals(kneipe)){
+				Log.v(LOG_TAG, g.kneipe.toString());
+				if (g.kneipe.kid==kneipe1.kid){
 					aktuellerGutschein = g;
+					Log.v(LOG_TAG, g.toString());
 				}
+				
 				}
+			final TextView txtbeschreibung = (TextView) view.findViewById(R.id.g_gutscheinAnzeigen_beschreibung);
+			txtbeschreibung.setText(aktuellerGutschein.beschreibung);
+
+			final TextView txtcode = (TextView) view.findViewById(R.id.g_gutscheinAnzeigen_code);
+			txtcode.setText(aktuellerGutschein.code);
 			}
 //			if (gutscheine == null || gutscheine.isEmpty()) {
 //				txtbeschreibung.setText(getString(R.string.b_benutzer_not_found, benutzer.uid));
