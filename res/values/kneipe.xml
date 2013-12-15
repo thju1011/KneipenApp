@@ -6,7 +6,12 @@
 	<string name="k_internetadresse">Internetadresse</string>
 	<string name="k_adresse">Adresse</string>
 	<string name="k_head_list_bewertung">Bewertungen</string>
-
-   
+	<string name="k_gruendungsjahr">Gründungsjahr:</string>
+<string name="k_specials">Specials:</string>
+<string name="k_personenanzahl">Personenanzahl:</string>
+	<string name="k_guenstigstes">Günstigstes 0.5l Bier:</string>
+	<string name="k_haltestellte">Nächste Haltestelle:</string>
+	
+  
      
 </resources>

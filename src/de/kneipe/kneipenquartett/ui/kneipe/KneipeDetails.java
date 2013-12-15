@@ -109,11 +109,13 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 //		args.putSerializable(KNEIPEN_KEY, kneipe);
 		final TextView txtId = (TextView) view.findViewById(R.id.txt_KneipeName);
 		txtId.setText(kneipe.name);
+		
 
-		final TextView txtPreis = (TextView) view
-				.findViewById(R.id.txt_KneipeInternetadresse);
+		final TextView txtPreis = (TextView) view.findViewById(R.id.txt_KneipeInternetadresse);
 		txtPreis.setText(kneipe.internetadresse);
 
+		final TextView txtAdresse = (TextView) view.findViewById(R.id.txt_kneipeAdresse);
+		txtAdresse.setText(kneipe.adresse);
 	 /*Hab hier auskommentiert um emulator starten zu können
 	  * final TextView txtverf = (TextView) view.findViewById(R.id.kunde_adresse);
 		txtverf.setText(kneipe.adresse);*/
@@ -125,6 +127,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		view.findViewById(R.id.btn_bewertung).setOnClickListener(this);
 		view.findViewById(R.id.btn_Gutschein).setOnClickListener(this);
 		view.findViewById(R.id.btn_Navigieren).setOnClickListener(this);
+		view.findViewById(R.id.btn_kneipeInfo).setOnClickListener(this);
 		
 	}
 	
@@ -168,6 +171,19 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 			final Intent intent = new Intent(ctx, MapActivity.class);
 //			intent.putExtra(KUNDEN_KEY, result.resultList);
 			startActivity(intent);	
+			
+		case R.id.btn_kneipeInfo:
+			Log.v(LOG_TAG, "bundle key anlegen");
+			
+			Fragment info = new KneipeInfos();
+			info.setArguments(args);
+			
+			Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
+			
+			getFragmentManager().beginTransaction()
+            .replace(R.id.details, info)
+            .commit();
+			break;
 		}
 		
 

@@ -1,75 +1,95 @@
-  <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
- 	android:layout_width="match_parent"
- 	android:layout_height="match_parent" 
- 	android:stretchColumns="1,2"
- 	>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/kneipe_infos"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ui.Kneipe.KneipeDetails" >
 
-      <TextView
+ <TextView
       	android:id="@+id/textView7"
       	android:layout_width="wrap_content"
       	android:layout_height="wrap_content"
       	android:text="Weitere Informationen" />
 
-    	<TableRow
-    		android:id="@+id/tableRow1"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content" >
 
-    		<TextView
-    			android:id="@+id/textView1"
-    			android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-    			android:text="Gründungsjahr" />
+	<TableRow>
 
-    		<TextView
-    			android:id="@+id/textView2"
-    			android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-    			android:text="Textview" />
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/k_gruendungsjahr"
+			android:paddingLeft="5dp" />
+		
+		<TextView
+			android:id="@+id/k_gruendungsjahr"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
 
-    	</TableRow>
+	</TableRow>
+	
+		<TableRow>
 
-    	<TableRow
-    		android:id="@+id/tableRow2"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content" >
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/k_guenstigstes"
+			android:paddingLeft="5dp" />
+		
+		<TextView
+			android:id="@+id/k_guenstigstes"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
 
-    		<TextView
-    			android:id="@+id/textView3"
-    			android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-    			android:text="Günstigstes 0,5 Bier" />
+	</TableRow>
+	
+		<TableRow>
 
-    		<TextView
-    			android:id="@+id/textView5"
-    			android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-    			android:text="TextView" />
-
-    	</TableRow>
-
-    	<TableRow
-    		android:id="@+id/tableRow3"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content" >
-
-    		<TextView
-    			android:id="@+id/textView4"
-    			android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-    			android:text="Nächste Haltestelle" />
-
-    		<TextView
-    			android:id="@+id/textView6"
-    			android:layout_width="wrap_content"
-    			android:layout_height="wrap_content"
-    			android:text="TextView" />
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/k_haltestellte"
+			android:paddingLeft="5dp" />
+		
+		<TextView
+			android:id="@+id/k_haltestelle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
 
     	</TableRow>
+    	
+		
+		<TableRow>
 
-    	<TableRow
-    		android:id="@+id/tableRow4"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content" >
-    	</TableRow>
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/k_personenanzahl"
+			android:paddingLeft="5dp" />
+		
+		<TextView
+			android:id="@+id/k_personenanzahl"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+	</TableRow>
+		<TableRow>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/k_specials"
+			android:paddingLeft="5dp" />
+		
+		<TextView
+			android:id="@+id/k_specials"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+	</TableRow>
+		
     </TableLayout>
