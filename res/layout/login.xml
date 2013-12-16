@@ -16,7 +16,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="@string/b_emailthint"
-			android:ems="10" >
+			android:ems="10" 
+			android:imeOptions="actionNext">
 
 			<requestFocus />
 		</EditText>
@@ -28,7 +29,10 @@
 		android:layout_height="wrap_content"
 		android:hint="@string/b_passworthint"
 		android:ems="10"
-		android:inputType="textPassword" />
+		android:inputType="textPassword"
+		android:imeActionId="@+id/ime_login" 
+		android:imeActionLabel="Login"
+		android:imeOptions="actionSend"/>
 
 	<Button
 		android:id="@+id/btn_login"
