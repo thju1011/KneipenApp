@@ -19,6 +19,7 @@ import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.BenutzerService;
 import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
+import de.kneipe.kneipenquartett.service.BewertungService.BewertungServiceBinder;
 import de.kneipe.kneipenquartett.service.GutscheinService.GutscheinServiceBinder;
 import de.kneipe.kneipenquartett.service.KneipeService;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
@@ -33,6 +34,7 @@ public class Main extends Activity  {
 	private BenutzerServiceBinder benutzerServiceBinder;
 	private KneipeServiceBinder kneipeServiceBinder;
 	private GutscheinServiceBinder gutscheinServiceBinder;
+	private BewertungServiceBinder bewertungServiceBinder;
 	
 	
 	
@@ -74,6 +76,10 @@ public class Main extends Activity  {
 	
 	public GutscheinServiceBinder getGutscheinServiceBinder() {
 		return gutscheinServiceBinder;
+	}
+	
+	public BewertungServiceBinder getBewertungServiceBinder() {
+		return bewertungServiceBinder;
 	}
 
 	
