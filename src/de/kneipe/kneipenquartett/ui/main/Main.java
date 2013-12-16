@@ -106,6 +106,7 @@ public class Main extends Activity  {
 	        
 	        getFragmentManager().beginTransaction()
 	                            .add(R.id.details, detailsFragment)
+	                            .addToBackStack(null)
 	                            .commit();
 	        
 		

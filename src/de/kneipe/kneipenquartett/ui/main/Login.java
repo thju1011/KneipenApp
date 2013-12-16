@@ -115,6 +115,7 @@ import de.kneipe.kneipenquartett.util.Startseite;
 						
 						getFragmentManager().beginTransaction()
 			            .replace(R.id.details, nf)
+			            .addToBackStack(null)
 			            .commit();
 			
 					}

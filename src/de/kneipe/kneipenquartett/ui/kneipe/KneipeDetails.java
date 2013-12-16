@@ -100,7 +100,8 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		switch (item.getItemId()) {
 		case R.id.einstellungen:
 			getFragmentManager().beginTransaction()
-					.replace(R.id.details, new Prefs()).addToBackStack(null)
+					.replace(R.id.details, new Prefs())
+					.addToBackStack(null)
 					.commit();
 			return true;
 
@@ -217,6 +218,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 					Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
 					
 					getFragmentManager().beginTransaction()
+					.addToBackStack(null)
 		            .replace(R.id.details, bewertung)
 		            .commit();
 
@@ -234,6 +236,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 			Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
 			
 			getFragmentManager().beginTransaction()
+			.addToBackStack(null)
             .replace(R.id.details, gutschein)
             .commit();
 			break;
