@@ -313,6 +313,7 @@ public class KneipeService extends Service {
 				
 					return resultList;
 					
+					
 				}
 			};
 			

@@ -105,7 +105,7 @@ public class BenutzerService extends Service {
 		    return result;
 		}
 		
-public HttpResponse<Gutschein> sucheGutscheinByUserID(Long id, final Context ctx) {
+		public HttpResponse<Gutschein> sucheGutscheinByUserID(Long id, final Context ctx) {
 			
 			final AsyncTask<Long, Void, HttpResponse<Gutschein>> sucheGutscheinByUserIDTask = new AsyncTask<Long, Void, HttpResponse<Gutschein>>() {
 				protected HttpResponse<Gutschein> doInBackground(Long... ids) {

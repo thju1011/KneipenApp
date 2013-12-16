@@ -50,12 +50,20 @@ public class Bewertung implements JsonMappable, Serializable{
 
 	@Override
 	public void fromJsonObject(JsonObject jsonObject) {
-		bid = Long.valueOf(jsonObject.getJsonNumber("bid").longValue());
+		Log.v(LOG_TAG,jsonObject.toString());
+		Log.v(LOG_TAG,"from JSON in Bewertung aufgerufen");
+		bid = Long.valueOf(String.valueOf(jsonObject.getJsonNumber("bid")));
 		kommentar = jsonObject.getString("kommentar");
 		rating =  jsonObject.getJsonNumber("rating").doubleValue();
-		freundlichkeit = jsonObject.getInt("freundlickeit");
-		preisleistung = jsonObject.getInt("preisleistung");
-		sauberkeit = jsonObject.getInt("sauberkeit");
-
+		freundlichkeit = jsonObject.getJsonNumber("freundlichkeit").doubleValue();
+		preisleistung = jsonObject.getJsonNumber("preisleistung").doubleValue();
+		sauberkeit = jsonObject.getJsonNumber("sauberkeit").doubleValue();
+		Log.v(LOG_TAG,"from Json bis benutzer durchgelaufen");
+		Log.v(LOG_TAG,jsonObject.getJsonObject("benutzer").toString());
+		benutzer = new Benutzer();
+		kneipe= new Kneipe();
+		benutzer.fromJsonObject(jsonObject.getJsonObject("benutzer"));
+		kneipe.fromJsonObject(jsonObject.getJsonObject("kneipe"));
+		Log.v(LOG_TAG,this.toString());
 	}
 }

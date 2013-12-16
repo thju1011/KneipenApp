@@ -27,9 +27,11 @@ public class Kneipe implements JsonMappable, Serializable {
 	public double latitude;
 	public String rating;
 	public Bewertung bewertung;
+	
 	public Kneipe(){
 		super();
 	}
+	
 	public Kneipe(int Kid, String Name, String Adresse, String Internetadresse, String Haltestelle, String Art,
 			double GuenstigstesBier, int Personalanzahl, int Gruendungsjahr, String Specials, double Latitude, double Longitude, String drating) {
 		kid = Kid;

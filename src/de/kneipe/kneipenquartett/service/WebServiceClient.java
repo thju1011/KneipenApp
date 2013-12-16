@@ -69,8 +69,8 @@ final class WebServiceClient {
 		}
 		return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
 		*/
-	return "http://www.iwi.hs-karlsruhe.de/eb15";
-//		return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
+	//return "http://www.iwi.hs-karlsruhe.de/eb15";
+		return PROTOCOL_DEFAULT + "://" + LOCALHOST_EMULATOR + ":8080" + PATH_DEFAULT ;
 	}
 
     private static <T> HttpResponse<T> getJson(String path) {
@@ -249,6 +249,7 @@ final class WebServiceClient {
     }
     
     static <T extends JsonMappable> HttpResponse<T> getJsonList(String path, Class<? extends T> clazz) {
+    	Log.v(LOG_TAG,"getJsonList aufgerufen!");
     	final HttpResponse<T> result = getJson(path);
     	if (result.responseCode != HTTP_OK) {
     		return result;
@@ -265,8 +266,9 @@ final class WebServiceClient {
     			jsonReader.close();
     		}
     	}
-    	
+    	Log.v(LOG_TAG,"JSON READER Angelegt");
     	final ArrayList<T> resultList = new ArrayList<T>(jsonArray.size());
+    	Log.v(LOG_TAG,String.valueOf(jsonArray.size()));
     	final List<JsonObject> jsonObjectList = jsonArray.getValuesAs(JsonObject.class);
     	for (JsonObject jsonObject : jsonObjectList) {			
     		T object;
@@ -280,10 +282,10 @@ final class WebServiceClient {
     			throw new InternalShopError(e.getMessage(), e);
     		}
         	object.fromJsonObject(jsonObject);
-        	
+        	Log.v(LOG_TAG,"FROM JSON ABGESCHLOSSEN");
         	resultList.add(object);
     	}
-    	
+    	//Log.v(LOG_TAG,"LISTE JSON LIST HAT DIE GRÖßE"+ result.resultList.size());
 		result.resultList = resultList;
     	return result;
     }

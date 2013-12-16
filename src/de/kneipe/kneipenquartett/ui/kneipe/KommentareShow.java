@@ -63,15 +63,12 @@ public class KommentareShow extends Fragment{
 		
 		
 		final HttpResponse<Bewertung> result = kneipeServiceBinder.findBewertungbyKneipe(Long.valueOf(kneipe.kid), ctxx);
-		//gutschein zum Benutzer herausfonden
-		
-	
-		Log.v(LOG_TAG, result.toString());
+				Log.v(LOG_TAG, result.toString());
 
 		List<Bewertung> bewertungen = (ArrayList<Bewertung>)result.resultList;
 		Log.v(LOG_TAG, String.valueOf(bewertungen.size()));
 		Log.v(LOG_TAG, bewertungen.get(0).toString());
-	//Liste der Gutscheine von Benutzer durchgehen und den passenden zur Kneipe ausgeben
+	
 		for (Bewertung b : bewertungen ) {
 			Log.v(LOG_TAG, b.kneipe.toString());
 			if (b.kneipe.kid==kneipe.kid){

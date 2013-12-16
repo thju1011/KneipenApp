@@ -173,6 +173,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		kneipeServiceBinder = main.getKneipeServiceBinder();
 		
 		view.findViewById(R.id.btn_bewertung).setOnClickListener(this);
+		view.findViewById(R.id.btn_KommentarAnzeigen).setOnClickListener(this);
 		view.findViewById(R.id.btn_Gutschein).setOnClickListener(this);
 		view.findViewById(R.id.btn_Navigieren).setOnClickListener(this);
 		view.findViewById(R.id.btn_kneipeInfo).setOnClickListener(this);
@@ -223,6 +224,22 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		            .commit();
 
 				break;
+				
+		case R.id.btn_KommentarAnzeigen:	
+
+			Log.v(LOG_TAG, "bundle key anlegen");
+			
+			Fragment kommentar = new KommentareShow();
+			kommentar.setArguments(args);
+			
+			Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
+			
+			getFragmentManager().beginTransaction()
+			.addToBackStack(null)
+            .replace(R.id.details, kommentar)
+            .commit();
+
+		break;		
 			
 			
 				
