@@ -13,7 +13,7 @@ public class Kneipe implements JsonMappable, Serializable {
 	 *  
 	 */
 	private static final long serialVersionUID = -8465867216246621016L;
-	public Long kid;
+	public int kid;
 	public String name;
 	public String adresse;
 	public String internetadresse;
@@ -30,7 +30,7 @@ public class Kneipe implements JsonMappable, Serializable {
 	public Kneipe(){
 		super();
 	}
-	public Kneipe(Long Kid, String Name, String Adresse, String Internetadresse, String Haltestelle, String Art,
+	public Kneipe(int Kid, String Name, String Adresse, String Internetadresse, String Haltestelle, String Art,
 			double GuenstigstesBier, int Personalanzahl, int Gruendungsjahr, String Specials, double Latitude, double Longitude, String drating) {
 		kid = Kid;
 		name = Name;
@@ -71,8 +71,8 @@ public class Kneipe implements JsonMappable, Serializable {
 	}
 	@Override
 	public void fromJsonObject(JsonObject jsonObject) {
-		kid = Long.valueOf(jsonObject.getJsonNumber("id").longValue());
-		//kid = jsonObject.getInt("kid");
+		//kid = Long.valueOf(jsonObject.getJsonNumber("id").longValue());
+		kid = jsonObject.getInt("kid");
 		name = jsonObject.getString("name");
 		adresse = jsonObject.getString("adresse");
 		guenstigstesBier = Float.valueOf(jsonObject.getJsonNumber("guenstigstesBier").toString());
@@ -100,6 +100,8 @@ public class Kneipe implements JsonMappable, Serializable {
 		int result = 1;
 		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
 		result = prime * result + ((art == null) ? 0 : art.hashCode());
+		result = prime * result
+				+ ((bewertung == null) ? 0 : bewertung.hashCode());
 		result = prime * result + gruendungsjahr;
 		long temp;
 		temp = Double.doubleToLongBits(guenstigstesBier);
@@ -108,7 +110,7 @@ public class Kneipe implements JsonMappable, Serializable {
 				+ ((haltestelle == null) ? 0 : haltestelle.hashCode());
 		result = prime * result
 				+ ((internetadresse == null) ? 0 : internetadresse.hashCode());
-		result = prime * result + ((kid == null) ? 0 : kid.hashCode());
+		result = prime * result + kid;
 		temp = Double.doubleToLongBits(latitude);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(longitude);
@@ -139,6 +141,11 @@ public class Kneipe implements JsonMappable, Serializable {
 				return false;
 		} else if (!art.equals(other.art))
 			return false;
+		if (bewertung == null) {
+			if (other.bewertung != null)
+				return false;
+		} else if (!bewertung.equals(other.bewertung))
+			return false;
 		if (gruendungsjahr != other.gruendungsjahr)
 			return false;
 		if (Double.doubleToLongBits(guenstigstesBier) != Double
@@ -154,10 +161,7 @@ public class Kneipe implements JsonMappable, Serializable {
 				return false;
 		} else if (!internetadresse.equals(other.internetadresse))
 			return false;
-		if (kid == null) {
-			if (other.kid != null)
-				return false;
-		} else if (!kid.equals(other.kid))
+		if (kid != other.kid)
 			return false;
 		if (Double.doubleToLongBits(latitude) != Double
 				.doubleToLongBits(other.latitude))

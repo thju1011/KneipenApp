@@ -61,7 +61,8 @@ public class KommentareShow extends Fragment{
 		Main main = (Main) activity;
 		kneipeServiceBinder = main.getKneipeServiceBinder();
 		
-		final HttpResponse<Bewertung> result = kneipeServiceBinder.findBewertungbyKneipe(kneipe.kid, ctxx);
+		
+		final HttpResponse<Bewertung> result = kneipeServiceBinder.findBewertungbyKneipe(Long.valueOf(kneipe.kid), ctxx);
 		//gutschein zum Benutzer herausfonden
 		
 	
