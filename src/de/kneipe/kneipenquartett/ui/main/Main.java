@@ -76,7 +76,7 @@ public class Main extends Activity  {
 		return gutscheinServiceBinder;
 	}
 
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
