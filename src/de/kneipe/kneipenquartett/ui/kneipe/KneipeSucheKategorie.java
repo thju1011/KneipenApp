@@ -67,7 +67,20 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		view.findViewById(R.id.btn_KategorieBar).setOnClickListener(this);
 		view.findViewById(R.id.btn_KategorieClub).setOnClickListener(this);
 		view.findViewById(R.id.btn_KategorieRestaurant).setOnClickListener(this);
+		view.setOnKeyListener(keyListener);
     }
+	android.view.View.OnKeyListener keyListener = new android.view.View.OnKeyListener() {
+
+        @Override
+        public boolean onKey(View view, int keyCode, KeyEvent event) {
+            if( keyCode == KeyEvent.KEYCODE_BACK){  
+                return false;
+            }
+                return false;
+        }
+    };
+    
+    
 	public void onClick(View view) {
 		final Context ctx = view.getContext();
 		switch(view.getId()){
@@ -240,7 +253,7 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		
 	}
 	
-	
+
 	
 	
 	

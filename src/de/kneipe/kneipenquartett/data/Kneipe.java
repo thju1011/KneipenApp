@@ -10,7 +10,7 @@ import javax.json.JsonObjectBuilder;
 
 public class Kneipe implements JsonMappable, Serializable {
 	/**
-	 * 
+	 *  
 	 */
 	private static final long serialVersionUID = -8465867216246621016L;
 	public int kid;
