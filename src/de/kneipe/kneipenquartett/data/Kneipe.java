@@ -62,8 +62,8 @@ public class Kneipe implements JsonMappable, Serializable {
 								 .add("longitude",longitude)
 								 .add("latitude",latitude)
 								 .add("art", art)
-								 .add("rating", rating)
-								 .add ("bewertung", bewertung.getJsonBuilderFactory());
+								 .add("rating", rating);
+							//	 .add ("bewertung", bewertung.getJsonBuilderFactory());
 	}
 	@Override
 	public JsonObject toJsonObject() {
@@ -82,7 +82,7 @@ public class Kneipe implements JsonMappable, Serializable {
 		specials = jsonObject.getString("specials");
 		art = jsonObject.getString("art");
 		rating = jsonObject.getJsonNumber("rating").toString();
-		bewertung.fromJsonObject(jsonObject.getJsonObject("bewertung"));
+//		bewertung.fromJsonObject(jsonObject.getJsonObject("bewertung"));
 		
 	}
 	
