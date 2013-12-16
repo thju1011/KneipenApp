@@ -1,0 +1,25 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/benutzer_details"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ui.Benutzer.BenutzerDetails" >
+
+	<TableRow>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/k_kommentare"
+			android:paddingLeft="5dp" />
+		
+		<TextView
+			android:id="@+id/k_kommentare"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+	</TableRow>
+	 
+
+</TableLayout>

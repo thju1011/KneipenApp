@@ -1,22 +1,18 @@
 package de.kneipe.kneipenquartett.ui.gutschein;
 
 import static android.app.ActionBar.NAVIGATION_MODE_TABS;
-import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ActionBar;
-import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,13 +20,11 @@ import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Gutschein;
 import de.kneipe.kneipenquartett.data.Kneipe;
-import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
 import de.kneipe.kneipenquartett.service.GutscheinService.GutscheinServiceBinder;
+import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 import de.kneipe.kneipenquartett.ui.main.Main;
-import de.kneipe.kneipenquartett.util.TabListener;
-import de.kneipe.kneipenquartett.util.WischenListener;
 
 public class GutscheinDetails extends Fragment{
 private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();

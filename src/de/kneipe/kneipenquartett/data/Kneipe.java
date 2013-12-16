@@ -13,7 +13,7 @@ public class Kneipe implements JsonMappable, Serializable {
 	 *  
 	 */
 	private static final long serialVersionUID = -8465867216246621016L;
-	public int kid;
+	public Long kid;
 	public String name;
 	public String adresse;
 	public String internetadresse;
@@ -26,10 +26,11 @@ public class Kneipe implements JsonMappable, Serializable {
 	public double longitude;
 	public double latitude;
 	public String rating;
+	public Bewertung bewertung;
 	public Kneipe(){
 		super();
 	}
-	public Kneipe(int Kid, String Name, String Adresse, String Internetadresse, String Haltestelle, String Art,
+	public Kneipe(Long Kid, String Name, String Adresse, String Internetadresse, String Haltestelle, String Art,
 			double GuenstigstesBier, int Personalanzahl, int Gruendungsjahr, String Specials, double Latitude, double Longitude, String drating) {
 		kid = Kid;
 		name = Name;
@@ -44,6 +45,7 @@ public class Kneipe implements JsonMappable, Serializable {
 		longitude = Longitude;
 		latitude = Latitude;
 		rating = drating;
+		
 	}
 	
 	// fuer Kneipe.toJsonObject()
@@ -60,7 +62,8 @@ public class Kneipe implements JsonMappable, Serializable {
 								 .add("longitude",longitude)
 								 .add("latitude",latitude)
 								 .add("art", art)
-								 .add("rating", rating);
+								 .add("rating", rating)
+								 .add ("bewertung", bewertung.getJsonBuilderFactory());
 	}
 	@Override
 	public JsonObject toJsonObject() {
@@ -68,8 +71,8 @@ public class Kneipe implements JsonMappable, Serializable {
 	}
 	@Override
 	public void fromJsonObject(JsonObject jsonObject) {
-		//kid = Long.valueOf(jsonObject.getJsonNumber("id").longValue());
-		kid = jsonObject.getInt("kid");
+		kid = Long.valueOf(jsonObject.getJsonNumber("id").longValue());
+		//kid = jsonObject.getInt("kid");
 		name = jsonObject.getString("name");
 		adresse = jsonObject.getString("adresse");
 		guenstigstesBier = Float.valueOf(jsonObject.getJsonNumber("guenstigstesBier").toString());
@@ -79,8 +82,11 @@ public class Kneipe implements JsonMappable, Serializable {
 		specials = jsonObject.getString("specials");
 		art = jsonObject.getString("art");
 		rating = jsonObject.getJsonNumber("rating").toString();
+		bewertung.fromJsonObject(jsonObject.getJsonObject("bewertung"));
 		
 	}
+	
+	
 
 	@Override
 	public String toString() {
@@ -102,13 +108,14 @@ public class Kneipe implements JsonMappable, Serializable {
 				+ ((haltestelle == null) ? 0 : haltestelle.hashCode());
 		result = prime * result
 				+ ((internetadresse == null) ? 0 : internetadresse.hashCode());
-		result = prime * result + kid;
+		result = prime * result + ((kid == null) ? 0 : kid.hashCode());
 		temp = Double.doubleToLongBits(latitude);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(longitude);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + personalanzahl;
+		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
 		result = prime * result
 				+ ((specials == null) ? 0 : specials.hashCode());
 		return result;
@@ -147,7 +154,10 @@ public class Kneipe implements JsonMappable, Serializable {
 				return false;
 		} else if (!internetadresse.equals(other.internetadresse))
 			return false;
-		if (kid != other.kid)
+		if (kid == null) {
+			if (other.kid != null)
+				return false;
+		} else if (!kid.equals(other.kid))
 			return false;
 		if (Double.doubleToLongBits(latitude) != Double
 				.doubleToLongBits(other.latitude))
@@ -161,6 +171,11 @@ public class Kneipe implements JsonMappable, Serializable {
 		} else if (!name.equals(other.name))
 			return false;
 		if (personalanzahl != other.personalanzahl)
+			return false;
+		if (rating == null) {
+			if (other.rating != null)
+				return false;
+		} else if (!rating.equals(other.rating))
 			return false;
 		if (specials == null) {
 			if (other.specials != null)

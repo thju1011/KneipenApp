@@ -2,6 +2,8 @@ package de.kneipe.kneipenquartett.service;
 
 import static android.app.ProgressDialog.STYLE_SPINNER;
 import static de.kneipe.kneipenquartett.ui.main.Prefs.timeout;
+import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_PATH;
+import static java.net.HttpURLConnection.HTTP_OK;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import android.app.ProgressDialog;
 import android.app.Service;
@@ -13,7 +15,9 @@ import android.os.IBinder;
 import android.util.Log;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Bewertung;
+import de.kneipe.kneipenquartett.data.Gutschein;
 import de.kneipe.kneipenquartett.util.InternalShopError;
+import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_PATH;
 import static de.kneipe.kneipenquartett.util.Constants.BEWERTUNG_PATH;
 
 public class BewertungService extends Service {
@@ -92,4 +96,38 @@ public class BewertungService extends Service {
 				response.responseCode, response.content, be);
 		return result;
 	}
+	
+	public HttpResponse<Bewertung> findBewertungbyKneipe(Long id, final Context ctx) {
+		
+		final AsyncTask<Long, Void, HttpResponse<Bewertung>> findBewertungbyKneipeTask = new AsyncTask<Long, Void, HttpResponse<Bewertung>>() {
+			protected HttpResponse<Bewertung> doInBackground(Long... ids) {
+				final Long id = ids[0];
+				final String path = KNEIPE_PATH + "/" + id + "/bewertungen";
+				Log.v(LOG_TAG, "path = " + path);
+				
+				//macht er nicht
+				final HttpResponse<Bewertung> resultList = WebServiceClient.getJsonList(path, Bewertung.class);
+				Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + resultList);
+			
+				return resultList;
+				
+			}
+		};
+		
+		findBewertungbyKneipeTask.execute(id);
+		HttpResponse<Bewertung> result = null;
+    	try {
+    		result = findBewertungbyKneipeTask.get(timeout, SECONDS);
+		}
+    	catch (Exception e) {
+    		throw new InternalShopError(e.getMessage(), e);
+		}
+    	
+		if (result.responseCode != HTTP_OK) {
+    		return result;
+	    }
+		
+	    return result;
+	}
+
 }
