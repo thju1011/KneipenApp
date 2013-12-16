@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
@@ -188,6 +190,8 @@ import de.kneipe.kneipenquartett.util.Startseite;
 				intent.putExtra(BENUTZER_KEY, result.resultList);
 				startActivity(intent);*/
 			}
+
+
 		
 	}
 
