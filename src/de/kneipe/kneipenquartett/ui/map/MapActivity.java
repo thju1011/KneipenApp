@@ -103,11 +103,15 @@ public class MapActivity extends Activity{
 		    		double longitude = k.longitude;
 		    		
 		    		// create marker
-		    		MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title(k.name);
 		    		
-		    		if(k.equals(kneipe)){
+		    		MarkerOptions marker;
+		    		if(k.kid == kneipe.kid){
+		    			marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title(k.name);
 		    			// GREEN color icon
 		    		marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+		    		}
+		    		else{
+		    			marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title(k.name);
 		    		}
 		    		// adding marker
 		    		googleMap.addMarker(marker);

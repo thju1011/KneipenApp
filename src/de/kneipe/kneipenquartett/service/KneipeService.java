@@ -72,7 +72,6 @@ public class KneipeService extends Service {
 			Kneipe k8 = new Kneipe(108,"Lehners","Karlstrasse 21a","www.lehners-wirtshaus.de/karlsruhe","Europaplatz","Bar,Restaurant",3.60,50,2001,"TV,Essen",49.00914,8.395129,"2.7");
 			Kneipe k9 = new Kneipe(109,"Oxford Pub","Fasanenstrasse 6","www.oxford-pub.de","Durlacher Tor","Bar,Restaurant",2.00,25,2013,"TV,Raucherbereich,Essen",49.008659,8.413075,"2.5");
 			Kneipe k10 = new Kneipe(110,"App Club","Kaiserpassage 6","www.app-club.de","Europaplatz","Club",3.50,50,2010,"DJ",49.010282,8.397324,"4.0");
-			Kneipe k11 = new Kneipe(111,"App Club","Kaiserpassage 6","www.app-club.de","Europaplatz","Club",3.50,50,2010,"DJ",49.010282,8.397324,"3.0");
 					
 			List<Kneipe> res = new ArrayList<Kneipe>();
 						res.add(k1);
@@ -85,7 +84,6 @@ public class KneipeService extends Service {
 						res.add(k8);
 						res.add(k9);
 						res.add(k10);
-						res.add(k11);
 			return res;
 						
 		}
