@@ -93,7 +93,7 @@
 	    android:layout_height="wrap_content" >
 
 		<CheckBox
-		    android:id="@+id/checkBox1"
+		    android:id="@+id/TVcheckBox"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:text="TV" />
@@ -113,7 +113,7 @@
 	    android:layout_height="wrap_content" >
 
 	    <CheckBox
-	        android:id="@+id/checkBox2"
+	        android:id="@+id/checkboxEssen"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="Essen" />
@@ -133,7 +133,7 @@
 	    android:layout_height="wrap_content" >
 
 	    <CheckBox
-	        android:id="@+id/checkBox3"
+	        android:id="@+id/checkBoxDJ"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="DJ" />
@@ -153,7 +153,7 @@
 	    android:layout_height="wrap_content" >
 
 	    <CheckBox
-	        android:id="@+id/checkBox4"
+	        android:id="@+id/checkBoxRaucherbereich"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="Raucherbereich" />

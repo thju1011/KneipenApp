@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import de.kneipe.R;
@@ -45,7 +46,10 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 	private KneipeServiceBinder kneipeServiceBinder;
 	private Bundle args;
 	private double rating;
-	
+	private CheckBox dj;
+	private CheckBox essen;
+	private CheckBox raucherbereich;
+	private CheckBox tv;
 //	private LazyAdapter adapter;
 
 	@Override
@@ -96,7 +100,8 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		switch (item.getItemId()) {
 		case R.id.einstellungen:
 			getFragmentManager().beginTransaction()
-					.replace(R.id.details, new Prefs()).addToBackStack(null)
+					.replace(R.id.details, new Prefs())
+					.addToBackStack(null)
 					.commit();
 			return true;
 
@@ -108,6 +113,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		kneipe  = suchen(view, Long.valueOf(kneipe.kid));
+		
 		final Activity activity = getActivity();
 		final ActionBar actionBar = activity.getActionBar();
 		actionBar.removeAllTabs();
@@ -146,7 +152,11 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 
 		final TextView txtAdresse = (TextView) view.findViewById(R.id.txt_kneipeAdresse);
 		txtAdresse.setText(kneipe.adresse);
-		
+		dj = (CheckBox) view.findViewById(R.id.checkBoxDJ);
+		tv = (CheckBox) view.findViewById(R.id.TVcheckBox);
+		raucherbereich = (CheckBox) view.findViewById(R.id.checkBoxRaucherbereich);
+		essen = (CheckBox) view.findViewById(R.id.checkboxEssen);
+		specialCheckbox();
 		final RatingBar ratingBar = (RatingBar) view.findViewById(R.id.ratingBar1);
 		ratingBar.setClickable(false);
 		ratingBar.setIsIndicator(true);
@@ -169,7 +179,32 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		
 	}
 	
-	
+	public void specialCheckbox()
+	{
+		if(kneipe.specials.isEmpty())
+			return;
+		if(kneipe.specials.contains("DJ")){
+			dj.setChecked(true);
+			}
+		
+		if(kneipe.specials.contains("Essen")){
+			essen.setChecked(true);
+			}
+		if(kneipe.specials.contains("Raucherbereich"))
+		{
+			raucherbereich.setChecked(true);
+			
+		}
+		if(kneipe.specials.contains("TV"))
+		{
+			tv.setChecked(true);
+			
+		}
+		tv.setEnabled(false);
+		raucherbereich.setEnabled(false);
+		essen.setEnabled(false);
+		dj.setEnabled(false);
+	}
 	public void onClick(View view) {
 		final Context ctxx = view.getContext();
 		switch(view.getId()){
@@ -183,6 +218,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 					Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
 					
 					getFragmentManager().beginTransaction()
+					.addToBackStack(null)
 		            .replace(R.id.details, bewertung)
 		            .commit();
 
@@ -200,6 +236,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 			Log.v(LOG_TAG,"Fragment BewertungCreate aufrufen");
 			
 			getFragmentManager().beginTransaction()
+			.addToBackStack(null)
             .replace(R.id.details, gutschein)
             .commit();
 			break;
