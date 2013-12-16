@@ -15,5 +15,6 @@
    <string name="benutzer">Profil</string>
    <string name="kneipe">Kneipen</string>
     <string name="logout">Abmelden</string>
+    <string name="UeberDieApp">Über die App</string>
      
 </resources>
