@@ -7,7 +7,6 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_PATH;
 import static de.kneipe.kneipenquartett.util.Constants.BEWERTUNG_PATH;
 import static de.kneipe.kneipenquartett.util.Constants.USERNAMEN_PATH;
 import static de.kneipe.kneipenquartett.util.Constants.USERNAMEN_PREFIX_PATH;
-
 import static java.net.HttpURLConnection.HTTP_NO_CONTENT;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -138,64 +137,49 @@ public class BenutzerService extends Service {
 		    return result;
 		}
 
-//		public List<Gutschein> sucheGutscheinByUserID(Long id, final Context ctx) {
-//			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "List<Long>"
-//			final AsyncTask<Long, Void, List<Gutschein>> sucheGutscheinByUserIDTask = new AsyncTask<Long, Void, List<Gutschein>>() {
-//				@Override
-//				// Neuer Thread, damit der UI-Thread nicht blockiert wird
-//				protected List<Gutschein> doInBackground(Long... ids) {
-//					final Long id = ids[0];
-//		    		final String path = BENUTZER_PATH + "/" + id + "/gutschein";
-//		    		Log.v(LOG_TAG, "path = " + path);
-//		    		final List<Gutschein> result = (List<Gutschein>) WebServiceClient.getJsonList(path, Gutschein.class);
-//			    	Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
-//					return result;
-//				}
-//			};
-//			
-//			sucheGutscheinByUserIDTask.execute(id);
-//			List<Gutschein> gutscheine = null;
-//			try {
-//				gutscheine = (List<Gutschein>) sucheGutscheinByUserIDTask.get(timeout, SECONDS);
-//			}
-//	    	catch (Exception e) {
-//	    		throw new InternalShopError(e.getMessage(), e);
-//			}
-//	
-//			return gutscheine;
-//	    }
-//		
+		public HttpResponse<Gutschein> updateGutschein (final Long id,Gutschein gutschein, final Context ctx) {
+			// (evtl. mehrere) Parameter vom Typ "Kunde", Resultat vom Typ "void"
+			final AsyncTask<Gutschein, Void, HttpResponse<Gutschein>> updateGutscheinTask = new AsyncTask<Gutschein, Void, HttpResponse<Gutschein>>() {
+				@Override
+	    		protected void onPreExecute() {
+					progressDialog = showProgressDialog(ctx);
+				}
+				
+				@Override
+				// Neuer Thread, damit der UI-Thread nicht blockiert wird
+				protected HttpResponse<Gutschein> doInBackground(Gutschein... gutschein) {
+					final Gutschein gut = gutschein[0];
+					
+		    		final String path = "/gutschein";
+		    		Log.v(LOG_TAG, "path = " + path);
 
-//	
-//		
-//		public List<Long> sucheIds(String prefix) {
-//			final String path = KUNDEN_ID_PREFIX_PATH + "/" + prefix;
-//		    Log.v(LOG_TAG, "sucheIds: path = " + path);
-//
-//    		final List<Long> ids =  WebServiceClient.getJsonLongList(path);
-//
-//			Log.d(LOG_TAG, "sucheIds: " + ids.toString());
-//			return ids;
-//		}
-//		
-//		/**
-//		 * Annahme: wird ueber AutoCompleteTextView aufgerufen, wobei die dortige Methode
-//		 * performFiltering() schon einen neuen Worker-Thread startet, so dass AsyncTask hier
-//		 * ueberfluessig ist.
-//		 */
-//		public List<String> sucheUsernamen(String prefix) {
-//			final String path = USERNAMEN_PREFIX_PATH +  "/" + prefix;
-//		    Log.v(LOG_TAG, "sucheUsernamen: path = " + path);
-//
-//    		final List<String> nachnamen = WebServiceClient.getJsonStringList(path);
-//			Log.d(LOG_TAG, "sucheUsernamen: " + nachnamen);
-//
-//			return nachnamen;
-//		}
-//		
-//		
-//		/**
-//		 */
+		    		final HttpResponse<Gutschein> result = WebServiceClient.putJson(gut, path);
+					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
+					return result;
+				}
+				
+				@Override
+	    		protected void onPostExecute(HttpResponse<Gutschein> unused) {
+					progressDialog.dismiss();
+	    		}
+			};
+			
+			updateGutscheinTask.execute(gutschein);
+			final HttpResponse<Gutschein> result;
+			try {
+				result = updateGutscheinTask.get(timeout, SECONDS);
+			}
+	    	catch (Exception e) {
+	    		throw new InternalShopError(e.getMessage(), e);
+			}
+			
+			
+				result.resultObject = gutschein;
+			
+			
+			return result;
+	    }
+		
 		public HttpResponse<Bewertung> createBewertung(Bewertung bw, final Context ctx) {
 			Log.d(LOG_TAG,"create benutzer vom ServiceBinder wird aufgerufen");
 			// (evtl. mehrere) Parameter vom Typ "Benutzer", Resultat vom Typ "void"

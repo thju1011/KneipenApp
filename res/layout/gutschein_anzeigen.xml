@@ -5,39 +5,38 @@
 	android:layout_height="match_parent"
 	tools:context=".ui.Benutzer.BenutzerDetails" >
 
-	<TableRow>
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:paddingLeft="5dp"
+		android:text="@string/g_beschreibung" />
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/g_beschreibung"
-			android:paddingLeft="5dp" />
-		
+	<TableRow
+		android:gravity="center_horizontal"
+		android:paddingTop="10dp" >
+
 		<TextView
 			android:id="@+id/g_gutscheinAnzeigen_beschreibung"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:paddingLeft="5dp" />
-
-	</TableRow>
-	 
-	<TableRow>
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/g_code"
-			android:paddingLeft="5dp" />
-		
-		<TextView
-			android:id="@+id/g_gutscheinAnzeigen_code"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="5dp" />
-
+			android:paddingLeft="5dp"
+			android:text="Large Text"
+			android:textAppearance="?android:attr/textAppearanceLarge" />
 	</TableRow>
 
-	
+	<Button
+		android:id="@+id/btn_einloesen"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp"
+		android:text="@string/einloesen" />
 
+	<TextView
+		android:id="@+id/g_gutscheinAnzeigen_verbraucht"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </TableLayout>

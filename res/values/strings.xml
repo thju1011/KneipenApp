@@ -16,5 +16,6 @@
    <string name="kneipe">Kneipen</string>
     <string name="logout">Abmelden</string>
     <string name="UeberDieApp">Über die App</string>
-     
+      <string name="einloesen">Gutschein jetzt einlösen</string>
+      <string name="zurueck">zurück</string>
 </resources>
