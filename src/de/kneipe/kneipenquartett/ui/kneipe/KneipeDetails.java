@@ -244,7 +244,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		case R.id.btn_Navigieren:
 			
 			final Intent intent = new Intent(ctxx, MapActivity.class);
-			intent.putExtra(KNEIPE_KEY, args );
+			intent.putExtra(KNEIPE_KEY, kneipe);
 			startActivity(intent);	
 			break;
 			

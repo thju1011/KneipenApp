@@ -87,7 +87,7 @@ public class BenutzerStammdaten extends Fragment implements OnClickListener {
     	
     	
         // Voraussetzung fuer onOptionsItemSelected()
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(false);
         
 		// attachToRoot = false, weil die Verwaltung des Fragments durch die Activity erfolgt
 		return inflater.inflate(R.layout.benutzer_stammdaten, container, false);

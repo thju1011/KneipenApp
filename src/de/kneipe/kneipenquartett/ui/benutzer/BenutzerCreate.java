@@ -53,7 +53,7 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 			
 			args = getArguments();
 			
-			setHasOptionsMenu(true);
+			setHasOptionsMenu(false);
 			
 			
 			return inflater.inflate(R.layout.benutzer_create, container, false);

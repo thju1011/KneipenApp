@@ -42,7 +42,6 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		
 		args = getArguments();
 		
-		setHasOptionsMenu(true);
 
 		benutzer = (Benutzer) getArguments() .get("be");
 		
@@ -68,7 +67,6 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		view.findViewById(R.id.btn_KategorieBar).setOnClickListener(this);
 		view.findViewById(R.id.btn_KategorieClub).setOnClickListener(this);
 		view.findViewById(R.id.btn_KategorieRestaurant).setOnClickListener(this);
-		view.findViewById(R.id.btn_KategorieCafe).setOnClickListener(this);
     }
 	public void onClick(View view) {
 		final Context ctx = view.getContext();
@@ -118,12 +116,7 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 
 			kneipeKategorie("Restaurant");
 			break;
-			
-		case R.id.btn_KategorieCafe:
-
-			kneipeKategorie("Cafe");
-			break;
-		
+	
 		
 	
 	}

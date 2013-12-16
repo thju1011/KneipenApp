@@ -55,7 +55,7 @@ import de.kneipe.kneipenquartett.util.Startseite;
 			
 			args = getArguments();
 			
-			setHasOptionsMenu(true);
+			setHasOptionsMenu(false);
 			
 			
 			return inflater.inflate(R.layout.login, container, false);

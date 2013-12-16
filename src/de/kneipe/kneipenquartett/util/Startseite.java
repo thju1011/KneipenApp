@@ -29,7 +29,7 @@ public class Startseite extends Fragment {
 		Log.v(LOG_TAG,"hallo");
 		args = getArguments();
 		
-		setHasOptionsMenu(true);
+		setHasOptionsMenu(false);
 		benutzer = (Benutzer) getArguments() .get("be");
 		
 		return inflater.inflate(R.layout.startseite, container, false);

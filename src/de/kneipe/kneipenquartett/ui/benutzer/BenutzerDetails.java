@@ -29,7 +29,7 @@ public class BenutzerDetails extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		args = getArguments();
 		
-		setHasOptionsMenu(true);
+		setHasOptionsMenu(false);
 		
         benutzer = (Benutzer) args.get("be");
         Log.d(LOG_TAG, benutzer.toString());
@@ -46,18 +46,18 @@ public class BenutzerDetails extends Fragment {
 		actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
 	    actionBar.setDisplayShowTitleEnabled(false);  // Titel der App ausblenden, um mehr Platz fuer die Tabs zu haben
     	
-	    Tab tab = actionBar.newTab()
-	                       .setText(getString(R.string.b_stammdaten))
-	                       .setTabListener(new TabListener<BenutzerStammdaten>(activity,
-	                    		                                            BenutzerStammdaten.class,
-	                    		                                            args));
-	    actionBar.addTab(tab);
-	    
-	    tab = actionBar.newTab()
+	    Tab  tab = actionBar.newTab()
 				.setText("Kneipen")
 				.setTabListener(new TabListener<KneipeSucheKategorie>(activity,KneipeSucheKategorie.class, args));
 
-		actionBar.addTab(tab);
+		actionBar.addTab(tab,0,false);
+		
+		tab = actionBar.newTab()
+                .setText("Profil")
+                .setTabListener(new TabListener<BenutzerStammdaten>(activity,
+             		                                            BenutzerStammdaten.class,
+             		                                            args));
+		actionBar.addTab(tab,1,true);
 	    
 
 	}

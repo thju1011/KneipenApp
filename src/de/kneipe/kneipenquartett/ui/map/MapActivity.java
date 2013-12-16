@@ -1,5 +1,7 @@
 package de.kneipe.kneipenquartett.ui.map;
 
+import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -24,12 +27,13 @@ import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.KneipeService;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 
-
 public class MapActivity extends Activity{
 	
 	private ServiceConnection kneipeServiceConnection;
 	private KneipeServiceBinder kneipeServiceBinder;
 	private List<Kneipe> kneipenArray = null;	 
+	private Bundle args;
+	private Kneipe kneipe;
 	// Google Map
 	private GoogleMap googleMap;
 	    
@@ -52,7 +56,10 @@ public class MapActivity extends Activity{
 	    protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.map_activity);
-
+	        args = getIntent().getExtras();
+	        if (args != null) {
+	        	kneipe = (Kneipe) args.get(KNEIPE_KEY);
+	        }
 
 	        try {
 	            // Loading map
@@ -94,10 +101,14 @@ public class MapActivity extends Activity{
 		    		// latitude and longitude
 		    		double latitude = k.latitude;
 		    		double longitude = k.longitude;
-		    		 
+		    		
 		    		// create marker
 		    		MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title(k.name);
-		    		 
+		    		
+		    		if(k.equals(kneipe)){
+		    			// GREEN color icon
+		    		marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+		    		}
 		    		// adding marker
 		    		googleMap.addMarker(marker);
 		    	}
