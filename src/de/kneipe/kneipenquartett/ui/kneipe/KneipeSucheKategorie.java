@@ -136,7 +136,8 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 	       List<Kneipe> result = new ArrayList<Kneipe>();
 	 
 	 for(Kneipe k : kneipenArray){
-		 if(k.name.toUpperCase().equals(name.toUpperCase())){
+		 String suche = k.name.toUpperCase();
+		 if(suche.contains(name.toUpperCase())){
 			 result.add(k);
 		 }
 	 }
