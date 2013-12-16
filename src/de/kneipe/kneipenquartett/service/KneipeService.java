@@ -35,7 +35,7 @@ public class KneipeService extends Service {
 	static {
 		// 2 Eintraege in die HashMap mit 100% = 1.0 Fuellgrad
 	}
-
+ 
 	@Override
 	public IBinder onBind(Intent intent) {
 		return binder;
