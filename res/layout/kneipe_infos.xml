@@ -22,7 +22,9 @@
       	android:id="@+id/textView7"
       	android:layout_width="wrap_content"
       	android:layout_height="wrap_content"
-      	android:text="Weitere Informationen" />
+      	android:text="Weitere Informationen: \n"
+      	 android:textSize="20sp"
+      	android:textStyle="bold" />
 
 
 	<TableRow>
@@ -31,12 +33,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/k_gruendungsjahr"
-			android:paddingLeft="5dp" />
+			android:textSize="16sp"
+			android:paddingLeft="8dp" />
 		
 		<TextView
 			android:id="@+id/k_gruendungsjahr"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textSize="16sp"
 			android:paddingLeft="5dp" />
 
 	</TableRow>
@@ -47,12 +51,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/k_guenstigstes"
-			android:paddingLeft="5dp" />
+			android:textSize="16sp"
+			android:paddingLeft="8dp" />
 		
 		<TextView
 			android:id="@+id/k_guenstigstes"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textSize="16sp"
 			android:paddingLeft="5dp" />
 
 	</TableRow>
@@ -63,12 +69,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/k_haltestellte"
-			android:paddingLeft="5dp" />
+			android:textSize="16sp"
+			android:paddingLeft="8dp" />
 		
 		<TextView
 			android:id="@+id/k_haltestelle"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textSize="16sp"
 			android:paddingLeft="5dp" />
 
     	</TableRow>
@@ -80,12 +88,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/k_personenanzahl"
-			android:paddingLeft="5dp" />
+			android:textSize="16sp"
+			android:paddingLeft="8dp" />
 		
 		<TextView
 			android:id="@+id/k_personenanzahl"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textSize="16sp"
 			android:paddingLeft="5dp" />
 
 	</TableRow>
@@ -95,12 +105,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/k_specials"
-			android:paddingLeft="5dp" />
+			android:textSize="16sp"
+			android:paddingLeft="8dp" />
 		
 		<TextView
 			android:id="@+id/k_specials"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textSize="16sp"
 			android:paddingLeft="5dp" />
 
 	</TableRow>

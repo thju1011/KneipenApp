@@ -1,12 +1,30 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/benutzer_details"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".ui.Benutzer.BenutzerDetails" >
 
-	<TableRow>
-
+<TableLayout
+	    android:layout_width="match_parent"
+		android:layout_height="wrap_content" >
+	
+		
+		<TableRow>
+	
+	
+		<TextView
+			android:id="@+id/k_benutzer_vorname"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+	
+		<TextView
+			android:id="@+id/k_benutzer_nachname"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+			
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -20,6 +38,6 @@
 			android:paddingLeft="5dp" />
 
 	</TableRow>
-	 
+	</TableLayout> 
 
-</TableLayout>
+</LinearLayout>

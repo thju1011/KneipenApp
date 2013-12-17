@@ -6,7 +6,8 @@
 	<string name="hello_world">Hello world!</string>
 	<string name="login_button">Login</string>
 	<string name="registrieren">Jetzt Registrieren</string>
-	 <string name="s_akzeptiert">Akzeptieren</string>
+	 <string name="s_akzeptiert">Akzeptieren</string> 
+	  <string name="s_alle_Kommentare">Alle Bewertungen</string>
     <string name="s_nicht_akzeptiert">Nicht akzeptieren</string>
    <string name="s_bitte_warten">Bitte warten </string>
    <string name="edit">Benutzer ändern</string>

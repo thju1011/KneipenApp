@@ -1,4 +1,4 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/kunde_details"
     android:layout_width="match_parent"
@@ -6,30 +6,41 @@
     android:stretchColumns="1,2"
     tools:context=".ui.kunde.KneipeDetails" >
 
+<TableLayout
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
 	
-	<TableRow>
+	<TableRow
+		android:layout_width="10dp"
+		android:layout_height="wrap_content" >
 
 		<TextView
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:text="@string/k_name"
-		    android:textStyle="bold" />
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_marginBottom="5dp"
+			android:layout_marginRight="10dp"
+			android:text="@string/k_name"
+			android:textStyle="bold" />
 		
 		<TextView
-		    android:id="@+id/txt_KneipeName"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:paddingLeft="5dp" />
+			android:id="@+id/txt_KneipeName"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_gravity="fill_horizontal"
+			android:paddingLeft="5dp" />
 
 	</TableRow>
 	
-	<TableRow>
+	<TableRow
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
 
 		<TextView
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:text="@string/k_internetadresse"
-		    android:textStyle="bold" />
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="5dp"
+			android:text="@string/k_internetadresse"
+			android:textStyle="bold" />
 		
 		<TextView
 		    android:id="@+id/txt_KneipeInternetadresse"
@@ -39,11 +50,14 @@
 
 	</TableRow>
 	
-	<TableRow>
+	<TableRow
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
 
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_marginBottom="5dp"
 			android:text="@string/k_adresse"
 			android:textStyle="bold" />
 		
@@ -55,116 +69,129 @@
 
 	</TableRow>
 	
-	<TableRow>
+	
+<TableRow
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
 
 	    <TextView
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="@string/k_head_list_bewertung"
-	        android:textStyle="bold" />
+	    	android:layout_width="0dp"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="10dp"
+	    	android:layout_weight="1"
+	    	android:text="@string/k_head_list_bewertung"
+	    	android:textStyle="bold" />
+
 	</TableRow>
 
 	<TableRow
-	    android:id="@+id/tableRow6"
-	    android:layout_width="5dp"
-	    android:layout_height="5dp" >
+		android:id="@+id/tableRow6"
+		android:layout_width="5dp"
+		android:layout_height="5dp" >
 
 		<RatingBar
-		    android:id="@+id/ratingBar1"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:numStars="5"
-		    android:rating="3.5"
-		    android:stepSize="0.5" />
+			android:id="@+id/ratingBar1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:numStars="5"
+			android:rating="3.5"
+			android:stepSize="0.5" />
 
 		<Button
-		    android:id="@+id/btn_KommentarAnzeigen"
-		    style="?android:attr/buttonStyleSmall"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="Kommentare" />
+			android:id="@+id/btn_KommentarAnzeigen"
+			style="?android:attr/buttonStyleSmall"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right"
+			android:layout_marginBottom="12dp"
+			android:text="@string/s_alle_Kommentare" />
 
 	</TableRow>
 
 	<TableRow
-	    android:id="@+id/tableRow1"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" >
+		android:id="@+id/tableRow1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
 
 		<CheckBox
-		    android:id="@+id/TVcheckBox"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="TV" />
+			android:id="@+id/TVcheckBox"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="TV" />
 
 		<Button
-		    android:id="@+id/btn_Gutschein"
-		    style="?android:attr/buttonStyleSmall"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="Gutschein" />
+			android:id="@+id/btn_Gutschein"
+			style="?android:attr/buttonStyleSmall"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="12dp"
+			android:text="Gutschein" />
 
 	</TableRow>
 
 	<TableRow
-	    android:id="@+id/tableRow2"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" >
+		android:id="@+id/tableRow2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
 
-	    <CheckBox
-	        android:id="@+id/checkboxEssen"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Essen" />
+		<CheckBox
+			android:id="@+id/checkboxEssen"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Essen" />
 
-	    <Button
-	        android:id="@+id/btn_bewertung"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Bewerten" />
-
-	</TableRow>
-
-	<TableRow
-	    android:id="@+id/tableRow3"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" >
-
-	    <CheckBox
-	        android:id="@+id/checkBoxDJ"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="DJ" />
-
-	    <Button
-	        android:id="@+id/btn_kneipeInfo"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Infos" />
+		<Button
+			android:id="@+id/btn_bewertung"
+			style="?android:attr/buttonStyleSmall"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="12dp"
+			android:text="Bewerten" />
 
 	</TableRow>
 
 	<TableRow
-	    android:id="@+id/tableRow4"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" >
+		android:id="@+id/tableRow3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
 
-	    <CheckBox
-	        android:id="@+id/checkBoxRaucherbereich"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Raucherbereich" />
+		<CheckBox
+			android:id="@+id/checkBoxDJ"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="DJ" />
 
+		<Button
+			android:id="@+id/btn_kneipeInfo"
+			style="?android:attr/buttonStyleSmall"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Infos" />
+	</TableRow>
+
+	<TableRow
+		android:id="@+id/tableRow4"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
+
+		<CheckBox
+			android:id="@+id/checkBoxRaucherbereich"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Raucherbereich" />
 	</TableRow>
 
 	<Button
-	    android:id="@+id/btn_Navigieren"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_marginTop="24dp"
-	    android:text="Hier hin navigieren!" />
+		android:id="@+id/btn_Navigieren"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="24dp"
+		android:text="Hier hin navigieren!" />
 
+	<TableRow
+		android:id="@+id/tableRow5"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
+	</TableRow>
 </TableLayout>
+</LinearLayout> 

@@ -34,18 +34,35 @@
 		android:imeActionLabel="Login"
 		android:imeOptions="actionSend"/>
 
-	<Button
+<!--	<Button
 		android:id="@+id/btn_login"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@string/login" />
+		android:text="@string/login" />-->
+	
+	    <Button
+        android:background="@drawable/button_style"
+       android:id="@+id/btn_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        style="@style/button_text" />
+	
 
-	<Button
+	<!--<Button
 		android:id="@+id/btn_reg"
 		android:layout_width="160dp"
 		android:layout_height="wrap_content"
-		android:text="@string/registrieren" />
+		android:text="@string/registrieren" />-->
 
+	  <Button
+        android:background="@drawable/button_style"
+      android:id="@+id/btn_reg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registrieren"
+        style="@style/button_text" />
+	
 	<TextView
 		android:id="@+id/btn_ueberDieApp"
 		android:layout_width="wrap_content"

@@ -71,9 +71,7 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 			createPasswort = (EditText) view.findViewById(R.id.passwort_create);
 	    	//createLogin.setText(kunde.login);
 	    	
-	    	
-	    	createUsername = (EditText) view.findViewById(R.id.login_create);
-	    	//createLogin.setText(kunde.login);
+	    
 	    	
 	    	createNachname = (EditText) view.findViewById(R.id.nachname_create);
 	    	//createNachname.setText(kunde.nachname);

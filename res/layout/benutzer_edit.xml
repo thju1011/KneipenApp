@@ -31,14 +31,22 @@
 				android:layout_height="wrap_content"
 				android:text="@string/b_nachname" />
 			
+<!--			<EditText
+				android:id="@+id/nachname_edt"
+				style="@style/RechteSpalteText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="text"
+				android:paddingLeft="5dp"
+				tools:ignore="LabelFor" />-->
+			
 			<EditText
-			    android:id="@+id/nachname_edt"
-			    style="@style/RechteSpalteText"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:inputType="text"
-			    android:paddingLeft="5dp"
-			    tools:ignore="LabelFor" />
+	            android:id="@+id/nachname_edt"
+	            style="@style/RechteSpalteText"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="text"
+	            tools:ignore="LabelFor" />
 	
 		</TableRow>
 		
@@ -93,13 +101,16 @@
 	
 	    </TableRow>
 	    
-	    <Button
-	    	android:id="@+id/btn_edit_speicher"
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:layout_marginTop="50dp"
-	    	android:text="@string/edit" />
+
 	    
+	    <Button
+	    android:id="@+id/btn_edit_speicher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/edit_button"
+        android:paddingTop="32sp"
+        android:text="Änderung \n speichern"
+        style="?android:attr/borderlessButtonStyle" ></Button>
 	  
 	
 

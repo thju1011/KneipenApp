@@ -75,6 +75,15 @@ public class KommentareShow extends Fragment{
 				aktuelleBewertung = b;
 				Log.v(LOG_TAG, b.toString());
 			}
+			
+		
+		
+	final TextView txtBenutzerVorname = (TextView) view.findViewById(R.id.k_benutzer_vorname);
+	txtBenutzerVorname.setText(String.valueOf(aktuelleBewertung.benutzer.vorname)); 
+	
+	final TextView txtBenutzerNachname = (TextView) view.findViewById(R.id.k_benutzer_nachname);
+	txtBenutzerNachname.setText(String.valueOf(aktuelleBewertung.benutzer.nachname)); 
+			
 		final TextView txtKommentare = (TextView) view.findViewById(R.id.k_kommentare);
 		txtKommentare.setText(String.valueOf(aktuelleBewertung.kommentar));
 		
