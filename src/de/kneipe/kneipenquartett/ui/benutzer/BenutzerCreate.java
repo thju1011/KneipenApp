@@ -209,20 +209,19 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 			Log.d(LOG_TAG,"Create Aufruf ");
 			
 			String password = createPasswort.getText().toString();
-			String username = createUsername.getText().toString();
 			String nachname = createNachname.getText().toString();
 			String vorname = createVorname.getText().toString();
 			String email = createEmail.getText().toString();
 			String geschlecht = createGeschlecht.getText().toString();
 			Boolean agbAkzeptiert = tglAGBs.isChecked();
-			if(password.isEmpty()||username.isEmpty()||nachname.isEmpty()||vorname.isEmpty()||!agbAkzeptiert)
+			if(password.isEmpty()||nachname.isEmpty()||vorname.isEmpty()||!agbAkzeptiert)
 			{
 				createNachname.setError("Alle Felder vollmachen ;)");
 				
 			}
 			benutzer = new Benutzer();
 			benutzer.password=password;
-			benutzer.username=username;
+			
 			benutzer.nachname=nachname;
 			benutzer.vorname=vorname;
 			benutzer.email=email;

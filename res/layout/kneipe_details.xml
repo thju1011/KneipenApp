@@ -11,7 +11,7 @@
 	android:layout_height="match_parent" >
 	
 	<TableRow
-		android:layout_width="10dp"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" >
 
 		<TextView
@@ -36,10 +36,10 @@
 		android:layout_height="wrap_content" >
 
 		<TextView
-			android:layout_width="match_parent"
+			android:layout_width="20dp"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="5dp"
-			android:text="@string/k_internetadresse"
+			android:text="Internetadresse"
 			android:textStyle="bold" />
 		
 		<TextView
