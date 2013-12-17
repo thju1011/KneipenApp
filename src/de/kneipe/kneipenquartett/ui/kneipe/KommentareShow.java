@@ -66,8 +66,8 @@ public class KommentareShow extends Fragment{
 				Log.v(LOG_TAG, result.toString());
 
 		List<Bewertung> bewertungen = (ArrayList<Bewertung>)result.resultList;
-		Log.v(LOG_TAG, String.valueOf(bewertungen.size()));
-		Log.v(LOG_TAG, bewertungen.get(0).toString());
+		//Log.v(LOG_TAG, String.valueOf(bewertungen.size()));
+	//	Log.v(LOG_TAG, bewertungen.get(0).toString());
 	
 		for (Bewertung b : bewertungen ) {
 			Log.v(LOG_TAG, b.kneipe.toString());
