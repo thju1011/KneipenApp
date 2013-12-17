@@ -88,9 +88,10 @@
 	    <TableRow>
 	
 	        <TextView
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:text="@string/b_geschlecht" />
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:layout_marginBottom="50dp"
+	        	android:text="@string/b_geschlecht" />
 	        
 	       <!-- <EditText
 	            android:id="@+id/geschlecht_edt"
@@ -120,11 +121,12 @@
 	    	android:id="@+id/btn_edit_speicher"
 	    	style="?android:attr/borderlessButtonStyle"
 	    	android:layout_width="wrap_content"
-	    	android:layout_height="163dp"
+	    	android:layout_height="wrap_content"
 	    	android:layout_gravity="right"
-	    	android:drawableTop="@drawable/edit_button"
-	    	android:paddingTop="32sp"
-	    	android:text="Änderung \n speichern" >
+	    	android:layout_marginBottom="50dp"
+	    	android:background="@drawable/button_style"
+	    	android:text="Änderung speichern" >
+
 </Button>
 	  
 	

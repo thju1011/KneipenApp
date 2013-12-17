@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -43,7 +44,7 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 
 		
 		
-		private ToggleButton tglAGBs;
+		private CheckBox tglAGBs;
 		
 		private RadioButton weiblich;
 		private RadioButton maennlich;
@@ -96,7 +97,7 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 	    	maennlich = (RadioButton) view.findViewById(R.id.geschlecht_maennlich);
 	    	
 	    	
-	    	tglAGBs =(ToggleButton) view.findViewById(R.id.agb_tgl);
+	    	tglAGBs =(CheckBox) view.findViewById(R.id.agb_tgl);
 
 
 	    	final Main mainActivity = (Main) getActivity();

@@ -133,13 +133,13 @@
 	            android:layout_height="wrap_content"
 	            android:text="@string/b_agbs" />
 	    		    	
-	    	<ToggleButton
+	    	<CheckBox
 			    android:id="@+id/agb_tgl"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:textOn="@string/s_akzeptiert"
-			    android:textColor="#ffffff"
-			    android:background="@drawable/button_style"
+			    
+			    
+	
 			    android:textOff="@string/s_nicht_akzeptiert" />
 	    	
 	    	
