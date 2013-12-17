@@ -5,32 +5,44 @@
 	android:layout_height="match_parent"
 	tools:context=".ui.Benutzer.BenutzerDetails" >
 
+   
+
 <TableLayout
 	    android:layout_width="match_parent"
 		android:layout_height="wrap_content" >
-	
+
+    <TableRow>
+
+    	<TextView
+    		android:id="@+id/k_benutzer_vorname"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content" />
+
+    	<TextView
+    		android:id="@+id/k_benutzer_nachname"
+    		android:layout_width="match_parent"
+    		android:layout_height="wrap_content" />
+
+    	<TextView
+    		android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:paddingLeft="5dp"
+    		android:text="@string/k_kommentare" />
+    </TableRow>
 		
 		<TableRow>
-	
-	
-		<TextView
-			android:id="@+id/k_benutzer_vorname"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="5dp" />
-	
-		<TextView
-			android:id="@+id/k_benutzer_nachname"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="5dp" />
-			
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/k_kommentare"
-			android:paddingLeft="5dp" />
+		 <RatingBar
+    	android:id="@+id/ratingBar1"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content" />
+		</TableRow>
 		
+		<TableRow>	
+			<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp"
+			android:text="Sein Kommentar:" />
 		<TextView
 			android:id="@+id/k_kommentare"
 			android:layout_width="match_parent"

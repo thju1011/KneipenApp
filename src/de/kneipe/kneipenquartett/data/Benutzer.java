@@ -23,7 +23,6 @@ public class Benutzer implements JsonMappable, Serializable {
 	private static final long serialVersionUID = -2843760959760554956L;
 
 	public Long uid;
-	public String username;
 	public String email;
 	public boolean agbAkzeptiert = true;
 	public String password;
@@ -35,7 +34,7 @@ public class Benutzer implements JsonMappable, Serializable {
 		super();
 	}
 	
-	public Benutzer(Long uid, String username, String email, Boolean agb, String password, String geschlecht, String nname, String vname) {
+	public Benutzer(Long uid, String email, Boolean agb, String password, String geschlecht, String nname, String vname) {
 		super();
 		this.uid= uid;
 		this.agbAkzeptiert = agb;
@@ -44,7 +43,7 @@ public class Benutzer implements JsonMappable, Serializable {
 		this.geschlecht = geschlecht;
 		this.nachname = nname;
 		this.vorname = vname;
-		this.username = username;
+	
 	}
 	
 	
@@ -53,7 +52,7 @@ public class Benutzer implements JsonMappable, Serializable {
 		Log.v(LOG_TAG, "IST DIE FACTORY NULL?"+jsonBuilderFactory.getClass().toString());
 		if(this.uid == null){
 			return jsonBuilderFactory.createObjectBuilder()
-                .add("username", username)
+               
                 .add("nachname", nachname)
                 .add("vorname", vorname)
                 .add("email", email)
@@ -63,7 +62,7 @@ public class Benutzer implements JsonMappable, Serializable {
 		else{
 					return jsonBuilderFactory.createObjectBuilder()
 					.add("uid", uid)
-	                .add("username", username)
+	     
 	                .add("nachname", nachname)
 	                .add("vorname", vorname)
 	                .add("email", email)
@@ -81,7 +80,7 @@ public class Benutzer implements JsonMappable, Serializable {
 	
 		Log.v(LOG_TAG,"JETZT FROM JSONOBJECT!!!!!");
 		uid = Long.valueOf(jsonObject.getJsonNumber("uid").longValue());
-	    username = jsonObject.getString("username");
+	
 		nachname = jsonObject.getString("nachname");
 		vorname = jsonObject.getString("vorname");
 		geschlecht = jsonObject.getString("geschlecht");
@@ -112,7 +111,7 @@ public class Benutzer implements JsonMappable, Serializable {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		//result = prime * result + ((passwordWdh == null) ? 0 : passwordWdh.hashCode());
 		result = prime * result + ((uid == null) ? 0 : uid.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
+	
 		result = prime * result + ((vorname == null) ? 0 : vorname.hashCode());
 		return result;
 	}
@@ -162,11 +161,7 @@ public class Benutzer implements JsonMappable, Serializable {
 				return false;
 		} else if (!uid.equals(other.uid))
 			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
+
 		if (vorname == null) {
 			if (other.vorname != null)
 				return false;
@@ -176,7 +171,7 @@ public class Benutzer implements JsonMappable, Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Benutzer [uid=" + uid + ", username=" + username + ", email=" + email + ", emailWdh=" 
+		return "Benutzer [uid=" + uid + ", username="  + ", email=" + email + ", emailWdh=" 
 				+ ", agbAkzeptiert=" + agbAkzeptiert + ", password=" + password + ", passwordWdh="
 				+ ", geschlecht=" + geschlecht + ", nachname=" + nachname + ", vorname=" + vorname + "]";
 	}
