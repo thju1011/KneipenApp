@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import de.kneipe.R;
@@ -25,8 +26,9 @@ import de.kneipe.kneipenquartett.service.GutscheinService.GutscheinServiceBinder
 import de.kneipe.kneipenquartett.service.HttpResponse;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 import de.kneipe.kneipenquartett.ui.main.Main;
+import de.kneipe.kneipenquartett.util.Startseite;
 
-public class GutscheinDetails extends Fragment{
+public class GutscheinDetails extends Fragment implements OnClickListener{
 private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 		
 		private Bundle args;
@@ -94,17 +96,46 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 			try{
 			final TextView txtbeschreibung = (TextView) view.findViewById(R.id.g_gutscheinAnzeigen_beschreibung);
 			txtbeschreibung.setText(aktuellerGutschein.beschreibung);
-
-			final TextView txtcode = (TextView) view.findViewById(R.id.g_gutscheinAnzeigen_code);
-			txtcode.setText(aktuellerGutschein.code); }
+			}
 			catch (Exception e){
 			 	e.getMessage().toString();
 			}
 			
-				 
+			if(!aktuellerGutschein.status)
+			{
+				view.findViewById(R.id.btn_einloesen).setVisibility(View.INVISIBLE);
+				TextView textview = (TextView) view.findViewById(R.id.g_gutscheinAnzeigen_verbraucht);
+				textview.setText("Sie haben Ihren Gutschein bereits eingelöst !");
+				
+			}
+			view.findViewById(R.id.btn_einloesen).setOnClickListener(this);
 			}
 	
+		
+			public void gutscheindeaktivieren(Gutschein g, Context ctxx)
+			{
+				
+				aktuellerGutschein.status = false;
+				benutzerServiceBinder.updateGutschein(benutzer.uid,aktuellerGutschein, ctxx);
+				
+			}
 			
+			@Override
+			public void onClick(View view)
+			{
+				
+				gutscheindeaktivieren(aktuellerGutschein, view.getContext());
+				Fragment nf = new GutscheinEinloesen();
+				args.putSerializable("Gutschein", aktuellerGutschein);
+				args.putSerializable(KNEIPE_KEY, kneipe1);
+				args.putSerializable("be", benutzer);
+				nf.setArguments(args);
+				getFragmentManager().beginTransaction()
+				 .addToBackStack(null) 
+				 .replace(R.id.details, nf)			
+				.commit();
+				
+			}
 		}
 		
 		

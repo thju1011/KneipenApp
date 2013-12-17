@@ -1,0 +1,31 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/benutzer_details"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ui.Benutzer.BenutzerDetails" >
+
+	<TextView
+		android:id="@+id/gutschein_einloesen_lautet"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:text="Ihr Gutscheincode lautet"
+		android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	<TextView
+		android:id="@+id/gutschein_Code"
+		android:layout_width="wrap_content"
+		android:layout_marginTop="25dp"
+		android:gravity="center_horizontal"
+		android:text="Large Text"
+		android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	<Button
+		android:id="@+id/btn_zurueck"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp"
+		android:text="@string/zurueck" />
+
+</TableLayout>
