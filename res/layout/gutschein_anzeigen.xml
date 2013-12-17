@@ -3,6 +3,7 @@
 	android:id="@+id/benutzer_details"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:background="@drawable/bier"
 	tools:context=".ui.Benutzer.BenutzerDetails" >
 
 	<TextView
@@ -13,9 +14,11 @@
 		android:text="@string/g_beschreibung" />
 
 	<TableRow
+		android:layout_marginBottom="25dp"
+		android:layout_marginTop="25dp"
 		android:gravity="center_horizontal"
 		android:paddingTop="10dp" >
-
+ 
 		<TextView
 			android:id="@+id/g_gutscheinAnzeigen_beschreibung"
 			android:layout_width="match_parent"
@@ -27,9 +30,9 @@
 
 	<Button
 		android:id="@+id/btn_einloesen"
-		android:layout_width="wrap_content"
+		style="@style/button_text"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="50dp"
+		android:background="@drawable/button_style"
 		android:text="@string/einloesen" />
 
 	<TextView

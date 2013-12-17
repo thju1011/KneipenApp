@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.main.Main" >
+	tools:context=".ui.main.Main"
+	android:background="@drawable/bier" >
 	
 	<TableLayout
 	    android:layout_width="match_parent"
@@ -16,7 +17,7 @@
 				android:text="@string/b_benutzer_id" />
 			
 			<TextView
-				android:id="@+id/benutzer_id"
+	 			android:id="@+id/benutzer_id"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:textIsSelectable="true"
@@ -91,26 +92,40 @@
 	            android:layout_height="wrap_content"
 	            android:text="@string/b_geschlecht" />
 	        
-	        <EditText
+	       <!-- <EditText
 	            android:id="@+id/geschlecht_edt"
 	            style="@style/RechteSpalteText"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:inputType="text"
-	            tools:ignore="LabelFor" />
+	            tools:ignore="LabelFor" />-->
+	            
+
+	             
+	        <RadioButton
+			    	android:id="@+id/geschlecht_weiblich"
+			    	android:layout_width="wrap_content"
+			    	android:layout_height="wrap_content"
+			    	android:text="@string/b_w"  />
+			    
+			    <RadioButton
+			    	android:id="@+id/geschlecht_maennlich"
+			    	android:layout_width="wrap_content"
+			    	android:layout_height="wrap_content"
+			    	android:text="@string/b_m" />
 	
 	    </TableRow>
 	    
-
-	    
 	    <Button
-	    android:id="@+id/btn_edit_speicher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/edit_button"
-        android:paddingTop="32sp"
-        android:text="Änderung \n speichern"
-        style="?android:attr/borderlessButtonStyle" ></Button>
+	    	android:id="@+id/btn_edit_speicher"
+	    	style="?android:attr/borderlessButtonStyle"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="163dp"
+	    	android:layout_gravity="right"
+	    	android:drawableTop="@drawable/edit_button"
+	    	android:paddingTop="32sp"
+	    	android:text="Änderung \n speichern" >
+</Button>
 	  
 	
 

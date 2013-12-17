@@ -1,113 +1,120 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/kunde_details"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:stretchColumns="1,2"
-    tools:context=".ui.kunde.KneipeDetails" >
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical" 
+	android:background="@drawable/bier">
 
 <TableLayout
-	android:layout_width="match_parent"
-	android:layout_height="match_parent" >
-	
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" >
+
 	<TableRow
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" >
-
-		<TextView
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:layout_marginBottom="5dp"
-			android:layout_marginRight="10dp"
-			android:text="@string/k_name"
-			android:textStyle="bold" />
 		
-		<TextView
-			android:id="@+id/txt_KneipeName"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:layout_gravity="fill_horizontal"
-			android:paddingLeft="5dp" />
-
-	</TableRow>
-	
-	<TableRow
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" >
-
-		<TextView
-			android:layout_width="20dp"
+	<TextView
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="5dp"
-			android:text="Internetadresse"
-			android:textStyle="bold" />
-		
+			android:layout_marginTop="5dp"
+			android:text="@string/k_name"
+			android:textStyle="bold"
+			android:textSize="16sp" />
+		 
 		<TextView
-		    android:id="@+id/txt_KneipeInternetadresse"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:paddingLeft="5dp" />
-
-	</TableRow>
-	
+			    style="@style/RechteSpalteText"
+				android:id="@+id/txt_KneipeName"
+				android:layout_width="match_parent"
+				 android:layout_height="wrap_content"
+				 android:textSize="16sp"	
+				android:textIsSelectable="true" />
+		</TableRow>
+		
 	<TableRow
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" >
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="5dp"
+			android:layout_marginRight="2dp"
+			android:text="Internetadresse"
+			android:textSize="16sp"
+			android:textStyle="bold" />
 
 		<TextView
+			android:id="@+id/txt_KneipeInternetadresse"
+			style="@style/RechteSpalteText"
 			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="16sp" />
+</TableRow>
+<TableRow
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
+		
+	<TextView
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="5dp"
 			android:text="@string/k_adresse"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			android:textSize="16sp" />
 		
 		<TextView
 			android:id="@+id/txt_kneipeAdresse"
+			style="@style/RechteSpalteText"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:paddingLeft="5dp" />
+			android:textSize="16sp" />
 
 	</TableRow>
 	
-	
+		
+		
 <TableRow
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" >
 
-	    <TextView
-	    	android:layout_width="0dp"
+	<TextView
+	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:layout_marginBottom="10dp"
-	    	android:layout_weight="1"
-	    	android:text="@string/k_head_list_bewertung"
-	    	android:textStyle="bold" />
+	    	android:layout_marginBottom="5dp"
+	    	android:text="Bewertungen:"
+	    	android:textStyle="bold"
+	    	android:textSize="16sp" />
+</TableRow>
+</TableLayout>
 
-	</TableRow>
+<TableLayout
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" >
 
-	<TableRow
+<TableRow
 		android:id="@+id/tableRow6"
 		android:layout_width="5dp"
 		android:layout_height="5dp" >
+<!--<RatingBar
+	android:id="@+id/ratingBar1"
+	android:layout_width="wrap_content"
+	android:layout_height="50dp" />-->
 
 		<RatingBar
 			android:id="@+id/ratingBar1"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="50dp"
+			android:layout_marginBottom="15dp"
 			android:numStars="5"
 			android:rating="3.5"
 			android:stepSize="0.5" />
-
-		<Button
-			android:id="@+id/btn_KommentarAnzeigen"
-			style="?android:attr/buttonStyleSmall"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="right"
-			android:layout_marginBottom="12dp"
-			android:text="@string/s_alle_Kommentare" />
-
-	</TableRow>
-
+		
+</TableRow>
+</TableLayout>
+<TableLayout
+	android:layout_width="wrap_content"
+	android:layout_height="match_parent" >
+	
 	<TableRow
 		android:id="@+id/tableRow1"
 		android:layout_width="wrap_content"
@@ -118,17 +125,20 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="TV" />
-
+		
 		<Button
-			android:id="@+id/btn_Gutschein"
-			style="?android:attr/buttonStyleSmall"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="12dp"
-			android:text="Gutschein" />
+		android:id="@+id/btn_KommentarAnzeigen"
+		style="@style/button_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/button_style"
+		android:text="Alle Bewertungen" />
+
+	
+		
 
 	</TableRow>
-
+	
 	<TableRow
 		android:id="@+id/tableRow2"
 		android:layout_width="wrap_content"
@@ -140,13 +150,17 @@
 			android:layout_height="wrap_content"
 			android:text="Essen" />
 
+
 		<Button
-			android:id="@+id/btn_bewertung"
-			style="?android:attr/buttonStyleSmall"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="12dp"
-			android:text="Bewerten" />
+		android:id="@+id/btn_Gutschein"
+		style="@style/button_text"
+		android:textColor="#ffffff"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/button_style"
+		android:layout_marginBottom="12dp"
+		android:text="Gutschein" />
+				
 
 	</TableRow>
 
@@ -161,12 +175,18 @@
 			android:layout_height="wrap_content"
 			android:text="DJ" />
 
-		<Button
-			android:id="@+id/btn_kneipeInfo"
-			style="?android:attr/buttonStyleSmall"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Infos" />
+<Button
+		android:id="@+id/btn_bewertung"
+		style="@style/button_text"
+		android:textColor="#ffffff"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/button_style"
+		android:layout_marginBottom="12dp"
+		android:text="Bewerten" />
+		
+			
+		
 	</TableRow>
 
 	<TableRow
@@ -178,20 +198,41 @@
 			android:id="@+id/checkBoxRaucherbereich"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_marginBottom="10dp"
+			android:layout_marginRight="50dp"
 			android:text="Raucherbereich" />
-	</TableRow>
 
-	<Button
-		android:id="@+id/btn_Navigieren"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="24dp"
-		android:text="Hier hin navigieren!" />
+<Button
+	android:id="@+id/btn_kneipeInfo"
+	style="@style/button_text"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_marginBottom="20dp"
+	android:background="@drawable/button_style"
+	android:text="Infos"
+	android:textColor="#ffffff" />
+		
+	</TableRow>
 
 	<TableRow
 		android:id="@+id/tableRow5"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" >
 	</TableRow>
+	
+
+		<Button
+		android:id="@+id/btn_Navigieren"
+		style="@style/button_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/button_style"
+		android:text="Hier hin navigieren" />
+
 </TableLayout>
-</LinearLayout> 
+
+
+
+
+
+</LinearLayout>

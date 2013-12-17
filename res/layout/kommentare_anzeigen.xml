@@ -3,7 +3,8 @@
 	android:id="@+id/benutzer_details"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.Benutzer.BenutzerDetails" >
+	tools:context=".ui.Benutzer.BenutzerDetails"
+	android:background="@drawable/bier" >
 
    
 

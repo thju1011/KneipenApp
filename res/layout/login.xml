@@ -4,7 +4,8 @@
 	android:layout_height="match_parent"
 	android:gravity="center"
 	android:orientation="vertical"
-	tools:context=".ui.main.Main" >
+	tools:context=".ui.main.Main" 
+	android:background="@drawable/bier">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -15,9 +16,9 @@
 			android:id="@+id/emaillogin"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:ems="10"
 			android:hint="@string/b_emailthint"
-			android:ems="10" 
-			android:imeOptions="actionNext">
+			android:imeOptions="actionNext" >
 
 			<requestFocus />
 		</EditText>
@@ -27,42 +28,45 @@
 		android:id="@+id/passwordlogin"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="@string/b_passworthint"
 		android:ems="10"
-		android:inputType="textPassword"
-		android:imeActionId="@+id/ime_login" 
+		android:hint="@string/b_passworthint"
+		android:imeActionId="@+id/ime_login"
 		android:imeActionLabel="Login"
-		android:imeOptions="actionSend"/>
+		android:imeOptions="actionSend"
+		android:inputType="textPassword" />
 
-<!--	<Button
+	<!--
+    	<Button
 		android:id="@+id/btn_login"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@string/login" />-->
-	
-	    <Button
-        android:background="@drawable/button_style"
-       android:id="@+id/btn_login"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        style="@style/button_text" />
-	
+		android:text="@string/login" />
+	-->
 
-	<!--<Button
+	<Button
+		android:id="@+id/btn_login"
+		style="@style/button_text"
+		android:layout_width="259dp"
+		android:layout_height="wrap_content"
+		android:background="@drawable/button_style"
+		android:text="@string/login" />
+
+	<!--
+        <Button
 		android:id="@+id/btn_reg"
 		android:layout_width="160dp"
 		android:layout_height="wrap_content"
-		android:text="@string/registrieren" />-->
+		android:text="@string/registrieren" />
+	-->
 
-	  <Button
-        android:background="@drawable/button_style"
-      android:id="@+id/btn_reg"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/registrieren"
-        style="@style/button_text" />
-	
+	<Button
+		android:id="@+id/btn_reg"
+		style="@style/button_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/button_style"
+		android:text="@string/registrieren" />
+
 	<TextView
 		android:id="@+id/btn_ueberDieApp"
 		android:layout_width="wrap_content"

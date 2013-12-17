@@ -1,7 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/bier" >
 
 <TableLayout
 	android:layout_width="match_parent"
@@ -12,13 +13,19 @@
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/b_nachname" />
+				android:layout_marginBottom="5dp"
+				android:layout_marginTop="5dp"
+				android:text="@string/b_nachname"
+				android:textStyle="bold"
+				android:textSize="16sp" />
 			
 			<TextView
 			    style="@style/RechteSpalteText"
 				android:id="@+id/nachname_txt"
 				android:layout_width="match_parent"
-				 android:layout_height="wrap_content"	
+				 android:layout_height="wrap_content"
+				 android:layout_marginBottom="5dp"
+				 android:textSize="16sp"	
 				android:textIsSelectable="true" />
 	
 		</TableRow>
@@ -26,15 +33,19 @@
 		<TableRow>
 		
 	        <TextView
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:text="@string/b_vorname" />
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:textStyle="bold"
+	        	android:layout_marginBottom="5dp"
+	        	android:text="@string/b_vorname"
+	        	android:textSize="16sp" />
 	        
 	        <TextView
 	        	style="@style/RechteSpalteText"
 	            android:id="@+id/vorname"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
+	            android:textSize="16sp"
 	            android:textIsSelectable="false" />
 	
 	    </TableRow>
@@ -42,23 +53,31 @@
 	    <TableRow>
 	
 	        <TextView
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:text="@string/b_email" />
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:layout_marginBottom="5dp"
+	        	android:textStyle="bold"
+	        	android:text="@string/b_email"
+	        	android:textSize="16sp" />
 	        
 	        <TextView
 	        	style="@style/RechteSpalteText"
 	            android:id="@+id/email"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
+	            android:textSize="16sp"
 	            android:textIsSelectable="true" />
 	
 	    </TableRow>
 
 	    <TableRow>
+
 	    	<TextView
 	    		android:layout_width="match_parent"
 	    		android:layout_height="wrap_content"
+	    		android:layout_marginBottom="50dp"
+	    		android:textStyle="bold"
+	    		android:textSize="16sp"
 	    		android:text="@string/b_geschlecht" />
 
 	    	<TextView
@@ -66,23 +85,26 @@
 	    		style="@style/RechteSpalteText"
 	    		android:layout_width="match_parent"
 	    		android:layout_height="wrap_content"
+	    		android:textSize="16sp"
 	    		android:textIsSelectable="true" />
 	    </TableRow>
 
-	  
-	        <Button
-	        	android:id="@+id/btn_edit"
-	           	android:layout_width="160dp"
-	        	android:layout_height="wrap_content"
-	        	android:text="@string/edit" />
-
-	   
-	        <Button
-	        	android:id="@+id/btn_logout"
-	        	android:layout_width="160dp"
-	        	android:layout_height="wrap_content"
-	        	android:text="@string/logout" />
-
+	    <Button
+	    	android:id="@+id/btn_edit"
+	    	style="@style/button_text"
+	    	android:layout_width="259dp"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginTop="50dp"
+	    	android:background="@drawable/button_style"
+	    	android:text="@string/edit" />
+	     
+	     <Button
+	     	android:id="@+id/btn_logout"
+	     	style="@style/button_text"
+	     	android:layout_width="259dp"
+	     	android:layout_height="wrap_content"
+	     	android:background="@drawable/button_style"
+	     	android:text="@string/logout" />
 	
 	</TableLayout>
 

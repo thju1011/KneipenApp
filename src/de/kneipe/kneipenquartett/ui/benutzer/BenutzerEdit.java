@@ -40,7 +40,8 @@ public class BenutzerEdit extends Fragment implements OnClickListener {
 	private EditText edtNachname;
 	private EditText edtVorname;
 	private EditText edtEmail;
-	private EditText edtGeschlecht;
+	private RadioButton weiblich;
+	private RadioButton maennlich;
 
 	
 	@Override
@@ -81,12 +82,24 @@ public class BenutzerEdit extends Fragment implements OnClickListener {
     	edtEmail = (EditText) view.findViewById(R.id.email_edt);
     	edtEmail.setText(benutzer.email);
     	
-
-    	edtGeschlecht = (EditText) view.findViewById(R.id.geschlecht_edt);
-    	edtGeschlecht.setText(benutzer.geschlecht);
+    	weiblich = (RadioButton) view.findViewById(R.id.geschlecht_weiblich);
+ 
     	
+    	maennlich = (RadioButton) view.findViewById(R.id.geschlecht_maennlich);
+	}
     	
-    	}
+//    	if (benutzer.geschlecht != null)
+//    	{ switch (benutzer.geschlecht)
+//    		{ case 
+//    				: weiblich.setChecked(true); 
+//    		break; 
+//    		case WEIBLICH: maenlich.setChecked(true); 
+//    		break; 
+//    		default: }
+//    		}
+//    	
+//    	
+//    	}
     
     
 
@@ -123,8 +136,8 @@ public class BenutzerEdit extends Fragment implements OnClickListener {
 		Log.d(LOG_TAG,"vorname wird geändert ");
 		benutzer.email = edtEmail.getText().toString();
 		Log.d(LOG_TAG,"email wird geändert ");
-		benutzer.geschlecht = edtGeschlecht.getText().toString();
-		Log.d(LOG_TAG,"geschlecht wird geändert ");
+//		benutzer.geschlecht = edtGeschlecht.getText().toString();
+//		Log.d(LOG_TAG,"geschlecht wird geändert ");
 		
 		
 		Log.d(LOG_TAG, benutzer.toString());
@@ -135,9 +148,13 @@ public class BenutzerEdit extends Fragment implements OnClickListener {
 			edtVorname.setError("Bitte überprüfen Sie Ihre Eingabe, Felder dürfen nicht leer sein.");	}
 		if(TextUtils.isEmpty(benutzer.email)){
 			edtEmail.setError("Bitte überprüfen Sie Ihre Eingabe, Felder dürfen nicht leer sein.");	}
-		if(TextUtils.isEmpty(benutzer.geschlecht)){
-			edtGeschlecht.setError("Bitte überprüfen Sie Ihre Eingabe, Felder dürfen nicht leer sein.");	}
-		else{
+		if (weiblich.isChecked()) 
+		{ benutzer.geschlecht = "weiblich";
+		}
+		else { 
+			benutzer.geschlecht = "männlich" ;
+					}
+	
 		final Main mainActivity = (Main) getActivity();
 		final HttpResponse<? extends Benutzer> result = mainActivity.getBenutzerServiceBinder().updateBenutzer(benutzer, ctxx);	
 		
@@ -166,7 +183,7 @@ public class BenutzerEdit extends Fragment implements OnClickListener {
 	}
 	
 		
-	}
+	
 	
 	
 	

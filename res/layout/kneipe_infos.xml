@@ -3,20 +3,11 @@
 	android:id="@+id/kneipe_infos"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.Kneipe.KneipeDetails" >
+	tools:context=".ui.Kneipe.KneipeDetails"
+	android:background="@drawable/bier" >
 	
 	
-	<ImageView
-		android:id="@+id/icon"
-		android:layout_width="wrap_content"
-		android:layout_height="50dp"
-		android:layout_column="0"
-		android:layout_gravity="center_horizontal|top"
-		android:layout_row="0"
-		android:contentDescription="TODO"
-		android:src="@drawable/ic_launcher" />
 
-	<Space />
 
  <TextView
       	android:id="@+id/textView7"
