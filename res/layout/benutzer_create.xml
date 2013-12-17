@@ -6,7 +6,7 @@
 	tools:context=".ui.benutzer.BenutzerCreate" >
 	
 	
-	<TableRow>
+<!--	<TableRow>
 	
 			<TextView
 				android:layout_width="match_parent"
@@ -22,25 +22,9 @@
 			    android:paddingLeft="5dp"
 			    tools:ignore="LabelFor" />
 	
-		</TableRow>
+		</TableRow>-->
 		
-		<TableRow>
-	
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/b_passwort" />
-			
-			<EditText
-			    android:id="@+id/passwort_create"
-			    style="@style/RechteSpalteText"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:inputType="text"
-			    android:paddingLeft="5dp"
-			    tools:ignore="LabelFor" />
-	
-		</TableRow>
+		
 	
 		<TableRow>
 	
@@ -93,6 +77,24 @@
 	            tools:ignore="LabelFor" />
 	
 	    </TableRow>
+	    
+	    <TableRow>
+	
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/b_passwort" />
+			
+			<EditText
+			    android:id="@+id/passwort_create"
+			    style="@style/RechteSpalteText"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:inputType="text"
+			    android:paddingLeft="5dp"
+			    tools:ignore="LabelFor" />
+	
+		</TableRow>
 	    
     <TableRow>
 	
