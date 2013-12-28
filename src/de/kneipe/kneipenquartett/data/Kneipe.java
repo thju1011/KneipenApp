@@ -84,6 +84,11 @@ public class Kneipe implements JsonMappable, Serializable {
 		specials = jsonObject.getString("specials");
 		art = jsonObject.getString("art");
 		rating = jsonObject.getJsonNumber("rating").toString();
+		/**
+		 *  ACHTUNG  "Zahlendreher" in Lat und Lng daher hier der tausch der beiden werte!!!!
+		 */
+		latitude = Float.valueOf(jsonObject.getJsonNumber("longitude").toString());
+		longitude = Float.valueOf(jsonObject.getJsonNumber("latitude").toString());
 //		bewertung.fromJsonObject(jsonObject.getJsonObject("bewertung"));
 		
 	}

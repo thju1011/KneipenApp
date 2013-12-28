@@ -36,6 +36,7 @@ import de.kneipe.kneipenquartett.ui.gutschein.GutscheinDetails;
 import de.kneipe.kneipenquartett.ui.main.Main;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
 import de.kneipe.kneipenquartett.ui.map.MapActivity;
+import de.kneipe.kneipenquartett.ui.map.NavigationActivity;
 import de.kneipe.kneipenquartett.util.TabListener;
 
 public class KneipeDetails extends Fragment implements  android.view.View.OnClickListener{
@@ -260,7 +261,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 			
 		case R.id.btn_Navigieren:
 			
-			final Intent intent = new Intent(ctxx, MapActivity.class);
+			final Intent intent = new Intent(ctxx, NavigationActivity.class);
 			intent.putExtra(KNEIPE_KEY, kneipe);
 			startActivity(intent);	
 			break;
