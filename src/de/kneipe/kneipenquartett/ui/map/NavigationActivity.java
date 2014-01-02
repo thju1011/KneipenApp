@@ -71,6 +71,7 @@ public class NavigationActivity extends FragmentActivity implements LocationList
 	    fragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
 		map = fragment.getMap(); 	
 		kneipenEinzeichen();
+		map.setMyLocationEnabled(true);
 		bNavigation = (Button) findViewById(R.id.bNavigation);
 		bNavigation.setOnClickListener(new View.OnClickListener() {
 		
@@ -78,6 +79,9 @@ public class NavigationActivity extends FragmentActivity implements LocationList
 			public void onClick(View v) {
 				 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, NavigationActivity.this);
 				 Location  location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+				 if(location == null){
+					location =  locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+				 }
 				 Log.d("Latitude:", + location.getLatitude() + ", Longitude:" + location.getLongitude());
 					currentLocation = new LatLng(location.getLatitude(),location.getLongitude());
 					
