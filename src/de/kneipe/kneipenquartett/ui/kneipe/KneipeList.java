@@ -1,7 +1,5 @@
 package de.kneipe.kneipenquartett.ui.kneipe;
 
-import static android.app.ActionBar.NAVIGATION_MODE_TABS;
-import static de.kneipe.kneipenquartett.util.Constants.KNEIPEN_KEY;
 import static de.kneipe.kneipenquartett.util.Constants.KNEIPE_KEY;
 
 import java.util.ArrayList;
@@ -9,10 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,9 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -31,7 +26,6 @@ import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
-import de.kneipe.kneipenquartett.ui.main.Main;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
 
 public class KneipeList extends ListFragment{
@@ -44,11 +38,13 @@ public class KneipeList extends ListFragment{
 	private Bundle args;
 	private int position = 0;
 	private Benutzer benutzer;
+	private ImageView image;
 	
 	private static final String ID = "kid";
 	private static final String KNEIPENNAME = "name";
-	private static final String[] FROM = {KNEIPENNAME};
-	private static final int[] TO = {R.id.txt_kneipeName };
+	private static final String ICON = "icon";
+	private static final String[] FROM = {KNEIPENNAME, ICON};
+	private static final int[] TO = {R.id.txt_kneipeName , R.id.icon};
 
 //	private LazyAdapter adapter;
 
@@ -58,13 +54,17 @@ public class KneipeList extends ListFragment{
 		args = getArguments();
 		
 		setHasOptionsMenu(false);
+
 		kneipen = (ArrayList<Kneipe>) args.getSerializable(KNEIPE_KEY);
 		benutzer = (Benutzer) getArguments() .get("be");
 		
 //		kneipen = (List<Kneipe>) getActivity().getIntent().getExtras().get(KNEIPEN_KEY);
 		Log.d(LOG_TAG, kneipen.toString());
+		
+
 		final ListAdapter listAdapter = createListAdapter();
         setListAdapter(listAdapter);
+
 //		setHasOptionsMenu(true);
 		// attachToRoot = false, weil die Verwaltung des Fragments durch die
 		// Activity erfolgt
@@ -78,12 +78,19 @@ public class KneipeList extends ListFragment{
     		final Map<String, Object> kneipeItem = new HashMap<String, Object>(2, 1); // max 2 Eintraege, bis zu 100 % Fuellung
     		//kneipeItem.put(ID, k.guenstigstesBier);TODO:Attribute setzen
     		kneipeItem.put(KNEIPENNAME, k.name);
+    		//Kneipenbild setzen
+    		
+    		
+    		kneipeItem.put(ICON, k.icon);
+
     		kneipenItems.add(kneipeItem);        	
         }
 		
-		final ListAdapter listAdapter = new SimpleAdapter(getActivity(), kneipenItems, R.layout.kneipe_liste_item, FROM, TO);
+	final ListAdapter listAdapter = new SimpleAdapter(getActivity(), kneipenItems, R.layout.kneipe_liste_item, FROM, TO);
 		return listAdapter;
     }
+	
+
 	
 	public void refresh(Kneipe kneipe) {
 		kneipen.set(position, kneipe);
