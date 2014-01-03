@@ -9,7 +9,6 @@ import java.util.Map;
 
 import android.app.Fragment;
 import android.app.ListFragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,14 +17,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Kneipe;
-import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 import de.kneipe.kneipenquartett.ui.main.Prefs;
 
 public class KneipeList extends ListFragment{
@@ -33,18 +30,15 @@ public class KneipeList extends ListFragment{
 	private static final String LOG_TAG = KneipeList.class.getSimpleName();
 	private ArrayList<Kneipe> kneipen;
 	private List<Map<String, Object>> kneipenItems;
-	private List<Long> bewertungIds;
-	private KneipeServiceBinder kneipeServiceBinder;
 	private Bundle args;
 	private int position = 0;
 	private Benutzer benutzer;
-	private ImageView image;
 	
-	private static final String ID = "kid";
+	private static final String ADRESSE = "adresse";
 	private static final String KNEIPENNAME = "name";
 	private static final String ICON = "icon";
-	private static final String[] FROM = {KNEIPENNAME, ICON};
-	private static final int[] TO = {R.id.txt_kneipeName , R.id.icon};
+	private static final String[] FROM = {KNEIPENNAME, ICON, ADRESSE};
+	private static final int[] TO = {R.id.txt_kneipeName , R.id.icon, R.id.secondLine};
 
 //	private LazyAdapter adapter;
 
@@ -75,12 +69,10 @@ public class KneipeList extends ListFragment{
 	private ListAdapter createListAdapter() {
 		kneipenItems = new ArrayList<Map<String, Object>>(kneipen.size());
 		for (Kneipe k : kneipen) {
-    		final Map<String, Object> kneipeItem = new HashMap<String, Object>(2, 1); // max 2 Eintraege, bis zu 100 % Fuellung
-    		//kneipeItem.put(ID, k.guenstigstesBier);TODO:Attribute setzen
+    		final Map<String, Object> kneipeItem = new HashMap<String, Object>(3, 1); // max 3 Eintraege, bis zu 100 % Fuellung
+    		kneipeItem.put(ADRESSE, k.adresse);
     		kneipeItem.put(KNEIPENNAME, k.name);
-    		//Kneipenbild setzen
-    		
-    		
+    		//Kneipenbild setzen  		
     		kneipeItem.put(ICON, k.icon);
 
     		kneipenItems.add(kneipeItem);        	
