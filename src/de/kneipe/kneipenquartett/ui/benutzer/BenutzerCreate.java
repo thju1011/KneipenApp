@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import de.kneipe.R;
@@ -40,10 +42,13 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 		private EditText createPasswort;
 		
 
-		private EditText createGeschlecht;
 		
 		
-		private ToggleButton tglAGBs;
+		private CheckBox tglAGBs;
+		
+		private RadioButton weiblich;
+		private RadioButton maennlich;
+		
 		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,11 +87,17 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 	    	createEmail = (EditText) view.findViewById(R.id.email_create);
 	    	//createEmail.setText(kunde.email);
 	    	
+//	    	if(weiblich.isChecked())
+//				benutzer.geschlecht = "weiblich";
+//				else {
+//					benutzer.geschlecht = "maennlich";}
 	    	
-	    	createGeschlecht = (EditText) view.findViewById(R.id.geschlecht_create);
+	    
+	    	weiblich = (RadioButton) view.findViewById(R.id.geschlecht_weiblich);
+	    	maennlich = (RadioButton) view.findViewById(R.id.geschlecht_maennlich);
 	    	
 	    	
-	    	tglAGBs =(ToggleButton) view.findViewById(R.id.agb_tgl);
+	    	tglAGBs =(CheckBox) view.findViewById(R.id.agb_tgl);
 
 
 	    	final Main mainActivity = (Main) getActivity();
@@ -212,7 +223,6 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 			String nachname = createNachname.getText().toString();
 			String vorname = createVorname.getText().toString();
 			String email = createEmail.getText().toString();
-			String geschlecht = createGeschlecht.getText().toString();
 			Boolean agbAkzeptiert = tglAGBs.isChecked();
 			if(password.isEmpty()||nachname.isEmpty()||vorname.isEmpty()||!agbAkzeptiert)
 			{
@@ -225,7 +235,11 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 			benutzer.nachname=nachname;
 			benutzer.vorname=vorname;
 			benutzer.email=email;
-			benutzer.geschlecht= geschlecht;
+			if(weiblich.isChecked())
+				benutzer.geschlecht = "weiblich";
+				else {
+					benutzer.geschlecht = "maennlich";}
+//			benutzer.geschlecht= geschlecht;
 		
 			benutzer.agbAkzeptiert= agbAkzeptiert;
 				/*		

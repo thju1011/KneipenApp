@@ -3,7 +3,8 @@
 	android:id="@+id/benutzer_create"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.benutzer.BenutzerCreate" >
+	tools:context=".ui.benutzer.BenutzerCreate" 
+	android:background="@drawable/bier">
 	
 	
 <!--	<TableRow>
@@ -103,13 +104,25 @@
 	            android:layout_height="wrap_content"
 	            android:text="@string/b_geschlecht" />
 	        
-	        <EditText
+	        <RadioButton
+			    	android:id="@+id/geschlecht_weiblich"
+			    	android:layout_width="wrap_content"
+			    	android:layout_height="wrap_content"
+			    	android:text="@string/b_w"  />
+			    
+			    <RadioButton
+			    	android:id="@+id/geschlecht_maennlich"
+			    	android:layout_width="wrap_content"
+			    	android:layout_height="wrap_content"
+			    	android:text="@string/b_m" />
+	        
+	    <!--    <EditText
 	            android:id="@+id/geschlecht_create"
 	            style="@style/RechteSpalteText"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:inputType="text"
-	            tools:ignore="LabelFor" />
+	            tools:ignore="LabelFor" />-->
 	
 	    </TableRow>
 
@@ -120,11 +133,13 @@
 	            android:layout_height="wrap_content"
 	            android:text="@string/b_agbs" />
 	    		    	
-	    	<ToggleButton
+	    	<CheckBox
 			    android:id="@+id/agb_tgl"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:textOn="@string/s_akzeptiert"
+			    
+			    
+	
 			    android:textOff="@string/s_nicht_akzeptiert" />
 	    	
 	    	
@@ -132,9 +147,11 @@
 
 	    <Button
 	    	android:id="@+id/btn_reg"
-	    	android:layout_width="wrap_content"
+	    	style="@style/button_text"
+	    	android:layout_width="259dp"
 	    	android:layout_height="wrap_content"
 	    	android:layout_marginTop="50dp"
+	    	android:background="@drawable/button_style"
 	    	android:text="@string/registrieren" />
-
+	  
 </TableLayout>

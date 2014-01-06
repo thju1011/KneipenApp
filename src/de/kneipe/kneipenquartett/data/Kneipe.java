@@ -27,13 +27,14 @@ public class Kneipe implements JsonMappable, Serializable {
 	public double latitude;
 	public String rating;
 	public Bewertung bewertung;
+	public int icon;
 	
 	public Kneipe(){
 		super();
 	}
 	
 	public Kneipe(int Kid, String Name, String Adresse, String Internetadresse, String Haltestelle, String Art,
-			double GuenstigstesBier, int Personalanzahl, int Gruendungsjahr, String Specials, double Latitude, double Longitude, String drating) {
+			double GuenstigstesBier, int Personalanzahl, int Gruendungsjahr, String Specials, double Latitude, double Longitude, String drating, int Icon) {
 		kid = Kid;
 		name = Name;
 		adresse = Adresse;
@@ -47,6 +48,7 @@ public class Kneipe implements JsonMappable, Serializable {
 		longitude = Longitude;
 		latitude = Latitude;
 		rating = drating;
+		icon = Icon;
 		
 	}
 	
@@ -84,6 +86,11 @@ public class Kneipe implements JsonMappable, Serializable {
 		specials = jsonObject.getString("specials");
 		art = jsonObject.getString("art");
 		rating = jsonObject.getJsonNumber("rating").toString();
+		/**
+		 *  ACHTUNG  "Zahlendreher" in Lat und Lng daher hier der tausch der beiden werte!!!!
+		 */
+		latitude = Float.valueOf(jsonObject.getJsonNumber("longitude").toString());
+		longitude = Float.valueOf(jsonObject.getJsonNumber("latitude").toString());
 //		bewertung.fromJsonObject(jsonObject.getJsonObject("bewertung"));
 		
 	}

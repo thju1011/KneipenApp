@@ -1,7 +1,8 @@
   <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
  	android:layout_width="match_parent"
  	android:layout_height="match_parent" 
- 	android:stretchColumns="1,2">
+ 	android:stretchColumns="1,2"
+ 	android:background="@drawable/bier">
 
       <TextView
       	android:id="@+id/textView7"
@@ -15,7 +16,7 @@
     		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:textSize="16sp" >
-
+ 
     		<TextView
     			android:id="@+id/txt_bewertung_freundlichkeit"
     			android:layout_width="wrap_content"
@@ -93,10 +94,18 @@
     		<requestFocus />
     	</EditText>
 
+    	
     	<Button
+		android:id="@+id/btn_bewertung_bewertungaschicken"
+		style="@style/button_text"
+		android:layout_width="259dp"
+		android:layout_height="wrap_content"
+		android:background="@drawable/button_style"
+		android:text="Bewertung abschicken" />
+    	<!--<Button
     		android:id="@+id/btn_bewertung_bewertungaschicken"
     		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
-    		android:text="Bewertung abschicken" />
+    		android:text="Bewertung abschicken" />-->
 
     </TableLayout>
