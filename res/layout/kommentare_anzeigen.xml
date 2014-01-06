@@ -24,6 +24,7 @@
     		android:layout_height="wrap_content" />
 
     	<TextView
+    		android:id="@+id/k_kommentare"
     		android:layout_width="match_parent"
     		android:layout_height="wrap_content"
     		android:paddingLeft="5dp"
@@ -39,6 +40,7 @@
 		
 		<TableRow>	
 			<TextView
+			android:id="@+id/kommentare_show_seinKommentar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:paddingLeft="5dp"

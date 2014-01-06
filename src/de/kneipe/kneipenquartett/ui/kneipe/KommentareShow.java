@@ -23,7 +23,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -68,7 +70,19 @@ public class KommentareShow extends Fragment{
 		List<Bewertung> bewertungen = (ArrayList<Bewertung>)result.resultList;
 		//Log.v(LOG_TAG, String.valueOf(bewertungen.size()));
 	//	Log.v(LOG_TAG, bewertungen.get(0).toString());
-	
+	if(bewertungen== null)
+	{
+		view.findViewById(R.id.k_kommentare).setVisibility(View.INVISIBLE);
+		view.findViewById(R.id.k_benutzer_vorname).setVisibility(View.INVISIBLE);
+		view.findViewById(R.id.k_benutzer_nachname).setVisibility(View.INVISIBLE);
+		view.findViewById(R.id.ratingBar1).setVisibility(View.INVISIBLE);
+		view.findViewById(R.id.kommentare_show_seinKommentar).setVisibility(View.INVISIBLE);
+		view.findViewById(R.id.k_kommentare).setVisibility(View.INVISIBLE);
+		Toast.makeText(ctxx, "Keine Kommentare vorhanden", Toast.LENGTH_LONG).show();
+		
+		
+	}
+	else{
 		for (Bewertung b : bewertungen ) {
 			Log.v(LOG_TAG, b.kneipe.toString());
 			if (b.kneipe.kid==kneipe.kid){
@@ -86,7 +100,12 @@ public class KommentareShow extends Fragment{
 			
 		final TextView txtKommentare = (TextView) view.findViewById(R.id.k_kommentare);
 		txtKommentare.setText(String.valueOf(aktuelleBewertung.kommentar));
-		
+		final RatingBar ratingBar = (RatingBar) view.findViewById(R.id.ratingBar1);
+		float rating = Float.parseFloat(String.valueOf((aktuelleBewertung.sauberkeit+ aktuelleBewertung.preisleistung +aktuelleBewertung.freundlichkeit)/3));
+		ratingBar.setIsIndicator(true);
+		ratingBar.setNumStars(5);
+		ratingBar.setRating(rating);
 	}
 	}
+}
 }
