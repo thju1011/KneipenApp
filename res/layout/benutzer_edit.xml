@@ -9,6 +9,31 @@
 	    android:layout_width="match_parent"
 		android:layout_height="wrap_content" >
 	
+<TableRow>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Profil ändern von "
+			android:paddingLeft="5dp" />
+		
+		<TextView
+			android:id="@+id/b_details_vorname"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+	
+	<TextView
+			android:id="@+id/b_details_nachname"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="5dp" />
+
+
+	</TableRow>
+		
+		
 	<!--	<TableRow>
 	
 			<TextView

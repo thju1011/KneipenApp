@@ -154,6 +154,13 @@ import de.kneipe.kneipenquartett.util.Startseite;
 				.addToBackStack(null)
 				.commit();
 				break;
+				
+			case R.id.btn_ueberDieApp:
+				getFragmentManager().beginTransaction()
+				.replace(R.id.details, new About())
+				.addToBackStack(null)
+				.commit();
+				break;
 							
 			}
 			
