@@ -12,22 +12,19 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" >
 		
-	<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="5dp"
-			android:layout_marginTop="5dp"
-			android:text="@string/k_name"
-			android:textStyle="bold"
-			android:textSize="16sp" />
 		 
 		<TextView
 			    style="@style/RechteSpalteText"
 				android:id="@+id/txt_KneipeName"
 				android:layout_width="match_parent"
 				 android:layout_height="wrap_content"
-				 android:textSize="16sp"	
-				android:textIsSelectable="true" />
+				 android:textSize="30sp"	
+				android:textIsSelectable="true"
+				android:textStyle="bold"
+				android:paddingTop="5dp"
+				android:paddingLeft="50dp"
+				android:textColor="#B22222" 
+				 />
 		</TableRow>
 		
 	<TableRow
@@ -41,7 +38,8 @@
 			android:layout_marginRight="2dp"
 			android:text="Internetadresse"
 			android:textSize="16sp"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			android:paddingLeft="5dp" />
 
 		<TextView
 			android:id="@+id/txt_KneipeInternetadresse"
@@ -60,7 +58,8 @@
 			android:layout_marginBottom="5dp"
 			android:text="@string/k_adresse"
 			android:textStyle="bold"
-			android:textSize="16sp" />
+			android:textSize="16sp"
+			android:paddingLeft="5dp" />
 		
 		<TextView
 			android:id="@+id/txt_kneipeAdresse"
@@ -83,7 +82,8 @@
 	    	android:layout_marginBottom="5dp"
 	    	android:text="Bewertungen:"
 	    	android:textStyle="bold"
-	    	android:textSize="16sp" />
+	    	android:textSize="16sp"
+	    	android:paddingLeft="5dp" />
 </TableRow>
 </TableLayout>
 
@@ -227,7 +227,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:background="@drawable/button_style"
-		android:text="Hier hin navigieren" />
+		android:text="Hierhin navigieren" />
 
 </TableLayout>
 

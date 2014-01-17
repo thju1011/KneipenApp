@@ -16,7 +16,6 @@ import de.kneipe.kneipenquartett.ui.benutzer.BenutzerStammdaten;
 import de.kneipe.kneipenquartett.ui.kneipe.KneipeSucheKategorie;
 
 
-
 public class Startseite extends Fragment {
 	
 	private static final String LOG_TAG = Startseite.class.getSimpleName();
@@ -59,12 +58,9 @@ public class Startseite extends Fragment {
 		 tab = actionBar.newTab()
 							.setText("Profil")
 							.setTabListener(new TabListener<BenutzerStammdaten>(a, BenutzerStammdaten.class, args));
-		
-		
-		actionBar.addTab(tab,1,false);
 
-
-		
+		 actionBar.addTab(tab,1,false);
+		 
 
 				 
 

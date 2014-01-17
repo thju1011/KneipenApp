@@ -11,7 +11,11 @@
 		android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
 		android:paddingLeft="5dp"
-		android:text="@string/g_beschreibung" />
+		android:text="@string/g_beschreibung"
+		android:textSize="25sp"
+			android:paddingTop="10dp" 
+    		android:textStyle="bold"
+    		android:textColor="#B22222" />
 
 	<TableRow
 		android:layout_height="200dp"
@@ -23,9 +27,13 @@
 		<TextView
 			android:id="@+id/g_gutscheinAnzeigen_beschreibung"
 			android:layout_width="match_parent"
-			android:layout_height="100dp"
-			android:paddingLeft="5dp"
+			android:layout_height="50dp"
+			android:paddingLeft="10dp"
+			android:paddingRight="10dp"
+			android:paddingTop="10dp"
+			android:paddingBottom="10dp"
 			android:text="Large Text"
+			android:background="@drawable/back"
 			android:textAppearance="?android:attr/textAppearanceLarge" />
 	</TableRow>
 

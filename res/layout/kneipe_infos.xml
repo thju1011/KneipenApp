@@ -13,9 +13,11 @@
       	android:id="@+id/textView7"
       	android:layout_width="wrap_content"
       	android:layout_height="wrap_content"
-      	android:text="Weitere Informationen: \n"
-      	 android:textSize="20sp"
-      	android:textStyle="bold" />
+      	android:text="Weitere Informationen zur Kneipe: \n"
+      	 android:textSize="25sp"
+      	android:textStyle="bold"
+      	android:paddingTop="10dp"
+    	android:textColor="#B22222" />
 
 
 	<TableRow>
@@ -25,6 +27,7 @@
 			android:layout_height="wrap_content"
 			android:text="@string/k_gruendungsjahr"
 			android:textSize="16sp"
+			android:textStyle="bold"
 			android:paddingLeft="8dp" />
 		
 		<TextView
@@ -43,6 +46,7 @@
 			android:layout_height="wrap_content"
 			android:text="@string/k_guenstigstes"
 			android:textSize="16sp"
+			android:textStyle="bold"
 			android:paddingLeft="8dp" />
 		
 		<TextView
@@ -61,6 +65,7 @@
 			android:layout_height="wrap_content"
 			android:text="@string/k_haltestellte"
 			android:textSize="16sp"
+			android:textStyle="bold"
 			android:paddingLeft="8dp" />
 		
 		<TextView
@@ -80,6 +85,7 @@
 			android:layout_height="wrap_content"
 			android:text="@string/k_personenanzahl"
 			android:textSize="16sp"
+			android:textStyle="bold"
 			android:paddingLeft="8dp" />
 		
 		<TextView
@@ -97,6 +103,7 @@
 			android:layout_height="wrap_content"
 			android:text="@string/k_specials"
 			android:textSize="16sp"
+			android:textStyle="bold"
 			android:paddingLeft="8dp" />
 		
 		<TextView

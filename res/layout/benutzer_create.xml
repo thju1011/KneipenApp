@@ -7,24 +7,22 @@
 	android:background="@drawable/bier">
 	
 	
-<!--	<TableRow>
-	
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/b_login" />
-			
-			<EditText
-			    android:id="@+id/login_create"
-			    style="@style/RechteSpalteText"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:inputType="text"
-			    android:paddingLeft="5dp"
-			    tools:ignore="LabelFor" />
-	
-		</TableRow>-->
+	<TableRow
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" >
 		
+		 
+		<TextView
+			android:text="Registrieren"
+			    android:layout_width="match_parent"
+				 android:layout_height="wrap_content"
+				 android:textSize="25sp"	
+				android:textIsSelectable="true"
+				android:textStyle="bold"
+				android:paddingTop="5dp"
+				android:textColor="#B22222" 
+				 />
+		</TableRow>
 		
 	
 		<TableRow>

@@ -24,8 +24,7 @@ public class KneipeInfos extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		args = getArguments();
-		
-		setHasOptionsMenu(true);
+
         
         kneipe = (Kneipe) getArguments().get(KNEIPE_KEY);
         

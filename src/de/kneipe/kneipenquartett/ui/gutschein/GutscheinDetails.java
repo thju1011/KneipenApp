@@ -95,6 +95,7 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 				}
 			try{
 			final TextView txtbeschreibung = (TextView) view.findViewById(R.id.g_gutscheinAnzeigen_beschreibung);
+			
 			txtbeschreibung.setText(aktuellerGutschein.beschreibung);
 			}
 			catch (Exception e){

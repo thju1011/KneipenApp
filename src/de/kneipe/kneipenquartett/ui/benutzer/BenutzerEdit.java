@@ -51,10 +51,7 @@ public class BenutzerEdit extends Fragment implements OnClickListener {
 		
 		
 		Log.v(LOG_TAG, "OnCreateView-BenutzerEdit");
-        
-		// Voraussetzung fuer onOptionsItemSelected()
-		setHasOptionsMenu(true);
-		
+        		
 
 		
 		benutzer = (Benutzer) getArguments() .get("be");
