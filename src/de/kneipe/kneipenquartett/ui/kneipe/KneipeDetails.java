@@ -120,7 +120,7 @@ public class KneipeDetails extends Fragment implements  android.view.View.OnClic
 		actionBar.removeAllTabs();
 		// (horizontale) Tabs; NAVIGATION_MODE_LIST fuer Dropdown Liste
 		actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
-		actionBar.setDisplayShowTitleEnabled(false); // Titel der App
+		actionBar.setDisplayShowTitleEnabled(true); // Titel der App
 														// ausblenden, um mehr
 														// Platz fuer die Tabs
 														// zu haben

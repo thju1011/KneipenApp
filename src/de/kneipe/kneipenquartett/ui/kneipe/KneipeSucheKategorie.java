@@ -6,9 +6,11 @@ import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -24,7 +27,6 @@ import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Kneipe;
 import de.kneipe.kneipenquartett.service.HttpResponse;
-import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
 import de.kneipe.kneipenquartett.ui.main.Login;
 import de.kneipe.kneipenquartett.ui.main.Main;
 
@@ -50,15 +52,23 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 	
 
 	}
+	public static void closeKeyboard(Context c, IBinder windowToken) {
+	    InputMethodManager mgr = (InputMethodManager) c.getSystemService(Context.INPUT_METHOD_SERVICE);
+	    mgr.hideSoftInputFromWindow(windowToken, 0);
+	}
+
+	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
     	
 		Log.d(LOG_TAG, "View wird aufgebaut");
+		
 		final  String LOG_TAG = Login.class.getSimpleName();
 		 kneipeName = (EditText) view.findViewById(R.id.txtKneipeSuchen);
 
 		 final Main mainActivity = (Main) getActivity();
-		
+			ActionBar actionBar = mainActivity.getActionBar();
+			actionBar.setDisplayShowTitleEnabled(true);
 		mainActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 		
 		view.findViewById(R.id.btnKneipeSuchen).setOnClickListener(this);
@@ -88,14 +98,19 @@ public class KneipeSucheKategorie extends Fragment implements OnClickListener, O
 		case R.id.btnKneipeSuchen:	
 			 String kneipeNameStr = kneipeName.getText().toString();
 			 
-			 if(TextUtils.isEmpty(kneipeNameStr))
+			 if(TextUtils.isEmpty(kneipeNameStr)){
 					kneipeName.setError("Eingabe fehlt");
+					break;
+			 }
+			 else{
+				 closeKeyboard(getActivity(), kneipeName.getWindowToken());
+			 }
 
 				
 				
 			
 				 suchen(view, kneipeNameStr);
-			 
+				 
 		
 
 				
