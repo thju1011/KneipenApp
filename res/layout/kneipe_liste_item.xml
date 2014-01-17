@@ -24,7 +24,7 @@
         android:layout_toRightOf="@id/icon"
         android:ellipsize="marquee"
         android:singleLine="true"
-        android:text="Gutschein, Infos, Bewertungen, Map"
+        android:text="Adresse"
         android:textSize="12sp" />
 
     <TextView

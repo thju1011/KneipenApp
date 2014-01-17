@@ -2,11 +2,14 @@ package de.kneipe.kneipenquartett.ui.map;
 
 import java.util.ArrayList;
 import java.util.Map;
+
 import org.w3c.dom.Document;
-import com.google.android.gms.maps.model.LatLng;
+
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
 
 public class GetDirectionsAsyncTask extends AsyncTask<Map<String, String>, Object, ArrayList<LatLng>>
 {

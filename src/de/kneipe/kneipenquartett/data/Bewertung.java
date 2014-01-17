@@ -52,7 +52,7 @@ public class Bewertung implements JsonMappable, Serializable{
 	public void fromJsonObject(JsonObject jsonObject) {
 		Log.v(LOG_TAG,jsonObject.toString());
 		Log.v(LOG_TAG,"from JSON in Bewertung aufgerufen");
-		bid = Long.valueOf(String.valueOf(jsonObject.getJsonNumber("bid")));
+		bid = Long.valueOf(String.valueOf(jsonObject.getJsonNumber("bid"))).longValue();
 		kommentar = jsonObject.getString("kommentar");
 		rating =  jsonObject.getJsonNumber("rating").doubleValue();
 		freundlichkeit = jsonObject.getJsonNumber("freundlichkeit").doubleValue();
