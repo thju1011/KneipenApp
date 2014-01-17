@@ -77,6 +77,7 @@ import de.kneipe.kneipenquartett.util.Startseite;
 			
 			view.findViewById(R.id.btn_reg).setOnClickListener(this);
 			view.findViewById(R.id.btn_login).setOnClickListener(this);
+			view.findViewById(R.id.btn_ueberDieApp).setOnClickListener(this);
 	    }
 		
 		public void onClick(View view) {

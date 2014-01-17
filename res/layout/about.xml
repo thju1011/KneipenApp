@@ -28,21 +28,5 @@
 		android:textStyle="bold"
 		android:inputType="textMultiLine"
 		android:textSize="16dp"
-		android:text="
-Diese App wurde im Rahmen der Veranstaltung E-Business an der Hochschule Karlsruhe entwickelt.
-
-Alle Rechte vorbehalten.
-
-Bei Fragen oder Anregungen wenden sie sich an einen der Entwickler:
-		
-Michael Schwarz 
-scmi1025@hs-karlsruhe.de
-David Schillinger
-scda1023@hs-karlsruhe.de
-Torben Schneider 
-scto1022@hs-karlsruhe.de
-Julia Thamasett 
-thju1011@hs-karlsruhe.de
-
-Version 1.0" />
+		android:text="Diese App wurde im Rahmen der Veranstaltung E-Business an der Hochschule Karlsruhe entwickelt.\nAlle Rechte vorbehalten.\nBei Fragen oder Anregungen wenden sie sich an einen der Entwickler:\nMichael Schwarz\nscmi1025@hs-karlsruhe.de\nDavid Schillinger\nscda1023@hs-karlsruhe.de\nTorben Schneider\nscto1022@hs-karlsruhe.de\nJulia Thamasett\nthju1011@hs-karlsruhe.de\nVersion 1.0" />
 </GridLayout>
