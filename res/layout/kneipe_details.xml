@@ -9,11 +9,11 @@
 				android:id="@+id/txt_KneipeName"
 				android:layout_width="match_parent"
 				 android:layout_height="wrap_content"
-				 android:textSize="30sp"	
+				 android:textSize="20sp"	
 				android:textIsSelectable="true"
 				android:textStyle="bold"
 				android:paddingTop="5dp"
-				android:paddingLeft="50dp"
+				android:paddingLeft="5dp"
 				android:textColor="#B22222" 
 				 />
 
