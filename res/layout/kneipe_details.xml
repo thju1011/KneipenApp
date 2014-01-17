@@ -3,17 +3,8 @@
 	android:layout_height="fill_parent"
 	android:orientation="vertical" 
 	android:background="@drawable/bier">
-
-<TableLayout
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content" >
-
-	<TableRow
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" >
-		
-		 
-		<TextView
+	
+	<TextView
 			    style="@style/RechteSpalteText"
 				android:id="@+id/txt_KneipeName"
 				android:layout_width="match_parent"
@@ -25,8 +16,12 @@
 				android:paddingLeft="50dp"
 				android:textColor="#B22222" 
 				 />
-		</TableRow>
-		
+
+<TableLayout
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" >
+
+			
 	<TableRow
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" >
