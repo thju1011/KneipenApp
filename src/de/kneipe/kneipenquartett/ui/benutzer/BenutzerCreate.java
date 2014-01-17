@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.service.HttpResponse;
@@ -107,6 +108,13 @@ import de.kneipe.kneipenquartett.ui.main.Main;
 		public void onClick(View view) {
 			switch (view.getId()) {
 				case R.id.btn_reg:
+					 if(!createEmail.getText().toString().contains("@")){
+						 Toast.makeText(view.getContext(), "Keine gültige Emailadresse", Toast.LENGTH_LONG).show();
+						 Log.d(LOG_TAG, "email falsch");
+						 return; 
+					 }
+						
+					 
 					Log.d(LOG_TAG,"create wird ausgeführt");
 					createBenutzer(view);
 					closeKeyboard(getActivity(), createEmail.getWindowToken());
@@ -249,12 +257,24 @@ import de.kneipe.kneipenquartett.ui.main.Main;
 			benutzer.newsletter = tglNewsletter.isChecked();	
 	*/
 			
+			
 				
 				Log.d(LOG_TAG,view.toString());
 				
 				Log.d(LOG_TAG,benutzer.toString());
 				final Main mainActivity = (Main) getActivity();
 				Log.d(LOG_TAG,mainActivity.toString());
+				
+				//Test ob email bereits existiert
+				final HttpResponse<? extends Benutzer> emailtest = mainActivity.getBenutzerServiceBinder().sucheBenutzerByEmail(benutzer.email, ctxx);
+				 final Benutzer emailtestB = emailtest.resultObject;
+				 if(emailtest.responseCode == 200){
+					 Toast.makeText(ctxx, "email bereits vorhanden", Toast.LENGTH_LONG).show();
+					 Log.d(LOG_TAG, "email existiert bereits");
+					 return;
+				 }
+				
+				//Anlegen
 				final HttpResponse<? extends Benutzer> result = mainActivity.getBenutzerServiceBinder().createBenutzer(benutzer, ctxx);	
 				Log.d(LOG_TAG, result.toString());
 				Log.d(LOG_TAG, benutzer.toString());

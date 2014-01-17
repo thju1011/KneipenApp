@@ -21,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
+import android.webkit.WebView.FindListener;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Bewertung;
@@ -269,6 +270,8 @@ public class BenutzerService extends Service {
 			return result;
 	    }
 		public HttpResponse<Benutzer> createBenutzer(Benutzer be, final Context ctx) {
+			 
+			
 			Log.d(LOG_TAG,"create benutzer vom ServiceBinder wird aufgerufen");
 			// (evtl. mehrere) Parameter vom Typ "Benutzer", Resultat vom Typ "void"
 			final AsyncTask<Benutzer, Void, HttpResponse<Benutzer>> createBenutzerTask = new AsyncTask<Benutzer, Void, HttpResponse<Benutzer>>() {
