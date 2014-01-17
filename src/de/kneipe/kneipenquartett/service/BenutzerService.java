@@ -49,16 +49,7 @@ public class BenutzerService extends Service {
 			return BenutzerService.this;
 		}
 		
-		private ProgressDialog progressDialog;
-		private ProgressDialog showProgressDialog(Context ctx) {
-			progressDialog = new ProgressDialog(ctx);
-			progressDialog.setProgressStyle(STYLE_SPINNER);  // Kreis (oder horizontale Linie)
-			progressDialog.setMessage(getString(R.string.s_bitte_warten));
-			progressDialog.setCancelable(true);      // Abbruch durch Zuruecktaste
-			progressDialog.setIndeterminate(true);   // Unbekannte Anzahl an Bytes werden vom Web Service geliefert
-			progressDialog.show();
-			return progressDialog;
-		}
+
 		
 		/**
 		 */
@@ -66,10 +57,6 @@ public class BenutzerService extends Service {
 			
 			// (evtl. mehrere) Parameter vom Typ "Long", Resultat vom Typ "Benutzer"
 			final AsyncTask<String, Void, HttpResponse<Benutzer>> sucheBenutzerByEmailTask = new AsyncTask<String, Void, HttpResponse<Benutzer>>() {
-				@Override
-	    		protected void onPreExecute() {
-					progressDialog = showProgressDialog(ctx);
-				}
 				
 				@Override
 				// Neuer Thread, damit der UI-Thread nicht blockiert wird
@@ -81,11 +68,7 @@ public class BenutzerService extends Service {
 					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
 					return result;
 				}
-				
-				@Override
-	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
-					progressDialog.dismiss();
-	    		}
+
 			};
 
     		sucheBenutzerByEmailTask.execute(email);
@@ -141,10 +124,6 @@ public class BenutzerService extends Service {
 		public HttpResponse<Gutschein> updateGutschein (final Long id,Gutschein gutschein, final Context ctx) {
 			// (evtl. mehrere) Parameter vom Typ "Kunde", Resultat vom Typ "void"
 			final AsyncTask<Gutschein, Void, HttpResponse<Gutschein>> updateGutscheinTask = new AsyncTask<Gutschein, Void, HttpResponse<Gutschein>>() {
-				@Override
-	    		protected void onPreExecute() {
-					progressDialog = showProgressDialog(ctx);
-				}
 				
 				@Override
 				// Neuer Thread, damit der UI-Thread nicht blockiert wird
@@ -159,10 +138,6 @@ public class BenutzerService extends Service {
 					return result;
 				}
 				
-				@Override
-	    		protected void onPostExecute(HttpResponse<Gutschein> unused) {
-					progressDialog.dismiss();
-	    		}
 			};
 			
 			updateGutscheinTask.execute(gutschein);
@@ -185,10 +160,7 @@ public class BenutzerService extends Service {
 			Log.d(LOG_TAG,"create benutzer vom ServiceBinder wird aufgerufen");
 			// (evtl. mehrere) Parameter vom Typ "Benutzer", Resultat vom Typ "void"
 			final AsyncTask<Bewertung, Void, HttpResponse<Bewertung>> createBewertungTask = new AsyncTask<Bewertung, Void, HttpResponse<Bewertung>>() {
-				@Override
-	    		protected void onPreExecute() {
-					progressDialog = showProgressDialog(ctx);
-				}
+
 				
 				@Override
 				// Neuer Thread, damit der UI-Thread nicht blockiert wird
@@ -204,10 +176,6 @@ public class BenutzerService extends Service {
 					return result;
 				}
 				
-				@Override
-	    		protected void onPostExecute(HttpResponse<Bewertung> unused) {
-					progressDialog.dismiss();
-	    		}
 			};
 			
 			createBewertungTask.execute(bw);
@@ -230,10 +198,7 @@ public class BenutzerService extends Service {
 		public HttpResponse<Benutzer> updateBenutzer(Benutzer be, final Context ctx) {
 			// (evtl. mehrere) Parameter vom Typ "Benutzer", Resultat vom Typ "void"
 			final AsyncTask<Benutzer, Void, HttpResponse<Benutzer>> updateBenutzerTask = new AsyncTask<Benutzer, Void, HttpResponse<Benutzer>>() {
-				@Override
-	    		protected void onPreExecute() {
-					progressDialog = showProgressDialog(ctx);
-				}
+
 				
 				@Override
 				// Neuer Thread, damit der UI-Thread nicht blockiert wird
@@ -246,11 +211,7 @@ public class BenutzerService extends Service {
 					Log.d(LOG_TAG + ".AsyncTask", "doInBackground: " + result);
 					return result;
 				}
-				
-				@Override
-	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
-					progressDialog.dismiss();
-	    		}
+
 			};
 			
 			updateBenutzerTask.execute(be);
@@ -275,10 +236,10 @@ public class BenutzerService extends Service {
 			Log.d(LOG_TAG,"create benutzer vom ServiceBinder wird aufgerufen");
 			// (evtl. mehrere) Parameter vom Typ "Benutzer", Resultat vom Typ "void"
 			final AsyncTask<Benutzer, Void, HttpResponse<Benutzer>> createBenutzerTask = new AsyncTask<Benutzer, Void, HttpResponse<Benutzer>>() {
-				@Override
-	    		protected void onPreExecute() {
-					progressDialog = showProgressDialog(ctx);
-				}
+//				@Override
+//	    		protected void onPreExecute() {
+//					progressDialog = showProgressDialog(ctx);
+//				}
 				
 				@Override
 				// Neuer Thread, damit der UI-Thread nicht blockiert wird
@@ -294,12 +255,12 @@ public class BenutzerService extends Service {
 					return result;
 				}
 				
-				@Override
-	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
-					progressDialog.dismiss();
-	    		}
+//				@Override
+//	    		protected void onPostExecute(HttpResponse<Benutzer> unused) {
+//					progressDialog.dismiss();
+//					
+//	    		}
 			};
-			
 			createBenutzerTask.execute(be);
 			HttpResponse<Benutzer> response = null; 
 			try {
@@ -314,5 +275,6 @@ public class BenutzerService extends Service {
 			final HttpResponse<Benutzer> result = new HttpResponse<Benutzer>(response.responseCode, response.content, be);
 			return result;
 	    }
+
 	}
 }

@@ -50,7 +50,7 @@ private static final String LOG_TAG = GutscheinDetails.class.getSimpleName();
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 			args = getArguments();
 			
-			setHasOptionsMenu(true);
+			setHasOptionsMenu(false);
 			
 	        benutzer = (Benutzer) args.get("be");
 	        Log.d(LOG_TAG, benutzer.toString());
