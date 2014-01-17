@@ -1,32 +1,23 @@
 package de.kneipe.kneipenquartett.ui.benutzer;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.ToggleButton;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
-import de.kneipe.kneipenquartett.service.BenutzerService;
 import de.kneipe.kneipenquartett.service.HttpResponse;
-import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
 import de.kneipe.kneipenquartett.ui.main.Main;
-import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 
 	public class BenutzerCreate extends Fragment implements OnClickListener {
 		private static final String LOG_TAG = BenutzerCreate.class.getSimpleName();
@@ -63,6 +54,11 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 			
 			return inflater.inflate(R.layout.benutzer_create, container, false);
 		}
+		public static void closeKeyboard(Context c, IBinder windowToken) {
+		    InputMethodManager mgr = (InputMethodManager) c.getSystemService(Context.INPUT_METHOD_SERVICE);
+		    mgr.hideSoftInputFromWindow(windowToken, 0);
+		}
+
 		
 		@Override
 		public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -113,6 +109,7 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 				case R.id.btn_reg:
 					Log.d(LOG_TAG,"create wird ausgeführt");
 					createBenutzer(view);
+					closeKeyboard(getActivity(), createEmail.getWindowToken());
 					break;
 					
 				default:

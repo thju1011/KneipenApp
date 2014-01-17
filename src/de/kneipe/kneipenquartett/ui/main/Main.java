@@ -4,6 +4,7 @@ import static de.kneipe.kneipenquartett.util.Constants.BENUTZER_KEY;
 
 import java.util.List;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ComponentName;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.Menu;
+import android.view.WindowManager;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
 import de.kneipe.kneipenquartett.data.Kneipe;
@@ -86,6 +88,8 @@ public class Main extends Activity  {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		ActionBar ab = getActionBar();
+		ab.setTitle("KneipenQuartett");
 		setContentView(R.layout.main);
 		  Fragment detailsFragment = null;
 	        final Bundle extras = getIntent().getExtras();
@@ -109,7 +113,8 @@ public class Main extends Activity  {
 		        	detailsFragment.setArguments(args);
 		        }
 	        }
-	        
+	        getWindow().setSoftInputMode(
+	        	      WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	        getFragmentManager().beginTransaction()
 	                            .add(R.id.details, detailsFragment)
 	                            .addToBackStack(null)

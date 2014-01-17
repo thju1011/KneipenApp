@@ -28,6 +28,7 @@ public class Startseite extends Fragment {
 		Log.v(LOG_TAG,"hallo");
 		args = getArguments();
 		
+		
 		setHasOptionsMenu(false);
 		benutzer = (Benutzer) getArguments() .get("be");
 		
@@ -43,7 +44,7 @@ public class Startseite extends Fragment {
 		final Activity a = getActivity();
 		ActionBar actionBar = a.getActionBar();
 		actionBar.setNavigationMode(NAVIGATION_MODE_TABS);
-		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setDisplayShowTitleEnabled(true);
 		Bundle args = new Bundle(1);
 		args.putSerializable("be", benutzer);
 		

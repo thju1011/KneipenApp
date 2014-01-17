@@ -3,37 +3,23 @@ package de.kneipe.kneipenquartett.ui.main;
 
 
 import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
-import android.widget.AutoCompleteTextView;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.ToggleButton;
 import de.kneipe.R;
 import de.kneipe.kneipenquartett.data.Benutzer;
-import de.kneipe.kneipenquartett.service.BenutzerService;
 import de.kneipe.kneipenquartett.service.HttpResponse;
-import de.kneipe.kneipenquartett.service.BenutzerService.BenutzerServiceBinder;
-import de.kneipe.kneipenquartett.service.KneipeService;
-import de.kneipe.kneipenquartett.service.KneipeService.KneipeServiceBinder;
 import de.kneipe.kneipenquartett.ui.benutzer.BenutzerCreate;
-import de.kneipe.kneipenquartett.ui.benutzer.BenutzerEdit;
-import de.kneipe.kneipenquartett.ui.benutzer.BenutzerSucheEmail;
 import de.kneipe.kneipenquartett.util.Startseite;
 
 	
@@ -64,6 +50,12 @@ import de.kneipe.kneipenquartett.util.Startseite;
 	
 			
 		}
+		public static void closeKeyboard(Context c, IBinder windowToken) {
+		    InputMethodManager mgr = (InputMethodManager) c.getSystemService(Context.INPUT_METHOD_SERVICE);
+		    mgr.hideSoftInputFromWindow(windowToken, 0);
+		}
+
+		
 
 		@Override
 		public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -94,8 +86,8 @@ import de.kneipe.kneipenquartett.util.Startseite;
 				 String benutzerStr = email.getText().toString();
 				 String benutzerpw = password.getText().toString();
 				
-				
-				 
+	
+				 closeKeyboard(getActivity(), password.getWindowToken());
 							
 				
 				 Bundle args = new Bundle(1);
@@ -166,9 +158,10 @@ import de.kneipe.kneipenquartett.util.Startseite;
 			
 			// Eingabetext ermitteln
 			
-				
+
 				
 		}
+		
 		
 		   
 			
